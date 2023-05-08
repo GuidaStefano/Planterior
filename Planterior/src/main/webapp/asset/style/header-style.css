@@ -1,0 +1,17 @@
+nav {
+	height: 90px;
+}
+
+#upper-nav {
+	background-color: #3D9970;
+	height: 20px;
+}
+
+#mid-nav {
+	background-color: #E1EBDB;
+	height: 40px;
+}
+
+#logo {
+	display: inline;
+}
