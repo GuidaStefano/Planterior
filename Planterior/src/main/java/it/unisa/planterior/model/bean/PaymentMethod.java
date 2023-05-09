@@ -58,8 +58,12 @@ public class PaymentMethod extends Bean {
 	public Optional<Customer> getCustomer() {
 		return customer;
 	}
+	
+	public void setCustomer(Optional<Customer> customer) {
+		this.customer = customer;
+	}
 
-	enum CardCircuit {
+	public enum CardCircuit {
 		VISA,
 		MASTERCARD,
 		AMERICAN_EXPRESS

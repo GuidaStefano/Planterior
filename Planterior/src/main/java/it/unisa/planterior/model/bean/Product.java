@@ -104,13 +104,13 @@ public class Product extends Bean {
 		price = basePrice - (basePrice / 100 * discountRate);
 	}
 
-	enum Category {
+	public enum Category {
 		PIANTE_DA_INTERNO,
 		TERRARIUM,
 		HOME_DECOR
 	}
 	
-	enum Subcategory {
+	public enum Subcategory {
 		PIANTE_VERDI(Category.PIANTE_DA_INTERNO),
 		PIANTE_GRASSE(Category.PIANTE_DA_INTERNO),
 		BONSAI(Category.PIANTE_DA_INTERNO),

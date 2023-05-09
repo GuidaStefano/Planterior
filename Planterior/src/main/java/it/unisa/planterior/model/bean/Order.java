@@ -98,7 +98,7 @@ public class Order extends Bean {
 		this.composition = composition;
 	}
 	
-	enum State {
+	public enum State {
 		PROCESSING,
 		READY,
 		SHIPPED,

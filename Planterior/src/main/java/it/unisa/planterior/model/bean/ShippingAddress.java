@@ -49,8 +49,8 @@ public class ShippingAddress extends Bean {
 		return customer;
 	}
 	
-	public void setCustomer(Customer customer) {
-		this.customer = Optional.ofNullable(customer);
+	public void setCustomer(Optional<Customer> customer) {
+		this.customer = customer;
 	}
 	
 }

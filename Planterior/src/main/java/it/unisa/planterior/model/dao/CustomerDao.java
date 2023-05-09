@@ -36,8 +36,8 @@ public class CustomerDao extends Dao<Customer> {
 	@Override
 	protected Customer parseObject(ResultSet result) throws SQLException {
 		Customer customer = new Customer();
-		customer.setId(result.getLong("id"));
 		
+		customer.setId(result.getLong("id"));
 		customer.setName(result.getString("nome"));
 		customer.setSurname(result.getString("cognome"));
 		customer.setEmail(result.getString("email"));
@@ -47,8 +47,8 @@ public class CustomerDao extends Dao<Customer> {
 		customer.setGender(gender);
 		
 		java.sql.Date sqlDate = result.getDate("data_nascita");
-		Date date = new Date(sqlDate.getTime());
-		customer.setBirthDate(date);
+		Date birthDate = new Date(sqlDate.getTime());
+		customer.setBirthDate(birthDate);
 		
 		customer.setAdministrator(result.getBoolean("amministratore"));
 		
