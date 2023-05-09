@@ -15,7 +15,7 @@ public class Order extends Bean {
 	private Optional<String> trackingCode;
 	private Optional<Date> deliveryDate;
 	
-	private Map<Product, Integer> composition;
+	private Map<ProductClass, Integer> composition;
 	
 	public Order() {
 		
@@ -90,11 +90,11 @@ public class Order extends Bean {
 		this.deliveryDate = Optional.ofNullable(deliveryDate);
 	}
 
-	public Map<Product, Integer> getComposition() {
+	public Map<ProductClass, Integer> getComposition() {
 		return composition;
 	}
 	
-	public void setComposition(Map<Product, Integer> composition) {
+	public void setComposition(Map<ProductClass, Integer> composition) {
 		this.composition = composition;
 	}
 	

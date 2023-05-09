@@ -4,10 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import it.unisa.planterior.model.bean.Product;
-import it.unisa.planterior.model.bean.Product.Subcategory;
+import it.unisa.planterior.model.bean.ProductClass;
+import it.unisa.planterior.model.bean.ProductClass.Subcategory;
 
-public class ProductDao extends Dao<Product> {
+public class ProductDao extends Dao<ProductClass> {
 
 	private static final String TABLE_NAME = "prodotto";
 	private static final String[] UPDATE_FIELDS = {"nome", "categoria", "descrizione_breve", "descrizione_completa", "altezza",
@@ -27,8 +27,8 @@ public class ProductDao extends Dao<Product> {
 	}
 
 	@Override
-	protected Product parseObject(ResultSet result) throws SQLException {
-		Product product = new Product();
+	protected ProductClass parseObject(ResultSet result) throws SQLException {
+		ProductClass product = new ProductClass();
 		
 		product.setId(result.getLong("id"));
 		product.setName(result.getString("nome"));
@@ -44,7 +44,7 @@ public class ProductDao extends Dao<Product> {
 	}
 
 	@Override
-	protected void serializeObject(Product product, PreparedStatement statement) throws SQLException {
+	protected void serializeObject(ProductClass product, PreparedStatement statement) throws SQLException {
 		statement.setString(1, product.getName());
 		statement.setString(2, product.getCategory().name());
 		statement.setString(3, product.getMinimalDescription());

@@ -16,8 +16,8 @@ public class Customer extends Bean {
 	private Date birthDate;
 	private boolean administrator;
 	
-	private Set<Product> favourites;
-	private Map<Product, Integer> cart;
+	private Set<ProductClass> favourites;
+	private Map<ProductClass, Integer> cart;
 	
 	public Customer() {
 		
@@ -93,19 +93,19 @@ public class Customer extends Bean {
 		this.administrator = administrator;
 	}
 	
-	public Set<Product> getFavourites() {
+	public Set<ProductClass> getFavourites() {
 		return favourites;
 	}
 	
-	public void setFavourites(Set<Product> favourites) {
+	public void setFavourites(Set<ProductClass> favourites) {
 		this.favourites = favourites;
 	}
 	
-	public Map<Product, Integer> getCart() {
+	public Map<ProductClass, Integer> getCart() {
 		return cart;
 	}
 	
-	public void setCart(Map<Product, Integer> cart) {
+	public void setCart(Map<ProductClass, Integer> cart) {
 		this.cart = cart;
 	}
 	

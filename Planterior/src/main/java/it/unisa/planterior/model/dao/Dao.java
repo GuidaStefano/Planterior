@@ -28,6 +28,8 @@ public abstract class Dao<T extends Bean> {
 	private String getAllQuery;
 	private String updateQuery;
 	private String insertQuery;
+	private String deleteQuery;
+	
 	
 	protected Dao(String tableName, String... updateFields) {
 		try {
@@ -76,6 +78,8 @@ public abstract class Dao<T extends Bean> {
 		insertQueryBuilder.append(")");
 		
 		insertQuery = insertQueryBuilder.toString();
+		deleteQuery = "DELETE FROM" + tableName +  "WHERE id=?";
+		
 	}
     
     public Optional<T> getById(long id) {
@@ -153,6 +157,20 @@ public abstract class Dao<T extends Bean> {
 		}
     }
     
+    public boolean delete(int ID) throws SQLException{
+    	try (Connection connection = dataSource.getConnection()) {
+		PreparedStatement statement = connection.prepareStatement(deleteQuery);
+		statement.setInt(1, ID);
+		 
+		
+		return true;
+	} catch (SQLException e) {
+		e.printStackTrace();
+		return false;
+	}
+    	
+    	 
+    }
     protected abstract T parseObject(ResultSet result) throws SQLException;
     
     protected abstract void serializeObject(T obj, PreparedStatement statement) throws SQLException;
