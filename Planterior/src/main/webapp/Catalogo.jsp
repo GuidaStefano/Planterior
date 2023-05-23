@@ -12,7 +12,7 @@ Collection<?> prodotti = (Collection<?>) request.getAttribute("products");
 %>
 <!DOCTYPE html>
 <html>
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.unisa.planterior.model.bean.ProductClass"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.unisa.planterior.model.bean.Product"%>
 
 <head>
 <meta charset="UTF-8">
@@ -34,7 +34,7 @@ Collection<?> prodotti = (Collection<?>) request.getAttribute("products");
 		if (prodotti != null && prodotti.size() != 0) {
 				Iterator<?> it = prodotti.iterator();
 				while (it.hasNext()) {
-					ProductClass prodotto1 = (ProductClass) it.next();
+					Product prodotto1 = (Product) it.next();
 		%>
 		<tr>
 			<td><%=prodotto1.getId()%></td>

@@ -26,9 +26,9 @@ public abstract class Dao<T extends Bean> {
 	private String getByIdQuery;
 	private String getByFieldBaseQuery;
 	private String getAllQuery;
+	private String deleteQuery;
 	private String updateQuery;
 	private String insertQuery;
-	private String deleteQuery;
 	
 	
 	protected Dao(String tableName, String... updateFields) {
@@ -50,6 +50,7 @@ public abstract class Dao<T extends Bean> {
 		getByIdQuery = "SELECT * FROM " + tableName + " WHERE id = ?";
 		getAllQuery = "SELECT * FROM " + tableName;
 		getByFieldBaseQuery = "SELECT * FROM " + tableName + " WHERE ";
+		deleteQuery = "DELETE FROM " + tableName + " WHERE id = ?";
 		
 		// costruisce la query di aggiornamento
 		StringBuilder updateQueryBuilder = new StringBuilder("UPDATE " + tableName + " SET ");
@@ -78,8 +79,6 @@ public abstract class Dao<T extends Bean> {
 		insertQueryBuilder.append(")");
 		
 		insertQuery = insertQueryBuilder.toString();
-		deleteQuery = "DELETE FROM" + tableName +  "WHERE id=?";
-		
 	}
     
     public Optional<T> getById(long id) {
@@ -142,6 +141,19 @@ public abstract class Dao<T extends Bean> {
     }
     
     // ritorna lo stato dell'operazione (true = operazione effettuata con successo, false = errore)
+    public boolean delete(long id) {
+		try (Connection connection = dataSource.getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(deleteQuery);
+			statement.setLong(1, id);
+			
+			return statement.executeUpdate() == 1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+    }
+    
+    // ritorna lo stato dell'operazione (true = operazione effettuata con successo, false = errore)
     public boolean save(T obj) {
 		try (Connection connection = dataSource.getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(obj.getId() == -1 ? insertQuery : updateQuery);
@@ -156,21 +168,7 @@ public abstract class Dao<T extends Bean> {
 			return false;
 		}
     }
-    
-    public boolean delete(int ID) throws SQLException{
-    	try (Connection connection = dataSource.getConnection()) {
-		PreparedStatement statement = connection.prepareStatement(deleteQuery);
-		statement.setInt(1, ID);
-		 
-		
-		return true;
-	} catch (SQLException e) {
-		e.printStackTrace();
-		return false;
-	}
-    	
-    	 
-    }
+  
     protected abstract T parseObject(ResultSet result) throws SQLException;
     
     protected abstract void serializeObject(T obj, PreparedStatement statement) throws SQLException;

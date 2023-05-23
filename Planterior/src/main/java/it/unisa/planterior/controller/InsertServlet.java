@@ -1,4 +1,4 @@
-package Controller;
+package it.unisa.planterior.controller;
 
 import java.io.IOException;
  
@@ -62,9 +62,9 @@ public class InsertServlet extends HttpServlet {
 				float Altezza = (float)Integer.parseInt(request.getParameter("Altezza"));
 				float Base = (float)Integer.parseInt(request.getParameter("Base"));
 				float Sconto = (float)Integer.parseInt(request.getParameter("Sconto"));
-				int Quantita = Integer.parseInt(request.getParameter("Quantita"));
+				short Quantita = Short.parseShort(request.getParameter("Quantita"));
 				
-				ProductClass prodotto= new ProductClass(Nome ,  categoria,  breve,  Completa,   Circonferenza, Altezza  ,  Base ,  Sconto ,  Quantita);
+				Product prodotto= new Product(Nome ,  categoria,  breve,  Completa,   Circonferenza, Altezza  ,  Base ,  Sconto ,  Quantita);
 				ProductDao.getInstance().save(prodotto);
 				
 				
@@ -72,23 +72,19 @@ public class InsertServlet extends HttpServlet {
 			}
 			else if(action.equalsIgnoreCase("delete")) {
 				int id = Integer.parseInt(request.getParameter("id"));
-				try {
-					ProductDao.getInstance().delete(id);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				ProductDao.getInstance().delete(id);
+		
 			}
 			else if (action.equals("read")) {
 				int id = Integer.parseInt(request.getParameter("id"));
-				Optional<ProductClass> a = ProductDao.getInstance().getById(id);
+				Optional<Product> a = ProductDao.getInstance().getById(id);
 	
 				request.setAttribute("product", a);
 			}
 			
 	
 	 	}
-		List<ProductClass> b = ProductDao.getInstance().getAll();
+		List<Product> b = ProductDao.getInstance().getAll();
 		
 		request.setAttribute("products", b);
 		

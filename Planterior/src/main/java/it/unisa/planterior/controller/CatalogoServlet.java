@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.planterior.model.bean.ProductClass;
+import it.unisa.planterior.model.bean.Product;
 import it.unisa.planterior.model.dao.ProductDao;
 
 /**
@@ -61,14 +61,14 @@ public class CatalogoServlet extends HttpServlet {
 			 
 			else if (action.equals("read")) {
 				int id = Integer.parseInt(request.getParameter("id"));
-				Optional<ProductClass> a = ProductDao.getInstance().getById(id);
+				Optional<Product> a = ProductDao.getInstance().getById(id);
 	
 				request.setAttribute("product", a);
 			}
 			
 	
 	 	}
-		List<ProductClass> b = ProductDao.getInstance().getAll();
+		List<Product> b = ProductDao.getInstance().getAll();
 		
 		request.setAttribute("products", b);
 		

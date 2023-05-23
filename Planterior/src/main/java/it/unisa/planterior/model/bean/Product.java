@@ -1,6 +1,6 @@
 package it.unisa.planterior.model.bean;
 
-public class ProductClass extends Bean {
+public class Product extends Bean {
 	
 	private String name;
 	private Subcategory category;
@@ -11,26 +11,14 @@ public class ProductClass extends Bean {
 	private float basePrice;
 	private float discountRate;
 	private float price;
-	private int quantity;
-	
-	public int getQuantity() {
-		return quantity;
-	}
+	private short availableAmount;
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public void setPrice(float price) {
-		this.price = price;
-	}
-
-	public ProductClass() {
+	public Product() {
 		
 	}
 	
-	public ProductClass(String name, String category, String minimalDescription, String description, float height,
-			float flowerpotCircumference, float basePrice, float discountRate, int quantity) {
+	public Product(String name, String category, String minimalDescription, String description, float height,
+			float flowerpotCircumference, float basePrice, float discountRate, short availableAmount) {
 		id = -1; // generato dal DBMS
 		this.name = name;
 		this.category = Subcategory.valueOf(category);
@@ -40,7 +28,7 @@ public class ProductClass extends Bean {
 		this.flowerpotCircumference = flowerpotCircumference;
 		this.basePrice = basePrice;
 		this.discountRate = discountRate;
-		this.quantity = quantity;
+		this.availableAmount = availableAmount;
 		computePrice();
 	}
 	
@@ -112,6 +100,14 @@ public class ProductClass extends Bean {
 
 	public float getPrice() {
 		return price;
+	}
+	
+	public short getAvailableAmount() {
+		return availableAmount;
+	}
+	
+	public void setAvailableAmount(short availableAmount) {
+		this.availableAmount = availableAmount;
 	}
 
 	private void computePrice() {
