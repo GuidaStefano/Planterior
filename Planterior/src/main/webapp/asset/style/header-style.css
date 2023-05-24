@@ -1,17 +1,26 @@
-nav {
-	height: 90px;
+body {
+    margin: 0;
 }
 
-#upper-nav {
-	background-color: #3D9970;
-	height: 20px;
+.upper-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #e1ebdb;
+  }
+  
+.logo-container img {
+    width: 105px;
+}
+  
+.nav-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#mid-nav {
-	background-color: #E1EBDB;
-	height: 40px;
-}
-
-#logo {
-	display: inline;
+.icon {
+    width: 30px;
+    padding: 10px;
 }

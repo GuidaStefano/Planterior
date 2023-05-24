@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import it.unisa.planterior.model.bean.Product;
 import it.unisa.planterior.model.bean.Product.Subcategory;
+import it.unisa.planterior.model.dao.api.Dao;
 
 public class ProductDao extends Dao<Product> {
 

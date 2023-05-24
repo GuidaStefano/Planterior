@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import it.unisa.planterior.model.bean.Customer;
 import it.unisa.planterior.model.bean.ShippingAddress;
+import it.unisa.planterior.model.dao.api.Dao;
 
 public class ShippingAddressDao extends Dao<ShippingAddress> {
 

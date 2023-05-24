@@ -1,4 +1,4 @@
-package it.unisa.planterior.model.dao;
+package it.unisa.planterior.model.dao.api;
 
 import java.sql.Connection;
 import java.sql.JDBCType;
@@ -10,16 +10,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
 import it.unisa.planterior.model.bean.Bean;
 
-public abstract class Dao<T extends Bean> {
+public abstract class Dao<T extends Bean> extends GenericDao<T> {
 	
-	protected DataSource dataSource;
 	protected String tableName;
 	protected String[] updateFields;
 	
@@ -32,14 +26,7 @@ public abstract class Dao<T extends Bean> {
 	
 	
 	protected Dao(String tableName, String... updateFields) {
-		try {
-			Context initialContext = new InitialContext();
-			Context environmentContext = (Context) initialContext.lookup("java:comp/env");
-
-			dataSource = (DataSource) environmentContext.lookup("jdbc/planterior-database");
-		} catch (NamingException e) {
-			System.out.println("Error:" + e.getMessage());
-		}
+		super();
 		
 		this.tableName = Objects.requireNonNull(tableName);
 		this.updateFields = updateFields;
@@ -81,6 +68,7 @@ public abstract class Dao<T extends Bean> {
 		insertQuery = insertQueryBuilder.toString();
 	}
     
+	@Override
     public Optional<T> getById(long id) {
 		try (Connection connection = dataSource.getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(getByIdQuery);
@@ -154,6 +142,7 @@ public abstract class Dao<T extends Bean> {
     }
     
     // ritorna lo stato dell'operazione (true = operazione effettuata con successo, false = errore)
+    @Override
     public boolean save(T obj) {
 		try (Connection connection = dataSource.getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(obj.getId() == -1 ? insertQuery : updateQuery);

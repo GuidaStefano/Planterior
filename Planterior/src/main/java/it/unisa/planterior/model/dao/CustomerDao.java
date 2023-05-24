@@ -5,11 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Optional;
 
+import it.unisa.planterior.model.bean.Cart;
 import it.unisa.planterior.model.bean.Customer;
+import it.unisa.planterior.model.bean.Favourites;
+import it.unisa.planterior.model.dao.api.Dao;
 
 public class CustomerDao extends Dao<Customer> {
 
@@ -36,8 +37,9 @@ public class CustomerDao extends Dao<Customer> {
 	@Override
 	protected Customer parseObject(ResultSet result) throws SQLException {
 		Customer customer = new Customer();
+		long customerId = result.getLong("id");
 		
-		customer.setId(result.getLong("id"));
+		customer.setId(customerId);
 		customer.setName(result.getString("nome"));
 		customer.setSurname(result.getString("cognome"));
 		customer.setEmail(result.getString("email"));
@@ -52,9 +54,11 @@ public class CustomerDao extends Dao<Customer> {
 		
 		customer.setAdministrator(result.getBoolean("amministratore"));
 		
-		// TODO 
-		customer.setFavourites(new HashSet<>());
-		customer.setCart(new HashMap<>());
+		Favourites favourites = FavouritesDao.getInstance().getById(customerId).orElse(new Favourites());
+		customer.setFavourites(favourites);
+		
+		Cart cart = CartDao.getInstance().getById(customerId).orElse(new Cart());
+		customer.setCart(cart);
 		
 		return customer;
 	}

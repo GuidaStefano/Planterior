@@ -9,6 +9,7 @@ import java.util.Optional;
 import it.unisa.planterior.model.bean.Customer;
 import it.unisa.planterior.model.bean.PaymentMethod;
 import it.unisa.planterior.model.bean.PaymentMethod.CardCircuit;
+import it.unisa.planterior.model.dao.api.Dao;
 
 public class PaymentMethodDao extends Dao<PaymentMethod> {
 

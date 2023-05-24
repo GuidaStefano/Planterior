@@ -1,10 +1,6 @@
 package it.unisa.planterior.model.bean;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 public class Customer extends Bean {
 	
@@ -16,8 +12,8 @@ public class Customer extends Bean {
 	private Date birthDate;
 	private boolean administrator;
 	
-	private Set<Product> favourites;
-	private Map<Product, Integer> cart;
+	private Favourites favourites;
+	private Cart cart;
 	
 	public Customer() {
 		
@@ -33,8 +29,8 @@ public class Customer extends Bean {
 		this.birthDate = birthDate;
 		administrator = false;
 		
-		favourites = new HashSet<>();
-		cart = new HashMap<>();
+		favourites = new Favourites();
+		cart = new Cart();
 	}
 	
 	public String getName() {
@@ -93,22 +89,22 @@ public class Customer extends Bean {
 		this.administrator = administrator;
 	}
 	
-	public Set<Product> getFavourites() {
+	public Favourites getFavourites() {
 		return favourites;
 	}
-	
-	public void setFavourites(Set<Product> favourites) {
+
+	public void setFavourites(Favourites favourites) {
 		this.favourites = favourites;
 	}
-	
-	public Map<Product, Integer> getCart() {
+
+	public Cart getCart() {
 		return cart;
 	}
-	
-	public void setCart(Map<Product, Integer> cart) {
+
+	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
+
 	public enum Gender {
 		M, F;
 	}
