@@ -1,0 +1,53 @@
+* {
+    font-family: "poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+body {
+    margin: 0;
+}
+
+.container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.product-list-horizontal{
+    border: 1px solid black;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    display:flex;
+    flex-direction: row;
+    overflow-x: scroll;
+}
+
+.card{
+    width: max-content;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin-left: 20px;
+    background-color: grey;
+}
+
+.img-ex{
+    height: 50%;
+    width: 200px;
+    background-color: aqua;
+}
+
+.product-price{
+    margin: 0px;
+}
+
+.product-name{
+    margin: 0px;
+}
+
+
+
