@@ -54,10 +54,14 @@ public class CustomerDao extends Dao<Customer> {
 		
 		customer.setAdministrator(result.getBoolean("amministratore"));
 		
-		Favourites favourites = FavouritesDao.getInstance().getById(customerId).orElse(new Favourites());
+		//Favourites favourites = FavouritesDao.getInstance().getById(customerId).orElse(new Favourites());
+		Favourites favourites = new Favourites();
+		favourites.setId(customerId);
 		customer.setFavourites(favourites);
 		
-		Cart cart = CartDao.getInstance().getById(customerId).orElse(new Cart());
+		//Cart cart = CartDao.getInstance().getById(customerId).orElse(new Cart());
+		Cart cart = new Cart();
+		cart.setId(customerId);
 		customer.setCart(cart);
 		
 		return customer;
