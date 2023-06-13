@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -53,7 +54,7 @@ public class InsertServlet extends HttpServlet {
 			
 			if(action.equalsIgnoreCase("insert")) {
 			
-			
+				 
 				String Nome=request.getParameter("nome");		
 				String categoria=request.getParameter("categoria");	
 				String breve=request.getParameter("breve");	
@@ -75,22 +76,27 @@ public class InsertServlet extends HttpServlet {
 				ProductDao.getInstance().delete(id);
 		
 			}
-			else if (action.equals("read")) {
+			else   if (action.equals("modifica")) {
 				int id = Integer.parseInt(request.getParameter("id"));
+				
 				Optional<Product> a = ProductDao.getInstance().getById(id);
-	
-				request.setAttribute("product", a);
+				System.out.println(a.get().getId());
+				
+				HttpSession session = request.getSession();
+		 		session.setAttribute("product", a);
+		 		
+				RequestDispatcher dispatcher = request.getRequestDispatcher("ModificaProdotto.jsp");
+				dispatcher.forward(request, response);
 			}
 			
 	
-	 	}
+	 	} 
 		List<Product> b = ProductDao.getInstance().getAll();
 		
 		request.setAttribute("products", b);
-		
-		
 		RequestDispatcher rds=request.getRequestDispatcher("amministratore.jsp");
 		rds.forward(request, response);
+	 	
 		
 	}
 }

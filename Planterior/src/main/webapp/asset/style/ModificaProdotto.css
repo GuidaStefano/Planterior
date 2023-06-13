@@ -1,0 +1,105 @@
+@charset "ISO-8859-1";
+
+h3{
+	
+text-align: center;
+padding:0 0 40px 0 ;
+ border-bottom: 1px solid silver;  
+}
+
+ .nascondi{
+ 	display:none;
+ 	border-radius:30%;
+ }
+*{
+	padding:20px;
+}
+.spacing {
+  margin-bottom: 30px;
+  }
+  
+  .struttura{
+  		justify-content: center;
+  		display:flex;
+  		flex-direction:row;
+  		width:100%;
+  		border-bottom:1px solid silver;
+  		align-items:center;
+  		 
+  }
+  
+  .destra{
+  width:30%;
+  justify-content: right;
+  }
+  .sinistra{
+  border-right:1px solid silver;
+  width:30%;
+  justify-content: left;
+  }
+  .modifica{
+  	display:flex;
+  	flex-direction:space-around;
+  	width:100%;
+  	justify-content: right;
+  }
+  button{
+  	 
+  	margin-left: 15px;
+    background-color: white;
+    border: 1px solid #f1f1f1;
+    transition: ease-out 0.4s;
+     text-align: center;
+     
+  }
+  
+  button i {
+  	
+    margin: 12px 8px;
+    transition: ease-out 0.4s;
+  }
+
+  button:hover {
+    background-color: #6ea25a;
+    transition: ease-in 0.4s;
+ }
+
+  button:hover i {
+    color: white;
+    transition: ease-in 0.4s;
+ }
+  
+  
+  
+  /*bottoni in fondo alla pagina*/
+  
+  .buttons {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex; 
+    justify-content: center;
+    align-items:center;
+    width:100%;
+  }
+
+  .buttons button {
+    margin-left: 15px;
+    background-color: white;
+    border: 1px solid #f1f1f1;
+    transition: ease-out 0.4s;
+  }
+
+  .buttons button i {
+    margin: 12px 8px;
+    transition: ease-out 0.4s;
+  }
+
+ .buttons button:hover {
+    background-color: #6ea25a;
+    transition: ease-in 0.4s;
+ }
+
+ .buttons button:hover i {
+    color: white;
+    transition: ease-in 0.4s;
+ }

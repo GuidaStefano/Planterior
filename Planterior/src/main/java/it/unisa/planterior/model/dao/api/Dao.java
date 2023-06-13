@@ -149,7 +149,7 @@ public abstract class Dao<T extends Bean> extends GenericDao<T> {
 			serializeObject(obj, statement);
 			
 			if (obj.getId() != -1)
-				statement.setLong(8, obj.getId());
+				statement.setLong(updateFields.length + 1, obj.getId());
 			
 			return statement.executeUpdate() == 1;
 		} catch (SQLException e) {

@@ -1,0 +1,114 @@
+/* Index style */
+
+.container .row .col-8 .box-slider{
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.container .row .col-8 .box-slider .row .col-6 .text-box h4{
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+
+.container .row .col-8 .box-slider .row .col-6 .text-box h2{
+    font-size: 72px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.container .row .col-8 .box-slider .row .col-6 .text-box h5{
+    font-weight: 20px;
+    margin-bottom: 5px;
+}
+
+.container .row h1{
+    font-size: 64px;
+}
+
+.container .row .green-separator{
+    height: 5px;
+    width: 80px;
+    background-color: #65a15a;
+}
+
+.container .row .card{
+    width: 250px;
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #e6e6e6;
+    margin-right: 15px;
+    border: 1px solid #e6e6e6;
+}
+
+.container .row .card:hover{
+    border: 1px solid #65a15a;
+}
+
+.container .row .card .text-box{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .row .card h3{
+    font-size: 36px;
+}
+
+.container .row .card h6{
+    font-size: 20px;
+}
+
+.container .row .card img{
+    width: -webkit-fill-available;
+    max-height: 670px;
+}
+
+/* Footer */
+
+.container .row .footer-col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .row .footer-col ul{
+    list-style-type: none;
+    text-align: center;
+}
+
+.container .row .footer-col ul li a{
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+.container .row .footer-col form{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 20px;
+}
+
+.container .row .footer-col form input{
+    height: 40px;
+    border: 1px grey;
+    padding: 5px;
+}
+
+.container .row .footer-col form button{
+    width: 100%;
+    height: 40px;
+    background-color:#65a15a;
+    border: 0;
+    margin-top: 10px;
+}
+
+.container .row .footer-col p{
+    font-size: 14px;
+    text-align: center;
+}
+
