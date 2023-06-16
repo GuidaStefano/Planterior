@@ -1,0 +1,80 @@
+.wrapper {
+	margin: 40px 55px;
+}
+
+
+.h-box {
+	display: flex;
+	justify-content: space-between;
+}
+
+.v-box {
+	display: flex;
+	flex-direction: column;
+}
+ 
+#page-content {
+	row-gap: 15px;
+}
+
+#table {
+	border: 1px solid #f1f1f1;
+}
+
+#table-header, .table-row {
+	padding: 15px 10px;
+}
+
+.table-col {
+	flex: 1;
+	text-align: center;
+}
+
+#table-header h3 {
+	text-transform: uppercase;
+}
+
+.table-row {
+	border-top: 1px solid #f1f1f1;
+}
+
+.justify-center {
+	justify-content: center;
+	column-gap: 5px;
+}
+
+.caret-btn {
+	height: 8px;
+}
+
+#add-btn {
+	display: none;
+	align-self: end;
+	width: 200px;
+}
+
+#fixed-btn {
+	position: fixed;
+	bottom: 60px;
+	right: 60px;
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+}
+
+#no-products-box {
+	row-gap: 15px;
+}
+
+#no-products-box > button {
+	width: 250px;
+}
+
+@media screen and (max-width: 768px) {
+	.mobile-col {
+	display: none;
+	}
+}
+
+ 
+ 

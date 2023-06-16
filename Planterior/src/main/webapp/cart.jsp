@@ -26,7 +26,7 @@
                         <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                     </div>
                     <h4 class="price">45€</h4>
-                    <button class="btn"><i class="fa fa-trash"></i></button>
+                    <button class="icon-button"><i class="fa fa-trash"></i></button>
                 </div>
                 <div class="cart-product">
                     <div class="product-info">
@@ -42,7 +42,7 @@
                         <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                     </div>
                     <h4 class="price">45€</h4>
-                    <button class="btn"><i class="fa fa-trash"></i></button>
+                    <button class="icon-button"><i class="fa fa-trash"></i></button>
                 </div>
                 <div class="total-price">
                     <h5>PREZZO TOTALE</h5>
@@ -50,8 +50,8 @@
                 </div>
             </div>
             <div class="buttons">
-                <button><h6>CHECKOUT</h6></button>
-                <button><h6>RITORNA ALLO SHOPPING</h6></button>
+                <button class="big-button"><h6>CHECKOUT</h6></button>
+                <button class="big-button"><h6>RITORNA ALLO SHOPPING</h6></button>
             </div>
         </div>
         <%@ include file="footer.jsp" %>  

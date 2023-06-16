@@ -17,7 +17,7 @@
                     <form class="form" action="LoginServlet" method="POST">
                         <div>
                             <label for="username">Email</label>
-                            <input class="text-input" type="email" name="email" />
+                            <input class="text-input" type="text" name="email" />
                         </div>
                         <div>
                             <label for="password">Password</label>
@@ -30,7 +30,7 @@
                             </div>
                             <p><a href="">Password dimenticata?</a></p>
                         </div>
-                        <input class="submit-btn" type="submit" value="LOGIN" />
+                        <input class="submit-btn" type=submit value="LOGIN" />
                     </form>
                 </div>
                 <div class="form-wrapper">
@@ -83,5 +83,5 @@
             </div>
         </div>
         <%@ include file="footer.jsp" %>  
-    </body>
+    </body>
 </html>
