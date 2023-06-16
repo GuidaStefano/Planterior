@@ -12,9 +12,6 @@ public class Customer extends Bean {
 	private Date birthDate;
 	private boolean administrator;
 	
-	private Favourites favourites;
-	private Cart cart;
-	
 	public Customer() {
 		
 	}
@@ -28,9 +25,6 @@ public class Customer extends Bean {
 		this.gender = gender;
 		this.birthDate = birthDate;
 		administrator = false;
-		
-		favourites = new Favourites();
-		cart = new Cart();
 	}
 	
 	public String getName() {
@@ -87,22 +81,6 @@ public class Customer extends Bean {
 	
 	public void setAdministrator(boolean administrator) {
 		this.administrator = administrator;
-	}
-	
-	public Favourites getFavourites() {
-		return favourites;
-	}
-
-	public void setFavourites(Favourites favourites) {
-		this.favourites = favourites;
-	}
-
-	public Cart getCart() {
-		return cart;
-	}
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
 	}
 
 	public enum Gender {

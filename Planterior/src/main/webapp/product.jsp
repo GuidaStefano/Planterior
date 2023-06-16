@@ -29,7 +29,7 @@
                 <p class="product-price">$99.99</p>
                 <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, enim a sagittis dapibus, lorem nulla rhoncus est, sit amet tempor metus lorem ac ipsum.</p>
                 <div class="number-input-wrapper">
-                    <div class="number-input">
+                      <div class="number-input">
                         <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
                         <input min="1" name="quantity" value="1" type="number">
                         <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>

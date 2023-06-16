@@ -6,13 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 import it.unisa.planterior.model.bean.Bean;
 
-public abstract class Dao<T extends Bean> extends GenericDao<T> {
+public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 	
 	protected String tableName;
 	protected String[] updateFields;
@@ -111,8 +114,8 @@ public abstract class Dao<T extends Bean> extends GenericDao<T> {
     	return allMatched.stream().findFirst();
     }
     
-    public List<T> getAll() {
-		List<T> all = new ArrayList<>();
+    public Set<T> getAll() {
+		Set<T> all = new LinkedHashSet<>();
 		try (Connection connection = dataSource.getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(getAllQuery);
 			ResultSet result = statement.executeQuery();

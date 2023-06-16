@@ -9,11 +9,11 @@ import javax.sql.DataSource;
 
 import it.unisa.planterior.model.bean.Bean;
 
-public abstract class GenericDao<T extends Bean> {
+public abstract class AbstractDao<T extends Bean> {
 	
 	protected DataSource dataSource;
 	
-	protected GenericDao() {
+	protected AbstractDao() {
 		try {
 			Context initialContext = new InitialContext();
 			Context environmentContext = (Context) initialContext.lookup("java:comp/env");

@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Optional;
 
-import it.unisa.planterior.model.bean.Cart;
 import it.unisa.planterior.model.bean.Customer;
-import it.unisa.planterior.model.bean.Favourites;
 import it.unisa.planterior.model.dao.api.Dao;
 
 public class CustomerDao extends Dao<Customer> {
@@ -53,16 +51,6 @@ public class CustomerDao extends Dao<Customer> {
 		customer.setBirthDate(birthDate);
 		
 		customer.setAdministrator(result.getBoolean("amministratore"));
-		
-		//Favourites favourites = FavouritesDao.getInstance().getById(customerId).orElse(new Favourites());
-		Favourites favourites = new Favourites();
-		favourites.setId(customerId);
-		customer.setFavourites(favourites);
-		
-		//Cart cart = CartDao.getInstance().getById(customerId).orElse(new Cart());
-		Cart cart = new Cart();
-		cart.setId(customerId);
-		customer.setCart(cart);
 		
 		return customer;
 	}

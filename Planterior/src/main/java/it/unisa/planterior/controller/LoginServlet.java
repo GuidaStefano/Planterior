@@ -25,29 +25,19 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
  
 		String email = request.getParameter("email");
-		System.out.println(request.getParameter("password"));
 		String password = SecurityUtil.sha256(request.getParameter("password"));
 		 
-
-
-		 
 		CustomerDao customerDao = CustomerDao.getInstance();
- 
+		
 		Optional<Customer> optionalCustomer = customerDao.getByEmail(email);
  		if (optionalCustomer.isPresent()) {
  			Customer customer = optionalCustomer.get();
  			 
-  			String passworddb= SecurityUtil.sha256(customer.getPassword());
-  			System.out.println(password);
-  			System.out.println(passworddb);
- 			if (passworddb.equals(password)) {
+ 			if (customer.getPassword().equals(password)) {
 		 		HttpSession session = request.getSession(true);
-		 		session.setAttribute("username", email);
-	 			 
-		 		if(customer.isAdministrator()) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("amministratore.jsp");
-				dispatcher.forward(request, response);
-		 		}
+		 		session.setAttribute("user", customer);
+	 	
+		 		response.sendRedirect(customer.isAdministrator() ? "administrator.jsp" : "index.jsp");
 			} else {
 				out.println("<font color=red size18>Login Failed<br>");
 				out.println("<a href=login.jsp>Try Again</a>");

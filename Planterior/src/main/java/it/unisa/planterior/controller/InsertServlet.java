@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -91,7 +92,7 @@ public class InsertServlet extends HttpServlet {
 			
 	
 	 	} 
-		List<Product> b = ProductDao.getInstance().getAll();
+		Set<Product> b = ProductDao.getInstance().getAll();
 		
 		request.setAttribute("products", b);
 		RequestDispatcher rds=request.getRequestDispatcher("amministratore.jsp");
