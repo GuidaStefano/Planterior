@@ -6,7 +6,8 @@
 <!DOCTYPE html>
 <html>
     <head>  
-
+	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
         <link rel="stylesheet" href="asset/style/index-style.css" />
         <title>Planterior</title>
     </head>
@@ -15,11 +16,11 @@
 
         <div class="container">
             <div class="row" style="height: 90vh;">
-                <div class="col-8" style="padding: 50px 0;">
+                <div class="col-8 col-xs-12" style="padding: 50px 0;">
                     <div class="box-slider"
                         style="background-image:url(asset/images/slider-thumb6.jpg);background-position: center;background-repeat: no-repeat;background-size: cover;">
                         <div class="row" style="height: 100%;">
-                            <div class="col-6" style="display: flex;align-items: center;justify-content: center;">
+                            <div class="col-6 col-xs-12" style="display: flex;align-items: center;justify-content: center;">
                                 <div class="text-box" style="line-height: 1;">
                                     <h5>Sovrattitolo</h5>
                                     <h2>Titolo</h2>
@@ -32,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4" style="padding: 50px 0;">
+                <div class="col-4 col-xs-12" style="padding: 50px 0;">
                     <div class="row" style="height: 50%; padding: 0px 10px 10px 10px;">
                         <div class="hero-square"
                             style="width: 100%;height: 100%;background-image:url(asset/images/banner-home-5.jpg);background-position: center;background-repeat: no-repeat;background-size: cover;">

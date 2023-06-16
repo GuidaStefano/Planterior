@@ -22,6 +22,29 @@
     margin-bottom: 5px;
 }
 
+.container .row .col-8 .box-slider .row .col-6 .text-box button{
+    font-size: 12px;
+    font-weight: 700;
+    align-self: flex-start;
+    padding: 12px 24px;
+    color: white;
+    background-color: #6ea25a;
+    border: none;
+    cursor: pointer;
+}
+
+.container .row .col-4 .row .hero-square .col-8 .text-box button{
+    font-size: 12px;
+    font-weight: 700;
+    align-self: flex-start;
+    padding: 10px 20px;
+    color: white;
+    background-color: #6ea25a;
+    border: none;
+    cursor: pointer;
+    margin-top:10px;
+}
+
 .container .row h1{
     font-size: 64px;
 }
@@ -112,3 +135,30 @@
     text-align: center;
 }
 
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  	.container .hero-section{
+  	display:block;
+  	justify-content: center;
+  }
+  
+  	.container .row .col-8{
+    padding: 0px !important;
+    margin: 0 !important;
+}
+  
+  	.container .row .col-8 .box-slider .row{
+  	display:block;
+  }
+  
+  	.container .row h1 {
+    font-size: 64px;
+    text-align:center;
+}
+
+	.mini-nav ul{
+	display:none !important;
+	}
+  
+}

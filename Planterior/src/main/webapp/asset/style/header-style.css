@@ -183,6 +183,12 @@
     padding: 15px 30px;
     position: relative;
 }
+
+.mini-nav .vertical-menu span{
+	color:white;
+}
+
+
 .mini-nav .vertical-menu:hover ul{
     display: block;
 }
@@ -213,3 +219,20 @@
     width: 30px;
     height: 30px;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+      .col-xs-1 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-2 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-3 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-4 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-5 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-6 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-7 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-8 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-9 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-10 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-11 { flex: 0 0 100%; max-width: 100%; }
+      .col-xs-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+

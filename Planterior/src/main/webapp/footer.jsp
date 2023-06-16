@@ -6,13 +6,11 @@
    <link rel="stylesheet" href="https://use.typekit.net/omf2qxn.css">
 </head>
 <body>
-
-    
     <!--Footer-->
 
     <div class="container" style="background-color: #f3f3f3;">
         <div class="row" style="padding: 40px;">
-            <div class="col-4 footer-col">
+            <div class="col-4 footer-col col-xs-12">
                 <ul>
                     <li>
                         <h2>Menu</h2>
@@ -23,7 +21,7 @@
                     <li><a href="#">Link 5</a></li>
                 </ul>
             </div>
-            <div class="col-4 footer-col">
+            <div class="col-4 footer-col col-xs-12">
                 <h1>Newsletter</h1>
                 <p>Sign up for our free video course and urban garden inspiration</p>
                 <form action="">
@@ -36,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 footer-col">
+            <div class="col-4 footer-col col-xs-12">
                 <ul>
                     <li>
                         <h2>Infromation</h2>
