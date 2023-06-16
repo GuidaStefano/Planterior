@@ -233,6 +233,11 @@
       .col-xs-10 { flex: 0 0 100%; max-width: 100%; }
       .col-xs-11 { flex: 0 0 100%; max-width: 100%; }
       .col-xs-12 { flex: 0 0 100%; max-width: 100%; }
+      
+      
+      	.mini-nav ul{
+			display:none !important;
+		}
 }
 
 
