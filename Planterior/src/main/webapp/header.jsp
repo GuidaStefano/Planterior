@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="asset/style/header-style.css" />
+<link rel="stylesheet" href="asset/style/text-style.css" />
 <link rel="stylesheet" href="https://use.typekit.net/omf2qxn.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div class="container" style="background-color: #65a15a; height: 5vh;">
@@ -23,27 +24,38 @@
 
 	<div class="container" style="margin: 10px 0;">
 		<div class="row" style="align-items: center;">
-			<div class="col-4">
+			<div class="col-4 col-xs-3">
 				<!-- Contenuto della prima colonna dell'header -->
 				<img src="asset/icon/logo.png" width="120" height="100">
 			</div>
-			<div class="col-4">
+			<div class="col-4 search-mobile-none">
 				<!-- Contenuto della seconda colonna dell'header -->
 				<div class="form-content">
 					<div class="inner">
 						<input type="text" class="input" name="s" value=""
 							placeholder="Cerca prodotto">
 					</div>
-					<button class="btn-search" type="submit">
-						<img src="asset/icon/search.png" width="25px" height="25px">
+					<button class="btn-search big-button static-btn" type="submit">
+					<i class="fa-sharp fa-solid fa-magnifying-glass fa-lg" style="color: #ffffff;"></i>
 					</button>
 				</div>
 			</div>
-			<div class="col-4" style="display: flex; justify-content: center;">
+			<div class="col-4 col-xs-3" style="display: flex; justify-content: center;">
 				<!-- Contenuto della terza colonna dell'header -->
-				<img src="asset/icon/bag.png" width="30" height="30"
-					style="margin-right: 30px;"> <img src="asset/icon/user.png"
-					width="30" height="30">
+				<button class="icon-button nav-btn"><i class="fa-solid fa-cart-shopping fa-2xl"></i></button>
+				<button class="icon-button nav-btn"><i class="fa-solid fa-user fa-2xl"></i></button>
+			</div>
+			<div class="col-xs-12 search-mobile-display">
+				<!-- Contenuto della seconda colonna dell'header -->
+				<div class="form-content">
+					<div class="inner">
+						<input type="text" class="input" name="s" value=""
+							placeholder="Cerca prodotto">
+					</div>
+					<button class="btn-search big-button static-btn" type="submit">
+					<i class="fa-sharp fa-solid fa-magnifying-glass fa-lg" style="color: #ffffff;"></i>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
