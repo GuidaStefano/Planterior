@@ -23,6 +23,7 @@
 							 else{
 							 	 $("#ErrorSignup").hide();
 							 	  $("#EmailSignUp").css("borderBottomColor" , "green");
+							 	  $("#Registrati").prop("disabled",false);
 							 }
 						}
 					});	
@@ -57,7 +58,7 @@
           $(document).ready(function(){
           	   
           	  $("#EmailLogin").keyup(function(){
-          		   
+          		   $("#Accedi").prop("disabled", false);
           		  if( validateEmail($("#EmailLogin").val())){
           			$("#ErrorLogin").html("Formato email valido").css("color","green");
           			$("#EmailLogin").css("borderBottomColor" , "green");
@@ -84,28 +85,24 @@
       
         	$(document).ready(function(){
           	   
-          	  $("#Login").click(function(){
-          		   
-          		  if( validateEmail($("#EmailLogin").val())){
-          			$("#Login").removeAttr('disabled','disabled');
-          		  }else{
-          			
-          			$("#Login").attr('disabled','disabled');
-          		  }
+          	  $("#Accedi").click(function(){
+          		 if(! validateEmail($("#EmailLogin").val()))
+          			$("#Accedi").prop("disabled",true);
+          		  
           	  });
           	
           	
          	});
-         	$(document).ready(function(){
+     
+     
+     $(document).ready(function(){
           	   
-          	  $("#SignUp").click(function(){
+          	  $("#registrati").click(function(){
           		   
-          		  if( validateEmail($("#EmailSignup").val())){
-          			$("#SignUp").removeAttr('disabled','disabled');
-          		  }else{
-					$("#EmailSignUp").css("borderBottomColor" , "red");
-          			$("#SignUp").attr('disabled','disabled');
-          		  }
+          		  if( !validateEmail($("#EmailSignup").val())){
+          			$("#Registrati").prop("disabled",true);
+          			$("#EmailSignUp").css("borderBottomColor" , "red");
+          		  } 
           	  });
           	
           	
