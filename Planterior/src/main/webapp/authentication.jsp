@@ -6,6 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="asset/style/authentication-style.css" />
         <link rel="stylesheet" href="asset/style/text-style.css" />
+        
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>  
+<script src="asset/script/checkEmail.js"></script>      
+ 
     </head>
     <body>
          <%@ include file="header.jsp" %>  
@@ -17,7 +22,8 @@
                     <form class="form" action="LoginServlet" method="POST">
                         <div>
                             <label for="username">Email</label>
-                            <input class="text-input" type="text" name="email" />
+                            <input id="EmailLogin" class="text-input" type="text" name="email"/><!--   onchange="existEmail()"-->
+                            <span id="ErrorLogin"></span>
                         </div>
                         <div>
                             <label for="password">Password</label>
@@ -25,12 +31,12 @@
                         </div>
                         <div class="password-recovery">
                             <div class="form-checkbox">
-                                <input type="checkbox" name="save-session"/>
+                                <input type="checkbox" name="save-session" />
                                 <p>Ricordami</p>
                             </div>
                             <p><a href="">Password dimenticata?</a></p>
                         </div>
-                        <input class="submit-btn" type=submit value="LOGIN" />
+                        <input class="submit-btn" id="Accedi" type=submit value=Login />
                     </form>
                 </div>
                 <div class="form-wrapper">
@@ -67,7 +73,8 @@
                         </div>
                         <div>
                             <label for="username">Email</label>
-                            <input class="text-input" type="email" name="email" />
+                            <input id="EmailSignUp" class="text-input" type="email" name="email" />
+                             <span id="ErrorSignup">Sei un coglione</span>
                         </div>
                         <div>
                             <label for="password">Password</label>
@@ -77,11 +84,16 @@
                             <input type="checkbox" name="save-session"/>
                             <p>Ho letto ed accetto <a id="terms-anchor">Termini e Condizioni</a></p>
                         </div>
-                        <input class="submit-btn" type="submit" value="REGISTRATI ORA" />
+                        <input  class="submit-btn" type="submit" id="registrati" value="REGISTRATI ORA" />
                     </form>
                 </div>
             </div>
         </div>
-        <%@ include file="footer.jsp" %>  
-    </body>
+ 
+        <%@ include file="footer.jsp" %> 
+         
+       
+         
+   
+    </body>
 </html>
