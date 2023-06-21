@@ -67,7 +67,7 @@
 				</div>
 				<div class="block-title">
 					<span>All categories
-						<ul>
+						<ul class="ul-mobile">
 							<li><a href="">Link</a></li>
 							<li><a href="">Link</a></li>
 							<li><a href="">Link</a></li>
