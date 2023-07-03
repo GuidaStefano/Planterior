@@ -1,12 +1,15 @@
 package it.unisa.planterior.model.dao;
 
+import java.sql.JDBCType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 import java.util.Optional;
 
 import it.unisa.planterior.model.bean.Customer;
+import it.unisa.planterior.model.bean.PaymentMethod;
 import it.unisa.planterior.model.bean.ShippingAddress;
 import it.unisa.planterior.model.dao.api.Dao;
 
@@ -50,6 +53,11 @@ public class ShippingAddressDao extends Dao<ShippingAddress> {
 		return shippingAddress;
 	}
 
+	public List<ShippingAddress> getByShippingAddress(String via) {
+		return getAllByField("via", via, JDBCType.VARCHAR);
+	}
+
+	
 	@Override
 	protected void serializeObject(ShippingAddress shippingAddress, PreparedStatement statement) throws SQLException {
 		statement.setString(1, shippingAddress.getStreet());

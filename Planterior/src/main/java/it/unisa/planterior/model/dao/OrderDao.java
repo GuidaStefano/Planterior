@@ -1,10 +1,12 @@
 package it.unisa.planterior.model.dao;
 
+import java.sql.JDBCType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import it.unisa.planterior.model.bean.Customer;
@@ -31,6 +33,10 @@ public class OrderDao extends Dao<Order> {
 			instance = new OrderDao();
 		
 		return instance;
+	}
+	
+	public List<Order> getByCliente(long  cliente) {
+		return getAllByField("cliente", cliente, JDBCType.VARCHAR);
 	}
 
 	@Override

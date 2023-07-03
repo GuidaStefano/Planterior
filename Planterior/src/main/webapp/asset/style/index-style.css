@@ -136,7 +136,7 @@
 }
 
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (max-width: 875px) {
   
   	.container .hero-section{
   	display:block;
@@ -155,6 +155,34 @@
   	.container .row h1 {
     font-size: 64px;
     text-align:center;
+}
+
+	.container .row .col-8 .box-slider .row .col-xs-12{
+    	justify-content: start !important;
+	}
+	
+	.container .row .col-8 .box-slider .row .col-6 .text-box h4{
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+	.container .row .col-8 .box-slider .row .col-6 .text-box h2{
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+	.container .row .col-8 .box-slider .row .col-6 .text-box h5{
+    font-weight: 20px;
+    margin-bottom: 2px;
+}
+
+	.container .row .col-4 .row .hero-square .col-8{
+    	justify-content: start !important;
+}
+
+	.container .row .col-4 .row .hero-square .col-8 .text-box{
+    	margin-left:10px;
 }
   
 }
