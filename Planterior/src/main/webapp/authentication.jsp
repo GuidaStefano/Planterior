@@ -84,7 +84,7 @@
                             <input type="checkbox" name="save-session"/>
                             <p>Ho letto ed accetto <a id="terms-anchor">Termini e Condizioni</a></p>
                         </div>
-                        <input  class="submit-btn" type="submit" id="SignUp" value="REGISTRATI ORA" />
+                        <input class="submit-btn" type="submit" id="SignUp" value="REGISTRATI ORA" />
                     </form>
                 </div>
             </div>

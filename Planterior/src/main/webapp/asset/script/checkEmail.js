@@ -18,7 +18,7 @@
 							 if(response==1){ //presente del db
 								 $("#EmailSignUp").val("").css("borderBottomColor" , "red");
 							 	 $("#ErrorSignup").show();
-							 	 $("#ErrorSignup").html("Email già in uso").css("color","red");
+							 	 $("#ErrorSignup").html("Email già in uso").css("color", "red");
 							 }
 							 else{
 							 	 $("#ErrorSignup").hide();
