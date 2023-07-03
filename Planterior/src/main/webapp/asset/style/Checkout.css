@@ -1,0 +1,150 @@
+.v-row {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 55px;
+}
+
+.h-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f1f1f1;
+    flex: 1;
+    min-width: 380px;
+    box-shadow: 0 0 5px #f1f1f1;
+    transition: box-shadow .3s;
+}
+
+.form-wrapper h3 {
+    border-bottom: 1px solid #f1f1f1;
+    padding: 25px 40px;
+    margin: 0;
+}
+
+.form {
+    padding: 25px 40px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.form-checkbox {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+}
+
+.form-checkbox p {
+    color: #888;
+    margin: 0;
+}
+
+.form-checkbox input[type="checkbox"] {
+    scale: 1.3;
+}
+
+.text-input {
+    width: 100%;
+    height: 42px;
+    margin-top: 5px;
+    padding: 7px 20px;
+    border: 1px solid #f1f1f1;
+    box-sizing: border-box;
+}
+
+.text-input:focus {
+    border-color: white;
+    outline: none;
+}
+
+.password-recovery {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submit-btn {
+    font-size: 12px;
+    font-weight: 700;
+    align-self: flex-start;
+    padding: 12px 24px;
+    color: white;
+    background-color: #6ea25a;
+    border: none;
+    cursor: pointer;
+}
+
+.form-wrapper:hover {
+    box-shadow: 0 0 11px #C5C5C5;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.form-row * {
+    flex: 1;
+}
+
+#terms-anchor {
+    color: #222;
+}
+
+#terms-anchor:hover {
+    cursor: pointer;
+    color: #6ea25a;
+}
+
+.radio-input-w {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-input {
+    display: flex;
+    width: 100px;
+    flex-basis: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .v-row {
+        margin: 30px 45px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .v-row {
+        margin: 20px 35px;
+    }
+
+    .form {
+        padding: 20px 30px;
+        row-gap: 10px;
+    }
+
+    .form-wrapper h3 {
+        padding: 20px 30px;
+    }
+    
+    .form-wrapper {
+        min-width: 280px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    .radio-input {
+        flex-basis: 10px;
+    }

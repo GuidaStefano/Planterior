@@ -32,7 +32,8 @@ public class LoginServlet extends HttpServlet {
 		Optional<Customer> optionalCustomer = customerDao.getByEmail(email);
  		if (optionalCustomer.isPresent()) {
  			Customer customer = optionalCustomer.get();
- 			 
+ 			System.out.println("con"+password);
+ 			 System.out.println("stai confrontando"+ customer.getPassword());
  			if (customer.getPassword().equals(password)) {
 		 		HttpSession session = request.getSession(true);
 		 		session.setAttribute("user", customer);

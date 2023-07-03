@@ -15,7 +15,7 @@
                     <li>
                         <h2>Menu</h2>
                     </li>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="index.jsp">Home</a></li>
                     <li><a href="#">Link 3</a></li>
                     <li><a href="#">Link 4</a></li>
                     <li><a href="#">Link 5</a></li>

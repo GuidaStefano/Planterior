@@ -16,8 +16,21 @@
 				<b style="color: white;">Benvenuto in Planterior</b>
 			</div>
 			<div class="col-6" style="text-align: end;">
-				<a href="authentication.jsp"> <b>Login</b> <b>|</b> <b>Register</b>
+			<% if(session == null || session.getAttribute("user") == null) { 
+				%>
+		        <a href="authentication.jsp"> <b>Login</b> <b>|</b> <b>Register</b>
 				</a>
+			  
+		        
+		    <%
+		        } else {
+		    %>
+		    	<a href="Logout"> <b>Logout</b> </a> 
+				 
+		    		
+				<%
+		        }
+		    %>
 			</div>
 		</div>
 	</div>
@@ -42,8 +55,12 @@
 			</div>
 			<div class="col-4 col-xs-3" style="display: flex; justify-content: center;">
 				<!-- Contenuto della terza colonna dell'header -->
-				<button class="icon-button nav-btn"><i class="fa-solid fa-cart-shopping fa-2xl"></i></button>
-				<button class="icon-button nav-btn"><i class="fa-solid fa-user fa-2xl"></i></button>
+				<a href="Carrello.jsp"> 	
+					<button class="icon-button nav-btn"><i class="fa-solid fa-cart-shopping fa-2xl"></i></button>
+				</a>
+				<a href="PaginaUtente.jsp">
+					<button class="icon-button nav-btn"><i class="fa-solid fa-user fa-2xl"></i></button>
+				</a>
 			</div>
 			<div class="col-xs-12 search-mobile-display">
 				<!-- Contenuto della seconda colonna dell'header -->

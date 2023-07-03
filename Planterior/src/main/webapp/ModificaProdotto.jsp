@@ -7,7 +7,7 @@
     	response.sendRedirect("./amministratore.jsp");
     }
     Product prodotto1=(Product)a.get();
-    System.out.println(prodotto1.getId());
+    
      
      %>
      

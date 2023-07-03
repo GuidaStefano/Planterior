@@ -1,5 +1,6 @@
 package it.unisa.planterior.model.dao;
 
+import java.sql.JDBCType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,6 +54,10 @@ public class PaymentMethodDao extends Dao<PaymentMethod> {
 		paymentMethod.setCustomer(customer);
 		
 		return paymentMethod;
+	}
+	
+	public Optional<PaymentMethod> getByCarta(String numero_carta) {
+		return getFirstByField("numero_carta", numero_carta, JDBCType.VARCHAR);
 	}
 
 	@Override

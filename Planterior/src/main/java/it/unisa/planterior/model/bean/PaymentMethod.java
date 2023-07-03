@@ -16,7 +16,7 @@ public class PaymentMethod extends Bean {
 	
 	public PaymentMethod(CardCircuit cardCircuit, String owner, String cardNumber, String cvv, Customer customer) {
 		id = -1; // generato dal DBMS
-		this.cardNumber = cardNumber;
+		this.cardCircuit = cardCircuit;
 		this.owner = owner;
 		this.cardNumber = cardNumber;
 		this.cvv = cvv;
@@ -66,7 +66,7 @@ public class PaymentMethod extends Bean {
 	public enum CardCircuit {
 		VISA,
 		MASTERCARD,
-		AMERICAN_EXPRESS
+		AMERICAN_EXPRESS;
 	}
 	
 }
