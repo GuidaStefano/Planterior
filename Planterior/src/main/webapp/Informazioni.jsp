@@ -7,7 +7,8 @@
         <link rel="stylesheet" href="asset/style/Informazioni-Style.css" />
         <link rel="stylesheet" href="asset/style/text-style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> 
-        <script src="asset/script/html2canvas.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
             
  
     </head>
@@ -65,26 +66,38 @@
             </div>
  
          </div>
-         			<button id="screenshotBtn" class="add-to-cart">Scarica Fattura</button>	
+         			<button id="generate-pdf" class="add-to-cart">Scarica Fattura</button>	
 					
        				
         
  <script>
  $(document).ready(function() {
-     $('#screenshotBtn').click(function() {
-       var element = $('#screen');
+	  // Funzione per generare il PDF
+	  function generaPDF() {
+	    // Crea una nuova istanza di jsPDF
+	    var doc = new jsPDF();
 
-   /*    html2canvas(element).then(function(canvas) {
-         var link = document.createElement('a');
-         link.href = canvas.toDataURL();
-         link.download = 'Fattura.png';
-         link.click(); 
-       });*/
-       html2canvas(document.querySelector(element)).then(canvas => {
-    	    document.body.appendChild(canvas)
-    	});
-     });
-   });
+	    // Ottieni l'elemento HTML da convertire in PDF
+	    var element = $('#screen')[0];
+
+	    // Converti l'elemento HTML in un'immagine utilizzando html2canvas
+	    html2canvas(element).then(function(canvas) {
+	      // Ottieni l'immagine come URL dei dati
+	      var imageData = canvas.toDataURL("image/png");
+
+	      // Aggiungi l'immagine al documento PDF
+	      doc.addImage(imageData, 'PNG', 10, 10, 100, 0);
+
+	      // Salva il documento PDF
+	      doc.save('fattura.pdf');
+	    });
+	  }
+
+	// Aggiungi l'evento di click al pulsante per generare il PDF
+	  $('#generate-pdf').click(function() {
+	    generaPDF();
+	  });
+	});
   </script>
        
          

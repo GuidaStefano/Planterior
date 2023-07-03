@@ -15,7 +15,8 @@
 
 <head>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>  
 	<script src="asset/script/html2canvas.min.js.js"></script>
 <link rel="stylesheet" href="asset/style/text-style.css" />
 <link rel="stylesheet" href="asset/style/Informazioni-Style.css" />
@@ -160,23 +161,32 @@ Set<Carrello> carrello= null;
 					</div>
 					<br><br>
 					
-						<button id="screenshotBtn" class="add-to-cart">Scarica Fattura</button>	
+						<button id="generate-pdf" class="add-to-cart">Scarica Fattura</button>	
 					
        				
         
  <script>
- $(document).ready(function() {
-     $('#screenshotBtn').click(function() {
-       var element = $('#screen');
+ $(document).ready(function () {
+     // Funzione per generare il PDF
+     function generaPDF() {
+         // Crea una nuova istanza di jsPDF
+         var doc = new jsPDF();
 
-  /*     html2canvas(element).then(function(canvas) {
-         var link = document.createElement('a');
-         link.href = canvas.toDataURL();
-         link.download = 'Fattura.png';
-         link.click(); 
-       });*/
+         // Ottieni l'elemento HTML da convertire in PDF
+         var element = $('#screen')[0];
+
+         // Converti l'elemento HTML in PDF
+         doc.fromHTML(element, 10, 10);
+
+         // Salva il documento PDF
+         doc.save('fattura.pdf');
+     }
+
+     // Aggiungi l'evento di click al pulsante per generare il PDF
+     $('#generate-pdf').click(function () {
+         generaPDF();
      });
-   });
+ });
   </script>
     
 	
