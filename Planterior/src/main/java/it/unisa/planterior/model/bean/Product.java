@@ -115,29 +115,48 @@ public class Product extends Bean {
 	}
 
 	public enum Category {
-		PIANTE_DA_INTERNO,
-		TERRARIUM,
-		HOME_DECOR
+		PIANTE_DA_INTERNO("Piante da interno", 
+				Subcategory.PIANTE_VERDI, Subcategory.PIANTE_GRASSE, Subcategory.BONSAI, Subcategory.PIANTE_FIORITE, Subcategory.ORCHIDEE),
+		TERRARIUM("Terrarium", Subcategory.TERRARIUM),
+		HOME_DECOR("Home Decor", Subcategory.VASI, Subcategory.ACCESSORI_PIANTE);
+		
+		private final String label;
+		private Subcategory[] subcategories;
+		
+		Category(String label, Subcategory... subcategories) {
+			this.label = label;
+			this.subcategories = subcategories;
+		}
+		
+		public Subcategory[] getSubcategories() {
+			return subcategories;
+		}
+		
+		@Override
+		public String toString() {
+			return label;
+		}
 	}
 	
 	public enum Subcategory {
-		PIANTE_VERDI(Category.PIANTE_DA_INTERNO),
-		PIANTE_GRASSE(Category.PIANTE_DA_INTERNO),
-		BONSAI(Category.PIANTE_DA_INTERNO),
-		PIANTE_FIORITE(Category.PIANTE_DA_INTERNO),
-		ORCHIDEE(Category.PIANTE_DA_INTERNO),
-		TERRARIUM(Category.TERRARIUM),
-		VASI(Category.HOME_DECOR),
-		ACCESSORI_PIANTE(Category.HOME_DECOR);
+		PIANTE_VERDI("Piante verdi"),
+		PIANTE_GRASSE("Piante grasse"),
+		BONSAI("Bonsai"),
+		PIANTE_FIORITE("Piante fiorite"),
+		ORCHIDEE("Orchidee"),
+		TERRARIUM("Terrarium"),
+		VASI("Vasi"),
+		ACCESSORI_PIANTE("Accessori piante");
 		
-		private Category node;
+		private final String label;
 		
-		private Subcategory(Category node) {
-			this.node = node;
+		private Subcategory(String label) {
+			this.label = label;
 		}
 		
-		public Category getNode() {
-			return node;
+		@Override
+		public String toString() {
+			return label;
 		}
 	}
 
