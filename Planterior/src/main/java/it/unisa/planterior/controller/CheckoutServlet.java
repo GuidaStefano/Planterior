@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import it.unisa.planterior.model.bean.*;
 
@@ -123,6 +124,7 @@ public class CheckoutServlet extends HttpServlet {
 		        		}
 		        		
 		        	}
+		        	request.getSession().setAttribute("ordine", order);
 		        	request.getRequestDispatcher("Confermato.jsp").forward(request, response);
 					}
 					

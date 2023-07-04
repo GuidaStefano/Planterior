@@ -16,9 +16,11 @@
                         <h2>Menu</h2>
                     </li>
                     <li><a href="index.jsp">Home</a></li>
-                    <li><a href="#">Link 3</a></li>
-                    <li><a href="#">Link 4</a></li>
-                    <li><a href="#">Link 5</a></li>
+                    <li><a href="Catalogo.jsp?categoria=PIANTE_VERDI">PIANTE VERDI</a></li>
+							<li><a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE GRASSE</a></li>
+							<li><a href="Catalogo.jsp?categoria=PIANTE_FIORITE">PIANTE FIORITE</a></li>
+							<li><a href="Catalogo.jsp?categoria=ORCHIDEE">ORCHIDEE</a></li>
+							
                 </ul>
             </div>
             <div class="col-4 footer-col col-xs-12">
@@ -39,10 +41,10 @@
                     <li>
                         <h2>Infromation</h2>
                     </li>
-                    <li><a href="#">Information</a></li>
-                    <li><a href="#">Link 3</a></li>
-                    <li><a href="#">Link 4</a></li>
-                    <li><a href="#">Link 5</a></li>
+                    <li><a href="#">INFORMAZIONI</a></li>
+                    <li><a href="authentication.jsp">ACCEDI</a></li>
+                    <li><a href="authentication.jsp">REGISTRATI</a></li>
+                    <li><a href="cart.jsp">CARRELLO</a></li>
                 </ul>
             </div>
         </div>

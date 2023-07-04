@@ -1,9 +1,12 @@
 package it.unisa.planterior.model.dao;
 
+import java.sql.JDBCType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
+import it.unisa.planterior.model.bean.Order;
 import it.unisa.planterior.model.bean.Product;
 import it.unisa.planterior.model.bean.Product.Subcategory;
 import it.unisa.planterior.model.dao.api.Dao;
@@ -25,6 +28,10 @@ public class ProductDao extends Dao<Product> {
 			instance = new ProductDao();
 		
 		return instance;
+	}
+	
+	public List<Product> getAllByCategory(String  category) {
+		return getAllByField("categoria", category, JDBCType.VARCHAR);
 	}
 
 	@Override

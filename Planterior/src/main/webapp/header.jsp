@@ -85,24 +85,27 @@
 				<div class="block-title">
 					<span>All categories
 						<ul class="ul-mobile">
-							<li><a href="">Link</a></li>
-							<li><a href="">Link</a></li>
-							<li><a href="">Link</a></li>
-							<li><a href="">Link</a></li>
+							<li><a href="Catalogo.jsp?categoria=PIANTE_VERDI">PIANTE VERDI</a></li>
+							<li><a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE GRASSE</a></li>
+							<li><a href="Catalogo.jsp?categoria=PIANTE_FIORITE">PIANTE FIORITE</a></li>
+							<li><a href="Catalogo.jsp?categoria=ORCHIDEE">ORCHIDEE</a></li>
+							<li><a href="Catalogo.jsp?categoria=TERRARIUM">TERRARIUM</a></li>
+							<li><a href="Catalogo.jsp?categoria=VASI">VASI</a></li>
+							<li><a href="Catalogo.jsp?categoria=ACCESSORI_PIANTE">ACCESSORI PIANTE</a></li>
 						</ul>
 					</span>
 				</div>
 			</div>
 			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Shop</a>
+				<li><a href="index.jsp">Home</a></li>
+			<!--  	<li><a href="#">Shop</a>
 					<ul>
 						<li><a href="#">Sotto-link 1</a></li>
 						<li><a href="#">Sotto-link 2</a></li>
-					</ul></li>
-				<li><a href="#">Link 3</a></li>
-				<li><a href="#">Link 4</a></li>
-				<li><a href="#">Link 5</a></li>
+					</ul></li>-->
+				<li><a href="Catalogo.jsp?categoria=PIANTE_VERDI">PIANTE VERDI</a></li>
+				<li><a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE_GRASSE</a></li>
+				<li><a href="Catalogo.jsp?categoria=PIANTE_FIORITE">PIANTE_FIORITE</a></li>
 			</ul>
 		</nav>
 	</div>

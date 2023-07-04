@@ -51,10 +51,7 @@ HttpSession sessione = request.getSession();
 Set<Carrello> carrello= null;
 
  if (sessione == null ) {
-	 %>
-     	<h2>Non ci sono prodotti nel carrello</h2>
-     
- <%
+	 request.getRequestDispatcher("authentication.jsp").forward(request, response);
 
      }
  	

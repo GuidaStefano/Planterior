@@ -36,15 +36,15 @@
 <br>
  
 <%
-Customer customer=null;
+
 HttpSession sessione = request.getSession();
-if(sessione.getAttribute("user")!=null){
-	 customer = (Customer)sessione.getAttribute("user");
-}
-else {
-	System.out.println("dioc ane");
-}
-Set<Carrello> carrello= null;
+if(sessione.getAttribute("ordine")==null){
+	request.getRequestDispatcher("authentication.jsp").forward(request, response);
+}else{
+			Customer customer=null;
+	 		customer = (Customer)sessione.getAttribute("user");
+ 
+			Set<Carrello> carrello= null;
 			float Totale = (float)sessione.getAttribute("prezzoTotale");
         	Object listaObj = sessione.getAttribute("carrello");
         	if (listaObj instanceof HashSet<?>) {
@@ -195,5 +195,9 @@ Set<Carrello> carrello= null;
 
 <br><br>
   <%@ include file="footer.jsp" %>
+  <% 
+  sessione.removeAttribute("carrello");
+  sessione.removeAttribute("order");
+	} %>
 </body>
 </html>

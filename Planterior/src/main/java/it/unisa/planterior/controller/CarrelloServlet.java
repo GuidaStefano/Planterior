@@ -97,7 +97,7 @@ public class CarrelloServlet extends HttpServlet {
 				}
 					
 		} 
-		request.getRequestDispatcher("Carrello.jsp").forward(request, response);
+		request.getRequestDispatcher("cart.jsp").forward(request, response);
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

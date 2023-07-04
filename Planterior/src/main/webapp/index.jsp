@@ -102,35 +102,7 @@
                         <h3>Titolo</h3>
                         <h6>Price</h6>
                     </div>
-                </div>
-                <div class="card">
-                    <img src="asset/images/slider-thumb6.jpg" alt="">
-                    <div class="text-box">
-                        <h3>Titolo</h3>
-                        <h6>Price</h6>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="asset/images/slider-thumb6.jpg" alt="">
-                    <div class="text-box">
-                        <h3>Titolo</h3>
-                        <h6>Price</h6>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="asset/images/slider-thumb6.jpg" alt="">
-                    <div class="text-box">
-                        <h3>Titolo</h3>
-                        <h6>Price</h6>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="asset/images/slider-thumb6.jpg" alt="">
-                    <div class="text-box">
-                        <h3>Titolo</h3>
-                        <h6>Price</h6>
-                    </div>
-                </div>  -->  
+                s  -->  
             </div>
         </div>
 		<%@ include file="footer.jsp" %>  

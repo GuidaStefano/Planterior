@@ -4,6 +4,9 @@
 <%@page import="java.util.*"%>
 
 <%
+if(request.getParameter("id")==null)
+	 request.getRequestDispatcher("index.jsp").forward(request, response);
+
 String valoreParametro = request.getParameter("id");
 int id = 0;
 try {

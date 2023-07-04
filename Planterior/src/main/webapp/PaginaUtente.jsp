@@ -24,6 +24,8 @@
     %>
         <h1>Benvenuto nella tua area personale</h1>
         <a href="Logout"> <button>Logout</button> </a>
+                <a href="Order.jsp"> <button>Ordini Effettuati</button> </a>
+        
         
     <%
         }

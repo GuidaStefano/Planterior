@@ -1,0 +1,218 @@
+/* Index style */
+
+.container .row .col-8 .box-slider{
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.container .row .col-8 .box-slider .row .col-6 .text-box h4{
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+
+.container .row .col-8 .box-slider .row .col-6 .text-box h2{
+    font-size: 72px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.container .row .col-8 .box-slider .row .col-6 .text-box h5{
+    font-weight: 20px;
+    margin-bottom: 5px;
+}
+
+.container .row .col-8 .box-slider .row .col-6 .text-box button{
+    font-size: 12px;
+    font-weight: 700;
+    align-self: flex-start;
+    padding: 12px 24px;
+    color: white;
+    background-color: #6ea25a;
+    border: none;
+    cursor: pointer;
+}
+
+.container .row .col-4 .row .hero-square .col-8 .text-box button{
+    font-size: 12px;
+    font-weight: 700;
+    align-self: flex-start;
+    padding: 10px 20px;
+    color: white;
+    background-color: #6ea25a;
+    border: none;
+    cursor: pointer;
+    margin-top:10px;
+}
+
+.container .row h1{
+    font-size: 64px;
+}
+
+.container .row .green-separator{
+    height: 5px;
+    width: 80px;
+    background-color: #65a15a;
+}
+
+.container .row .card{
+    width: 250px;
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #e6e6e6;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #e6e6e6;
+}
+
+.container .row .card:hover{
+    border: 1px solid #65a15a;
+}
+
+.container .row .card .text-box{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .row .card h3{
+    font-size: 36px;
+}
+
+.container .row .card h6{
+    font-size: 20px;
+}
+
+.container .row .card img{
+    width: -webkit-fill-available;
+    max-height: 670px;
+}
+
+/* Footer */
+
+.container .row .footer-col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .row .footer-col ul{
+    list-style-type: none;
+    text-align: center;
+}
+
+.container .row .footer-col ul li a{
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+.container .row .footer-col form{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 20px;
+}
+
+.container .row .footer-col form input{
+    height: 40px;
+    border: 1px grey;
+    padding: 5px;
+}
+
+.container .row .footer-col form button{
+    width: 100%;
+    height: 40px;
+    background-color:#65a15a;
+    border: 0;
+    margin-top: 10px;
+}
+
+.container .row .footer-col p{
+    font-size: 14px;
+    text-align: center;
+}
+
+.container .row {
+    margin-bottom: 20px;
+}
+
+.container .row .filter-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.container .row .filter-section select{
+width: 150px;
+border: none;
+padding: 5px;
+}
+
+.container .row .filter-section .sortby{
+    margin-left: 20px;
+}
+
+.container .row .product-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+
+@media (max-width: 875px) {
+  
+  	.container .hero-section{
+  	display:block;
+  	justify-content: center;
+  }
+  
+  	.container .row .col-8{
+    padding: 0px !important;
+    margin: 0 !important;
+}
+  
+  	.container .row .col-8 .box-slider .row{
+  	display:block;
+  }
+  
+  	.container .row h1 {
+    font-size: 64px;
+    text-align:center;
+}
+
+	.container .row .col-8 .box-slider .row .col-xs-12{
+    	justify-content: start !important;
+	}
+	
+	.container .row .col-8 .box-slider .row .col-6 .text-box h4{
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+	.container .row .col-8 .box-slider .row .col-6 .text-box h2{
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+	.container .row .col-8 .box-slider .row .col-6 .text-box h5{
+    font-weight: 20px;
+    margin-bottom: 2px;
+}
+
+	.container .row .col-4 .row .hero-square .col-8{
+    	justify-content: start !important;
+}
+
+	.container .row .col-4 .row .hero-square .col-8 .text-box{
+    	margin-left:10px;
+}
+  
+}

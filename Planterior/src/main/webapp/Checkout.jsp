@@ -1,4 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="javax.servlet.http.HttpServletResponse" %>
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="it.unisa.planterior.model.bean.Customer"%>
+<%@page import="it.unisa.planterior.model.dao.ProductDao"%>
+<%@ page import="it.unisa.planterior.model.bean.Product"%>
+<%@page import=" it.unisa.planterior.model.bean.Carrello"%>
+<%@page import=" java.util.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +22,24 @@
  
     </head>
 <body>
+<%
+float prezzoTotale = 0;
+HttpSession sessione = request.getSession();
+Set<Carrello> carrello= null;
+
+ if (sessione.getAttribute("user")==null   ) {
+	
+		 request.getRequestDispatcher("authentication.jsp").forward(request, response);
+	
+     
+ 	
+ } else 
+	 if (sessione.getAttribute("carrello")==null   ) {
+			
+		 request.getRequestDispatcher("index.jsp").forward(request, response);
+ } else  {
+        	%>
+        
 	<%@ include file="header.jsp" %>  
         <div class="v-row">
             <h1>INFORMAZIONI PER IL PAGAMENTO</h1>
@@ -109,7 +135,7 @@
                     </form>
                 </div>
             </div>
-
+			<% } %>
  
         <%@ include file="footer.jsp" %> 
 
