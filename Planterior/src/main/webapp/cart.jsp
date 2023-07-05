@@ -14,10 +14,12 @@
         <link rel="stylesheet" href="asset/style/cart-style.css" />
         <link rel="stylesheet" href="asset/style/number-input-style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <title>Carrello</title>
     </head>
     <body>
-    
+     <%@ include file="header.jsp" %>  
     <br><br>
     <%
 float prezzoTotale = 0;
@@ -42,13 +44,19 @@ Set<Carrello> carrello= null;
  	if(!carrello.isEmpty()) {
  		
  	%>	
-        <%@ include file="header.jsp" %>  
+ 
+         
         <div class="cart-wrapper">
             <h1 class="cart-title">CARRELLO</h1>
-            <% for (Carrello elemento : carrello) { 
+            <% 
+            
+            for (Carrello elemento : carrello) { 
 							int prodotto= elemento.getProdotto();
 							Optional<Product> product = ProductDao.getInstance().getById(prodotto);
-							prezzoTotale = prezzoTotale + product.get().getPrice();
+							List<Float> prezzi=new ArrayList<>();
+							Float prezzo=product.get().getPrice()* elemento.getQuantita();
+							prezzi.add(prezzo );
+							prezzoTotale = prezzoTotale + prezzo;
 							prezzoTotale= Math.round(prezzoTotale * 100.0f) / 100.0f;
 							 
 						%>
@@ -62,11 +70,12 @@ Set<Carrello> carrello= null;
                         </div>
                     </div>
                     <div class="number-input">
-                        <button id="go" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                   		
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
 		                        <input id="quant" min="1" max="<%= product.get().getAvailableAmount() %>" name="quantity" value="<%= elemento.getQuantita() %>" type="number">
-		                        <button id="check" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+		                        <button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                     </div>
-                    <h4 class="price"><%= Math.round(product.get().getPrice() * 100.0f) / 100.0f %>$€</h4>
+                    <h4 class="price" id="prezzoProdotto"><%= (Math.round(product.get().getPrice() * 100.0f) / 100.0f)%>€</h4>
                     <form action="Carrello" class="h-box table-col justify-center" style="column-gap: 25px;">
 									<input type="hidden" name="id" value=<%= product.get().getId() %> />
 									<input type="hidden" name="quantity" value=<%= elemento.getQuantita() %> />
@@ -75,23 +84,8 @@ Set<Carrello> carrello= null;
 									</button>	
 								</form>
                 </div>
-            <!--      <div class="cart-product">
-                    <div class="product-info">
-                        <a href=""><img src="asset/images/kenzia-basic.jpg" /></a>
-                        <div class="product-details">
-                            <h4><a href="">Mini swing dress</a></h4>
-                            <p><a href="">bla bla bla</a></p>
-                        </div>
-                    </div>
-                    <div class="number-input">
-                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-                        <input min="1" name="quantity" value="1" type="number">
-                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-                    </div>
-                    <h4 class="price">45€</h4>
-                    <button class="icon-button"><i class="fa fa-trash"></i></button>
-                </div>-->
-                
+           
+                	
                 
                  
             <% } %>

@@ -152,10 +152,11 @@
 							</div>
 						<% } %>
 					</div>
-					<button class="big-button static-btn" id="add-btn"><h6>AGGIUNGI PRODOTTO</h6></button>
-					<button class="big-button static-btn" id="fixed-btn">
+				<!--  	<button class="big-button static-btn" id="add-btn"><h6>AGGIUNGI PRODOTTO</h6></button>-->
+					
+					<a href="add-product.jsp"><button type="submit" name="action" value="insert" class="big-button static-btn" id="fixed-btn">
 						<i class="fa-sharp fa-light fa-plus fa-xxl"></i>
-					</button>
+					</button></a>
 				<% } else { %>
 					<form action="add-product.jsp" id="no-products-box" class="v-box">
 						<h2>Non sono presenti prodotti.</h2>

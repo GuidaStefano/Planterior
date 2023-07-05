@@ -21,35 +21,79 @@
 <%
 if(request.getParameter("categoria")==null)
 	 request.getRequestDispatcher("index.jsp").forward(request, response);
+String category = request.getParameter("categoria");
+String stringa= category.replace("_", " ");
 
+%>
+   <%
+	List<Product> products = ProductDao.getInstance().getAllByCategory(category); 
+	Set<Product> lista_prodotti= new HashSet<>(products);
+	String sortParam = request.getParameter("sortBy");
+	if (sortParam != null) {
+		lista_prodotti = lista_prodotti.stream().sorted((x, y) -> {
+			switch (sortParam.toLowerCase()) {
+				case "PRICEDESC":
+					return Float.compare(x.getPrice(), y.getPrice());
+					
+				case "PRICEASC":
+					return Float.compare(x.getPrice(), y.getPrice());
+					 
+				case "HEIGHTDESC":
+					return Float.compare(x.getHeight(), y.getHeight());
+					 
+				case "HEIGHTASC":
+					return Float.compare(x.getHeight(), y.getHeight());
+					 
+				case "NOME":
+					return x.getName().toLowerCase().compareTo(y.getName().toLowerCase());
+				case "DISPONIBILITA":
+					return Short.compare(x.getAvailableAmount(), y.getAvailableAmount());
+				case "CIRCONFERENZA":
+					return Float.compare(x.getFlowerpotCircumference(), y.getFlowerpotCircumference());
+					
+				default:
+					return 0;
+					 
+				
+			}
+		}).collect(Collectors.toCollection(LinkedHashSet::new));
+		if (sortParam.equalsIgnoreCase("PRICEDESC")||sortParam.equalsIgnoreCase("HEIGHTDESC")) {
+			List<Product> list = new ArrayList<>(lista_prodotti);
+			Collections.reverse(list);
+			lista_prodotti = new LinkedHashSet<>(list);
+		}
+	}
+	 
+	
 
 %>
 
                                  <%@ include file="header.jsp" %>
                                     <div class="container">
                                         <div class="row">
-                                            <h3>CATALOGO</h3>
+                                            <h3><%= stringa %></h3>
                                         </div>
                                         <div class="row">
                                             <div class="filter-section"
                                                 style="width: 100%;height: 80px;background-color: #e6e6e6;">
                                                 <div class="sort">
                                                 <label for="sort">Filtra:</label>
-                                                <select name="sort" id="sort">
-                                                    <option value="volvo">Oppt</option>
-                                                    <option value="saab">opt</option>
-                                                    <option value="mercedes">opt</option>
-                                                    <option value="audi">opt</option>
-                                                </select>
+                                                <form action="Catalogo.jsp" method="GET"> 
+                                                <select name="sortBy">
+                                                    <option value="PRICEDESC">Dal più costoso</option>
+                                                    <option value="PRICEASC">Dal più economico</option>
+                                                    <option value="HEIGHTDESC">Dal più alto</option>
+                                                    <option value="HEIGHTASC">Dal più basso</option>
+                                                </select></form>
                                                 </div>
                                                 
                                                 <div class="sortby">
                                                 <label for="sortby">Filtra per:</label>
                                                 <select name="sortby" id="sortby">
-                                                    <option value="volvo">Dal più costoso</option>
-                                                    <option value="saab">Dal più economico</option>
-                                                    <option value="mercedes">opt</option>
-                                                    <option value="audi">opt</option>
+                                                    <option value="NOME">NOME</option>
+                                                    <option value="DISPONIBILITA">DISPONIBILITA'</option>
+                                                    <option value="CIRCONFERENZA">CIRCONFERENZA VASO</option>
+                                                   
                                                 </select>
                                                 </div>
                                             </div>
@@ -57,10 +101,10 @@ if(request.getParameter("categoria")==null)
                                         <div class="row">
                                             <div class="product-container">
                                              <% 
-                                             String category= (String)request.getParameter("categoria");
-                                             System.out.print(category);
-                                             List<Product> lista_prodotti = ProductDao.getInstance().getAllByCategory(category);
-                                             if(lista_prodotti.size()==0){%>
+                                           
+                                             
+                                         //    List<Product> lista_prodotti = ProductDao.getInstance().getAllByCategory(category); 
+                                             if(lista_prodotti.isEmpty()){%>
                                              		<h3>Non abbiamo disponibilità di questa categoria</h3>
                                              
                                              <% 
@@ -70,7 +114,7 @@ if(request.getParameter("categoria")==null)
                                              
                                              %>
                                                 <div class="card">
-                                                    <img src="asset/images/<%= product.getId() %>.jpg" alt="">
+                                                    <a href="product.jsp?id=<%= product.getId() %>"><img src="asset/images/<%= product.getId() %>.jpg" alt=""></a>
                                                     <div class="text-box">
                                                         <h3><%= product.getName() %></h3>
                                                         <h6><%= Math.round(product.getPrice() * 100.0f) / 100.0f%>$</h6>

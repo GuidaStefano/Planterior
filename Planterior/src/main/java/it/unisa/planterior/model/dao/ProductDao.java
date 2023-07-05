@@ -33,6 +33,9 @@ public class ProductDao extends Dao<Product> {
 	public List<Product> getAllByCategory(String  category) {
 		return getAllByField("categoria", category, JDBCType.VARCHAR);
 	}
+	public List<Product> getAllByName(String  name) {
+		return getAllByField("nome", name, JDBCType.VARCHAR);
+	}
 
 	@Override
 	protected Product parseObject(ResultSet result) throws SQLException {
