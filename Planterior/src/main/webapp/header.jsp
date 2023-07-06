@@ -16,21 +16,17 @@
 				<b style="color: white;">Benvenuto in Planterior</b>
 			</div>
 			<div class="col-6" style="text-align: end;">
-			<% if(session == null || session.getAttribute("user") == null) { 
-				%>
-		        <a href="authentication.jsp"> <b>Login</b> <b>|</b> <b>Register</b>
-				</a>
-			  
-		        
-		    <%
-		        } else {
-		    %>
-		    	<a href="Logout"> <b>Logout</b> </a> 
-				 
-		    		
-				<%
-		        }
-		    %>
+			<% if(session == null || session.getAttribute("user") == null) { %>
+		        <a href="authentication.jsp"> 
+		        	<b>Login</b> 
+		        	<b>|</b> 
+		        	<b>Registrazione</b>
+		        </a>
+		    <% } else { %>
+		    	<a href="Logout"> 
+		    		<b>Logout</b> 
+		    	</a> 
+				<% } %>
 			</div>
 		</div>
 	</div>
@@ -83,7 +79,7 @@
 					<i class="fa fa-bars" aria-hidden="true" style="color: white;margin-right: 10px"></i>
 				</div>
 				<div class="block-title">
-					<span>All categories
+					<span>Tutte le categorie
 						<ul class="ul-mobile">
 							<li><a href="Catalogo.jsp?categoria=PIANTE_VERDI">PIANTE VERDI</a></li>
 							<li><a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE GRASSE</a></li>
@@ -97,15 +93,14 @@
 				</div>
 			</div>
 			<ul>
-				<li><a href="index.jsp">Home</a></li>
 			<!--  	<li><a href="#">Shop</a>
 					<ul>
 						<li><a href="#">Sotto-link 1</a></li>
 						<li><a href="#">Sotto-link 2</a></li>
 					</ul></li>-->
 				<li><a href="Catalogo.jsp?categoria=PIANTE_VERDI">PIANTE VERDI</a></li>
-				<li><a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE_GRASSE</a></li>
-				<li><a href="Catalogo.jsp?categoria=PIANTE_FIORITE">PIANTE_FIORITE</a></li>
+				<li><a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE GRASSE</a></li>
+				<li><a href="Catalogo.jsp?categoria=PIANTE_FIORITE">PIANTE FIORITE</a></li>
 			</ul>
 		</nav>
 	</div>
