@@ -21,7 +21,7 @@
 }
 
 .form-element {
-	row-gap: 7px;
+	row-gap: 5px;
 }
 
 form.v-box {
@@ -36,3 +36,11 @@ form.v-box {
 form > .h-box {
 	justify-content: start;
 } 
+
+.column-gap {
+	column-gap: 65px;
+}
+
+.row-gap {
+	row-gap: 20px;
+}

@@ -28,9 +28,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Aggiungi prodotto</title>
 		<script>
-		document.getElementById("tso").addEventListener("click", function(event){
-			  event.preventDefault()
-			});
+		$(document)
+		$("input[type=number]").bind('keyup input', function(){
+		    alert("ciao");
+		});
 		</script>
 	</head>
 	<body>
@@ -39,8 +40,8 @@
 			<div class="v-box" id="page-content">
 				<h1>AGGIUNGI PRODOTTO</h1>
 				<form action="edit-product" method="POST" enctype="multipart/form-data"> 
-					<div class="h-box">
-						<div class="v-box">
+					<div class="h-box column-gap">
+						<div class="v-box row-gap">
 							<div class="v-box form-element">
 	                        	<label for="name">Nome</label>
 	                            <input class="text-input" type="text"  name="name" />
@@ -66,18 +67,18 @@
 	                            <textarea class="big-textarea text-input textarea" name="description" rows="5" cols="50"></textarea>
 	                        </div>
 						</div>
-						<div class="v-box">
-							<div class="h-box">
-								<div class="v-box">
-									<div class="v-box ni-wrapper">
+						<div class="v-box row-gap">
+							<div class="h-box column-gap">
+								<div class="v-box row-gap">
+									<div class="v-box ni-wrapper form-element">
 			                       		<label for="height">Altezza (cm)</label>
 			                    		<div class="number-input">
 			                       			<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-			                       			<input min="1" max="99" step="0.5" name="height" value="1" type="number">
+			                       			<input id="tso" min="1" max="99" step="0.5" name="height" value="1" type="number">
 			                       			<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
 			                    		</div>
 			                       	</div>
-			                       	<div class="v-box ni-wrapper">
+			                       	<div class="v-box ni-wrapper form-element">
 		                       			<label for="base-price">Prezzo base (€)</label>
 		                    			<div class="number-input">
 		                       				<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
@@ -86,8 +87,8 @@
 		                    			</div>
 			                       	</div>
 								</div>
-								<div class="v-box">
-			                       	<div class="v-box ni-wrapper">
+								<div class="v-box row-gap">
+			                       	<div class="v-box ni-wrapper form-element">
 			                       		<label for="circumference">Circonferenza vaso (cm)</label>
 			                    		<div class="number-input">
 			                       			<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
@@ -95,20 +96,32 @@
 			                       			<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
 			                    		</div>
 			                       </div>
-			                       	<div class="v-box ni-wrapper">
+			                       	<div class="v-box ni-wrapper form-element">
 		                       			<label for="discount">Sconto (%)</label>
-		                    			<div class="number-input">
-		                       				<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-		                       				<input min="1" max="100" step="0.5" name="discount" value="0" type="number">
-		                       				<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-		                    			</div>
+		                       			<div class="h-box">
+		                       				<div class="number-input">
+		                       					<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+		                       					<input min="1" max="100" step="0.5" name="discount" value="0" type="number">
+		                       					<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+		                    				</div>
+		                    				<label style="align-self: center;">0€</label>
+		                       			</div>
 			                       	</div>
 								</div>
 							</div>
-							<div class="v-box form-element" style="row-gap: 8px;">
-								<label for="images">Immagini</label>
-								<input type="file" name="images" multiple onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+							<div class="v-box form-element">
+								<label for="main-image">Immagine di copertina</label>
+								<input type="file" name="main-image" accept="image/png, image/jpeg">
+							
 							</div>
+							<div class="v-box form-element">
+								<label for="images">Altre immagini</label>
+								<input type="file" name="images" multiple accept="image/png, image/jpeg"
+								onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+							</div>
+							<button class="big-button static-btn">
+								<h6>AGGIUNGI PRODOTTO</h6>
+							</button>
 						</div>
 					</div>
 				</form>
