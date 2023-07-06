@@ -1,6 +1,8 @@
 package it.unisa.planterior.controller;
 import java.util.*;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +28,36 @@ public class CarrelloServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    public void modificaQuantitaPerProdotto(Set<Carrello> listaCarrello, int prodottoDaCercare, int nuovaQuantita) {
+        for (Carrello carrello : listaCarrello) {
+            if (carrello.getProdotto() == prodottoDaCercare) {
+                carrello.setQuantita(nuovaQuantita);
+                break;
+            }
+        }
+    }
+    public void stampa(Set<Carrello> a) {
+    	for (Carrello carrello : a) {
+            
+        }
+    }
+    public Set<Carrello> eliminaProdotto(Set<Carrello> listaCarrello, int prodottoDaCercare) {
+        Carrello prodottoDaEliminare = null;
+        for (Carrello carrello : listaCarrello) {
+            if (carrello.getProdotto() == prodottoDaCercare) {
+                prodottoDaEliminare = carrello;
+                System.out.println("abbiamo trovato il prodotto da eliminare, la sua quantità è :"+carrello.getQuantita());
+                break;
+            }
+        }
+        if (prodottoDaEliminare != null) {
+        	System.out.println("fatto");
+            listaCarrello.remove(prodottoDaEliminare);
+        }
+        
+        return listaCarrello;
+    }
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,17 +72,14 @@ public class CarrelloServlet extends HttpServlet {
 						if(session.getAttribute("carrello") != null) {
 								 //prendo gli attributi
 							 prodotto=Integer.parseInt(request.getParameter("id"));
-							 quantity=Integer.parseInt(request.getParameter("quantity"));
-							 //creo l'oggetto da cercare
-							 Carrello a= new Carrello(prodotto, quantity);
-				
+							 System.out.println("vogliamo eliminare prodotto con id:"+prodotto);
 							 //prendo la lista dalla sessione
 							Object listaObj = session.getAttribute("carrello");
 				        	if (listaObj instanceof HashSet<?>) {
 				        		carrello = (Set<Carrello>) listaObj;
 				            }
-				        	//rimuovo l'oggetto
-				        	carrello.remove(a);
+				        	carrello=eliminaProdotto( carrello, prodotto);
+				        	
 				        	//reinserisco l'oggetto nella sessione
 				        	session.setAttribute("carrello", carrello);
 				}
@@ -102,6 +131,27 @@ public class CarrelloServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		    int prodotto = Integer.parseInt(request.getParameter("id_prodtto"));
+		    int quantity = Integer.parseInt(request.getParameter("quantity"));
+		    HttpSession sessione = request.getSession();
+		    Set<Carrello> carrello= null;
+		    	Object listaObj = sessione.getAttribute("carrello");
+		    	if (listaObj instanceof HashSet<?>) {
+		    		carrello = (HashSet<Carrello>) listaObj;
+		        } else {
+		        	carrello = new HashSet<>();
+		        }
+		        
+		    	if(!carrello.isEmpty()) {
+		    		modificaQuantitaPerProdotto(carrello,prodotto,quantity);
+		             
+		               }		 
+		    
+		    System.out.println("prodotto:"+prodotto+"quantity:"+quantity);
+		    out.println(true);
+		
+	}
 
 }

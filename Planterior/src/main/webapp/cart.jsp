@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.HttpServletResponse" %>
 <%@page import="java.util.stream.Collectors"%>
-<%@page import="it.unisa.planterior.model.bean.Customer"%>
-<%@page import="it.unisa.planterior.model.dao.ProductDao"%>
+<%@page import="it.unisa.planterior.model.bean.*"%>
+<%@page import="it.unisa.planterior.model.dao.*"%>
 <%@ page import="it.unisa.planterior.model.bean.Product"%>
 <%@page import=" it.unisa.planterior.model.bean.Carrello"%>
 <%@page import=" java.util.*"%>
@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="asset/script/cart.js"></script>
         <title>Carrello</title>
     </head>
     <body>
@@ -42,6 +43,8 @@ Set<Carrello> carrello= null;
      }
      
  	if(!carrello.isEmpty()) {
+ 	
+ 		
  		
  	%>	
  
@@ -53,11 +56,11 @@ Set<Carrello> carrello= null;
             for (Carrello elemento : carrello) { 
 							int prodotto= elemento.getProdotto();
 							Optional<Product> product = ProductDao.getInstance().getById(prodotto);
-							List<Float> prezzi=new ArrayList<>();
-							Float prezzo=product.get().getPrice()* elemento.getQuantita();
-							prezzi.add(prezzo );
-							prezzoTotale = prezzoTotale + prezzo;
+							float prezzoProdotto=elemento.getQuantita()*product.get().getPrice();
+							System.out.println("la quanita scelta "+elemento.getQuantita()+"moltiplicato per il prezzo "+product.get().getPrice());
+							prezzoTotale = prezzoTotale +prezzoProdotto;
 							prezzoTotale= Math.round(prezzoTotale * 100.0f) / 100.0f;
+							 
 							 
 						%>
             <div class="cart">
@@ -71,11 +74,11 @@ Set<Carrello> carrello= null;
                     </div>
                     <div class="number-input">
                    		
-                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-		                        <input id="quant" min="1" max="<%= product.get().getAvailableAmount() %>" name="quantity" value="<%= elemento.getQuantita() %>" type="number">
-		                        <button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                        <button value="meno" name="<%=product.get().getId()%>" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+		                 <input name="quant" readonly  id="<%=product.get().getId()%>" min="1" max="<%= product.get().getAvailableAmount() %>" value="<%= elemento.getQuantita() %>" type="number">
+		                 <button value="add" name="<%=product.get().getId()%>" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                     </div>
-                    <h4 class="price" id="prezzoProdotto"><%= (Math.round(product.get().getPrice() * 100.0f) / 100.0f)%>€</h4>
+                    <h4 class="price <%=product.get().getId()%>"  ><%= (Math.round(prezzoProdotto* 100.0f) / 100.0f)%>€</h4>
                     <form action="Carrello" class="h-box table-col justify-center" style="column-gap: 25px;">
 									<input type="hidden" name="id" value=<%= product.get().getId() %> />
 									<input type="hidden" name="quantity" value=<%= elemento.getQuantita() %> />
@@ -89,12 +92,15 @@ Set<Carrello> carrello= null;
                 
                  
             <% } %>
+             
             <div class="total-price">
                     <h5>PREZZO TOTALE</h5>
-                    <h3><%= prezzoTotale %>$</h3>
+                    <h3 class="prezzoTotale"><%= prezzoTotale %>$</h3>
                 </div>
             </div>
             <div class="buttons">
+            
+            
             <form action="Carrello" method="GET">
 					<input type="hidden" name="totale" value=<%=prezzoTotale%> />
 					<button  type="submit" value="acquisto" name="action" class="big-button"><h6>CHECKOUT</h6></button>	
