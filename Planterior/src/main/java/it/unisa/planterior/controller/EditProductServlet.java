@@ -56,6 +56,7 @@ public class EditProductServlet extends HttpServlet {
 		String path = "";
 		for (Part part : request.getParts()) {
 			if (part.getName().equals("main-image")) {
+				// USARE UN PATH RELATIVO!
 			}
 		}
 	}
