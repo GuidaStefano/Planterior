@@ -1,14 +1,15 @@
 package it.unisa.planterior.controller;
 
 import java.io.IOException;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -18,43 +19,62 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import it.unisa.planterior.model.bean.Product;
+import it.unisa.planterior.model.bean.Product.Subcategory;
 import it.unisa.planterior.model.dao.ProductDao;
+
 @MultipartConfig
 @WebServlet("/edit-product")
 public class EditProductServlet extends HttpServlet {
-	private long id=0;
-	String Nome;
+
 	private static final long serialVersionUID = 1L;
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-		String productIdString = request.getParameter("id");
 		
-		if (action == null || productIdString == null)
+		if (action == null)
 			return;
 		
-		long productId = Long.parseLong(productIdString);
-		
 		switch (action.toLowerCase()) {
-			case "delete":
+			/*case "delete":
 				ProductDao.getInstance().delete(productId);
 				response.sendRedirect("administrator.jsp");
 				break;
 			case "edit":
 				
+				break;*/
+			case "add":
+				Product product = fetchProduct(request);
+				long generatedId = ProductDao.getInstance().saveAndReturnGeneratedId(product);
+				if (generatedId == -1) return;
+				saveImages(generatedId, request);
 				break;
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
-
+	
+	private void saveImages(long id, HttpServletRequest request) throws IOException, ServletException {
+		int i = 0;
+		String path = "";
+		for (Part part : request.getParts()) {
+			if (part.getName().equals("main-image")) {
+			}
+		}
+	}
+	
+	private Product fetchProduct(HttpServletRequest request) {
+		String name = request.getParameter("name");
+		Subcategory category = Subcategory.valueOf(request.getParameter("category")); 
+		String minimalDescription = request.getParameter("minimal-description");
+		String description = request.getParameter("description");
+		float height = Float.parseFloat(request.getParameter("height"));
+		float flowerpotCircumference = Float.parseFloat(request.getParameter("circumference"));
+		float basePrice = Float.parseFloat(request.getParameter("base-price"));
+		float discount = Float.parseFloat(request.getParameter("discount"));
+		short amount = Short.parseShort(request.getParameter("amount"));
 		
-		if (action == null )
-			return;
-		
-		
-		
-		switch (action.toLowerCase()) {
+		return new Product(name, category, minimalDescription, description, height, flowerpotCircumference, basePrice, discount, amount);
+	}
+}
+	/*	switch (action.toLowerCase()) {
 			case "insert":
 				 Nome=request.getParameter("name");	
 				System.out.println("Nome:"+Nome);
@@ -102,7 +122,4 @@ public class EditProductServlet extends HttpServlet {
 				
 		
 				
-		}
-	
-	}
-}
+		}*/

@@ -69,29 +69,3 @@ input[type=number]::-webkit-outer-spin-button {
     border-width: 1px;
 }
 
-@media screen and (max-width: 768px) {
-    .number-input button {
-        width: 1rem;
-    }
-
-    .number-input input[type=number] {
-        max-width: 2.5rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .number-input button {
-        width: 0.8rem;
-    }
-
-    .number-input input[type=number] {
-        max-width: 2rem;
-        max-height: 1.5rem;
-        font-size: 12px;
-    }
-
-    .number-input button:before,
-    .number-input button:after {
-        width: 0.4rem;
-    }
-}

@@ -5,6 +5,7 @@ import java.sql.JDBCType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -158,6 +159,28 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
+		}
+    }
+    
+    @Override
+    public long saveAndReturnGeneratedId(T obj) {
+		try (Connection connection = dataSource.getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(obj.getId() == -1 ? insertQuery : updateQuery, 
+					Statement.RETURN_GENERATED_KEYS);
+			serializeObject(obj, statement);
+			
+			if (obj.getId() != -1)
+				statement.setLong(updateFields.length + 1, obj.getId());
+			
+			if (statement.executeUpdate() != 1) return -1;
+			
+			ResultSet generatedKeys = statement.getGeneratedKeys();
+			if (generatedKeys == null || !generatedKeys.next()) return -1;
+			
+			return generatedKeys.getLong(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
 		}
     }
   

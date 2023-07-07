@@ -29,7 +29,7 @@ form.v-box {
 }
 
 .number-input {
-	max-width: 100px;
+	width: 100px;
 	height: 42px;
 }
 
@@ -43,4 +43,48 @@ form > .h-box {
 
 .row-gap {
 	row-gap: 20px;
+}
+
+.add-button {
+	width: 200px; 
+	align-self: flex-end;
+}
+
+@media screen and (max-width: 768px) {
+	h6 {
+		font-weight: 700 !important; 
+	}
+	
+	form > .h-box {
+		flex-direction: column;
+		row-gap: 20px;
+	}
+	
+	#second-column {
+		justify-content: start;
+	}
+	
+	.number-input {
+		width: 80px;
+	}
+	
+}
+
+@media screen and (max-width: 480px) {
+	#second-column {
+		flex-direction: column;
+	}
+	
+	.number-input {
+		width: 100px;
+	}
+	
+	#last-row {
+		flex-direction: column;
+		row-gap: 20px;
+	}
+	
+	.add-button {
+		align-self: flex-start;
+	}
 }

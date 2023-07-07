@@ -1,5 +1,6 @@
 package it.unisa.planterior.model.dao.api;
 
+import java.sql.ResultSet;
 import java.util.Optional;
 
 import javax.naming.Context;
@@ -28,5 +29,7 @@ public abstract class AbstractDao<T extends Bean> {
 	public abstract Optional<T> getById(long id);
 	
 	public abstract boolean save(T obj);
+	
+	public abstract long saveAndReturnGeneratedId(T obj);
 	
 }

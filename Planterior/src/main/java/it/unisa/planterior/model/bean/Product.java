@@ -17,11 +17,11 @@ public class Product extends Bean {
 		
 	}
 	
-	public Product(String name, String category, String minimalDescription, String description, float height,
+	public Product(String name, Subcategory category, String minimalDescription, String description, float height,
 			float flowerpotCircumference, float basePrice, float discountRate, short availableAmount) {
 		id = -1; // generato dal DBMS
 		this.name = name;
-		this.category = Subcategory.valueOf(category);
+		this.category = category;
 		this.minimalDescription = minimalDescription;
 		this.description = description;
 		this.height = height;
@@ -154,10 +154,19 @@ public class Product extends Bean {
 			this.label = label;
 		}
 		
+		public static Subcategory getByLabel(String label) {
+			for (Subcategory subcategory : values())
+				if (subcategory.toString().equals(label))
+					return subcategory;
+			
+			return null;
+		}
+		
 		@Override
 		public String toString() {
 			return label;
 		}
+		
 	}
 
 }
