@@ -36,7 +36,7 @@
                             </div>
                             <p><a href="">Password dimenticata?</a></p>
                         </div>
-                        <input class="submit-btn" id="Accedi" type=submit value=Login />
+                        <input class="submit-btn" id="Accedi" type=submit value="LOGIN" />
                     </form>
                 </div>
                 <div class="form-wrapper">
@@ -82,7 +82,7 @@
                         </div>
                         <div class="form-checkbox">
                             <input type="checkbox" name="save-session"/>
-                            <p>Ho letto ed accetto <a id="terms-anchor">Termini e Condizioni</a></p>
+                            <p>Ho letto ed accetto <a href="terms-and-conditions.jsp" id="terms-anchor">Termini e Condizioni</a></p>
                         </div>
                         <input class="submit-btn" type="submit" id="SignUp" value="REGISTRATI ORA" />
                     </form>

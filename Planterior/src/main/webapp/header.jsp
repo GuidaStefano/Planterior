@@ -35,7 +35,7 @@
 		<div class="row" style="align-items: center;">
 			<div class="col-4 col-xs-3">
 				<!-- Contenuto della prima colonna dell'header -->
-				<img src="asset/icon/logo.png" width="120" height="100">
+				<a href="index.jsp"><img src="asset/icon/logo.png" width="120" height="100"></a>
 			</div>
 			<div class="col-4 search-mobile-none">
 				<!-- Contenuto della seconda colonna dell'header -->
@@ -51,7 +51,7 @@
 			</div>
 			<div class="col-4 col-xs-3" style="display: flex; justify-content: center;">
 				<!-- Contenuto della terza colonna dell'header -->
-				<a href="Carrello.jsp"> 	
+				<a href="cart.jsp"> 	
 					<button class="icon-button nav-btn"><i class="fa-solid fa-cart-shopping fa-2xl"></i></button>
 				</a>
 				<a href="PaginaUtente.jsp">

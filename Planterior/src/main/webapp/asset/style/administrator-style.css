@@ -72,7 +72,7 @@
 
 @media screen and (max-width: 768px) {
 	.mobile-col {
-	display: none;
+		display: none;
 	}
 }
 

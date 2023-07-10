@@ -1,3 +1,10 @@
+<%@page import="it.unisa.planterior.util.PathUtil"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.io.File"%>
+<%@page import="java.util.Optional"%>
+<%@page import="it.unisa.planterior.model.dao.ProductDao"%>
+<%@page import="it.unisa.planterior.model.bean.Product"%>
 <%@page import="it.unisa.planterior.model.bean.Product.Subcategory"%>
 <%@page import="it.unisa.planterior.model.bean.Product.Category"%>
 <%@page import="it.unisa.planterior.model.bean.Customer"%>
@@ -11,10 +18,17 @@
  		Customer customer = (Customer) session.getAttribute("user");
  		if (!customer.isAdministrator())
  			response.sendRedirect("index.jsp");
+ 		else if (request.getParameter("id") == null)
+ 			response.sendRedirect("administrator.jsp");
 	}
-%>
-  
 
+	long productId = Long.parseLong(request.getParameter("id"));
+	Optional<Product> opt = ProductDao.getInstance().getById(productId);
+	if (opt.isEmpty())
+		response.sendRedirect("administrator.jsp");
+	
+	Product product = opt.get();
+%>
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +40,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Aggiungi prodotto</title>
+		<title>Modifica prodotto - <%= product.getId() %></title>
 		<script>
 			function evalPrice() {
 				var price = $("#price").val();
@@ -73,13 +87,13 @@
 		<%@ include file="header.jsp" %>
 		<div class="wrapper">
 			<div class="v-box" id="page-content">
-				<h1>AGGIUNGI PRODOTTO</h1>
+				<h1>MODIFICA PRODOTTO</h1>
 				<form action="edit-catalog" method="POST" enctype="multipart/form-data"> 
 					<div class="h-box column-gap">
 						<div class="v-box row-gap">
 							<div class="v-box form-element">
 	                        	<label for="name">Nome</label>
-	                            <input class="text-input" type="text"  name="name" />
+	                            <input class="text-input" type="text" name="name" value=<%= product.getName() %>>
 	                        </div>
 	                        <div class="v-box form-element">
 	                       		<label for="category">Categoria</label>
@@ -87,7 +101,9 @@
 	                          	<% for(Category category : Category.values()) { %>
 	                          		<optgroup label="<%= category.toString() %>">
 	                          			<% for (Subcategory subcategory : category.getSubcategories()) { %>
-	                          				<option value=<%= subcategory.name() %>><%= subcategory.toString() %></option>
+	                          				<option <% if (subcategory == product.getCategory()) out.print("selected");%> 
+	                          					value=<%= subcategory.name() %>><%= subcategory.toString() %>
+	                          				</option>
 	                          			<% } %>
 	                          		</optgroup>
 	                          	<% } %>
@@ -95,11 +111,11 @@
 							</div>
 							<div class="v-box form-element">
 	                        	<label for="minimal-description">Descrizione breve</label>
-	                            <textarea class="text-input textarea" name="minimal-description" rows="2" cols="50"></textarea>
+	                            <textarea class="text-input textarea" name="minimal-description" rows="2" cols="50"><%= product.getMinimalDescription().trim() %></textarea>
 	                        </div>
 	                        <div class="v-box form-element">
 	                        	<label for="description">Descrizione completa</label>
-	                            <textarea class="big-textarea text-input textarea" name="description" rows="5" cols="50"></textarea>
+	                            <textarea class="big-textarea text-input textarea" name="description" rows="5" cols="50"><%= product.getDescription().trim() %></textarea>
 	                        </div>
 						</div>
 						<div class="v-box row-gap">
@@ -109,7 +125,7 @@
 			                       		<label for="height">Altezza (cm)</label>
 			                    		<div class="number-input">
 			                       			<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-			                       			<input min="1" max="99" step="0.5" name="height" value="1" type="number">
+			                       			<input min="1" max="99" step="0.5" name="height" value=<%= product.getHeight() %> type="number">
 			                       			<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
 			                    		</div>
 			                       	</div>
@@ -117,7 +133,7 @@
 		                       			<label for="base-price">Prezzo base (€)</label>
 		                    			<div class="number-input">
 		                       				<button class="price-btn" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-		                       				<input id="price" min="1" max="9999" name="base-price" value="1" type="number">
+		                       				<input id="price" min="1" max="9999" name="base-price" value=<%= product.getBasePrice() %> type="number">
 		                       				<button class="price-btn plus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></button>
 		                    			</div>
 			                       	</div>
@@ -127,7 +143,7 @@
 			                       		<label for="circumference">Circonferenza vaso (cm)</label>
 			                    		<div class="number-input">
 			                       			<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-			                       			<input min="1" max="99" step="0.5" name="circumference" value="1" type="number">
+			                       			<input min="1" max="99" step="0.5" name="circumference" value=<%= product.getFlowerpotCircumference() %> type="number">
 			                       			<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
 			                    		</div>
 			                       </div>
@@ -136,10 +152,10 @@
 		                       			<div class="h-box">
 		                       				<div class="number-input">
 		                       					<button class="price-btn" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-		                       					<input id="discount" min="0" max="100" step="0.5" name="discount" value="0" type="number">
+		                       					<input id="discount" min="0" max="100" step="0.5" name="discount" value=<%= product.getDiscountRate() %> type="number">
 		                       					<button class="price-btn plus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></button>
 		                    				</div>
-		                    				<label id="total-price" style="align-self: center;">0€</label>
+		                    				<label id="total-price" style="align-self: center;"><%= product.getPrice() %>€</label>
 		                       			</div>
 			                       	</div>
 								</div>
@@ -149,26 +165,31 @@
 									<label for="main-image">Immagine di copertina</label>
 									<input type="file" name="main-image" accept="image/png, image/jpeg" onchange="showMainImagePreview(event)">
 								</div>
-								<img id="main-image-preview" width=50px height=50px hidden/>
+								<img id="main-image-preview" width=50px height=50px src=<%= PathUtil.getMainImagePath(productId) %>>
 							</div>
 							<div class="h-box invert-flex column-gap">
 								<div class="v-box form-element">
 									<label for="images">Altre immagini</label>
 									<input type="file" name="images" multiple accept="image/png, image/jpeg" onchange="showImagesPreview(event)">
 								</div>
-								<div id="images-preview" class="h-box"></div>
+								<div id="images-preview" class="h-box">
+									<% for (String path : PathUtil.getImagesPaths(productId)) { %>
+										<img width=50px height=50px src=<%= path %>>
+									<% } %>
+								</div>
 							</div>
 							<div class="h-box" id="last-row">
 								<div class="v-box form-element">
 		                       		<label for="amount">Quantità</label>
 		                       		<div class="number-input">
 		                       			<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-		                       			<input min="1" max="9999" step="1" name="amount" value="1" type="number">
+		                       			<input min="1" max="9999" step="1" name="amount" value=<%= product.getAvailableAmount() %> type="number">
 		                       			<button class="plus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></button>
 		                    		</div>
 			                     </div>
-								<button name="action" value="add" class="big-button static-btn add-button">
-									<h6>AGGIUNGI PRODOTTO</h6>
+			                    <input type="hidden" name="id" value=<%= productId %> />
+								<button name="action" value="edit" class="big-button static-btn add-button">
+									<h6>CONFERMA MODIFICHE</h6>
 								</button>	
 							</div>
 						</div>

@@ -140,12 +140,12 @@
 								<h4 class="table-col mobile-col"><%= product.getMinimalDescription() %></h4>
 								<h4 class="table-col"><%= product.getAvailableAmount() %></h4>
 								<h4 class="table-col"><%= product.getPrice() %></h4>
-								<form action="edit-product" class="h-box table-col justify-center" style="column-gap: 25px;">
+								<form action="edit-catalog" method="POST" class="h-box table-col justify-center" style="column-gap: 25px;">
 									<input type="hidden" name="id" value=<%= product.getId() %> />
 									<button type="submit" name="action" value="delete" class="icon-button">
 										<i class="fa-solid fa-trash"></i> 
 									</button>
-									<button type="submit" name="action" value="edit" class="icon-button">
+									<button formaction="edit-product.jsp" formmethod="GET" type="submit" class="icon-button">
 										<i class="fa-solid fa-pen-to-square"></i>
 									</button>
 								</form>
