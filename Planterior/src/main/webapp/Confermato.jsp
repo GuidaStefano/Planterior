@@ -3,8 +3,8 @@
 <%@ page import="javax.servlet.http.HttpServletResponse" %>
 <%@page import="java.util.stream.Collectors"%>
 <%@page import="it.unisa.planterior.model.bean.Customer"%>
-<%@page import="it.unisa.planterior.model.dao.ProductDao"%>
-<%@ page import="it.unisa.planterior.model.bean.Product"%>
+<%@page import="it.unisa.planterior.model.dao.*"%>
+<%@ page import="it.unisa.planterior.model.bean.*"%>
 <%@page import=" it.unisa.planterior.model.bean.Carrello"%>
 <%@page import=" java.util.*"%>
 
@@ -16,7 +16,8 @@
 <head>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 	<script src="asset/script/html2canvas.min.js.js"></script>
 <link rel="stylesheet" href="asset/style/text-style.css" />
 <link rel="stylesheet" href="asset/style/Informazioni-Style.css" />
@@ -43,7 +44,8 @@ if(sessione.getAttribute("ordine")==null){
 }else{
 			Customer customer=null;
 	 		customer = (Customer)sessione.getAttribute("user");
- 
+ 			Order order=(Order)sessione.getAttribute("ordine");
+ 			PaymentMethod pagamento=order.getPaymentMethod();
 			Set<Carrello> carrello= null;
 			float Totale = (float)sessione.getAttribute("prezzoTotale");
         	Object listaObj = sessione.getAttribute("carrello");
@@ -92,21 +94,21 @@ if(sessione.getAttribute("ordine")==null){
                         <div class="form-row">
                             <div>
                                 <label>Nome</label>
-                            <h3 class="text-input" >Salvatore</h3>
+                            <h3 class="text-input" ><%= customer.getName() %></h3>
                             </div>
                             <div>
                                 <label>Cognome</label>
-                            <h3 class="text-input" >Mattiello</h3>
+                            <h3 class="text-input" ><%= customer.getSurname() %></h3>
                             </div>
                         </div>
                         <div class="form-row">
                             <div>
                                 <label for="name">Email</label>
-                                 <h3 class="text-input" >totomatt03@gmail.com</h3>
+                                 <h3 class="text-input" ><%= customer.getEmail() %></h3>
                             </div>
                             <div>
                                 <label for="surname">Metodo Di Pagamento</label>
-                                <h3 class="text-input" >VISA</h3>
+                                <h3 class="text-input" ><%= pagamento.getCardCircuit() %></h3>
                             </div>
                         </div>
                     </div>
@@ -144,7 +146,7 @@ if(sessione.getAttribute("ordine")==null){
 								<h4 class="table-col"><%= product.get().getName() %></h4>
 								<h4 class="table-col"><%= product.get().getId() %></h4>
 		                       <h4 class="table-col"><%= elemento.getQuantita() %></h4>
-		                       <h4 class="table-col"><%= Math.round(product.get().getPrice() * 100.0f) / 100.0f %>$</h4>
+		                       <h4 class="table-col"><%= Math.round(product.get().getPrice()*elemento.getQuantita() * 100.0f) / 100.0f %>$</h4>
 									
 								</div>
 							
@@ -160,8 +162,11 @@ if(sessione.getAttribute("ordine")==null){
 					</div>
 					</div>
 					<br><br>
-					
-						<button id="generate-pdf" class="add-to-cart">Scarica Fattura</button>	
+					<div class="buttons">
+					    <a href="index.jsp"><button class="big-button"><h6>RITORNA ALLO SHOPPING</h6></button></a>					 
+		                <button id="generate-pdf" class="big-button"><h6>SCARICA FATTURA</h6></button>
+		            </div>
+						 
 					
        				
         
@@ -179,9 +184,8 @@ if(sessione.getAttribute("ordine")==null){
          doc.fromHTML(element, 10, 10);
 
          // Salva il documento PDF
-         doc.save('fattura.pdf');
-     }
-
+         doc.save('file.pdf');
+     } 
      // Aggiungi l'evento di click al pulsante per generare il PDF
      $('#generate-pdf').click(function () {
          generaPDF();

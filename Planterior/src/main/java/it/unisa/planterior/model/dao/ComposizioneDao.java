@@ -2,10 +2,10 @@ package it.unisa.planterior.model.dao;
 
 import java.sql.JDBCType;
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 import it.unisa.planterior.model.bean.Carrello;
 import it.unisa.planterior.model.dao.api.Dao;
@@ -28,14 +28,14 @@ public class ComposizioneDao extends Dao<Carrello> {
 		return instance;
 	}
 	
-	
+	public List<Carrello> getAllByOrder(int  order) {
+		return getAllByField("ordine", order, JDBCType.VARCHAR);
+	}
 	
 	@Override
 	protected Carrello parseObject(ResultSet result) throws SQLException {
 		Carrello carrello = new Carrello();
-	//	long carrelloId = result.getLong("id");
-		
-	//	carrello.setId(carrelloId);
+	
 		carrello.setProdotto(result.getInt("prodotto"));
 		carrello.setOrdine(result.getInt("ordine"));
 		carrello.setQuantita(result.getInt("quantita"));
@@ -48,6 +48,7 @@ public class ComposizioneDao extends Dao<Carrello> {
 		statement.setInt(1, carrello.getOrdine());
 		statement.setInt(2, carrello.getProdotto());
 		statement.setInt(3, carrello.getQuantita());
+		System.out.println("stiamo inserendo il carrello");
 		
 		
 	}

@@ -41,7 +41,7 @@
                     <li>
                         <h2>Infromation</h2>
                     </li>
-                    <li><a href="#">INFORMAZIONI</a></li>
+                    <li><a href="terms-and-conditions.jsp">TERMINI E CONDIZIONI</a></li>
                     <li><a href="authentication.jsp">ACCEDI</a></li>
                     <li><a href="authentication.jsp">REGISTRATI</a></li>
                     <li><a href="cart.jsp">CARRELLO</a></li>

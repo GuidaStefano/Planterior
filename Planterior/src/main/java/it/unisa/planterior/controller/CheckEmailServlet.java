@@ -22,8 +22,24 @@ public class CheckEmailServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String email = (String) request.getParameter("email");
-		 
+		  
 		Optional<Customer> customer = CustomerDao.getInstance().getByEmail(email);
 		out.println(customer.isPresent() ? 1 : 0);
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		 
+		String email = (String) request.getParameter("email");
+		 
+			 Customer user=(Customer)request.getSession().getAttribute("user");
+			 System.out.println("stai confrontando "+email+"con"+user.getEmail());
+			 if((email.equals(user.getEmail()))){
+					 out.println(0);
+					 System.out.println("sto li");
+			 }else {
+				 System.out.println("sto qui");
+		Optional<Customer> customer = CustomerDao.getInstance().getByEmail(email);
+		out.println(customer.isPresent() ? 1 : 0);
+			 }
 	}
 }

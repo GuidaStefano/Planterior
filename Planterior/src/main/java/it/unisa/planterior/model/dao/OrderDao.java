@@ -70,7 +70,7 @@ public class OrderDao extends Dao<Order> {
 		
 		java.sql.Date sqlDate = result.getDate("data_consegna");
 		Date deliveryDate = result.wasNull() ? null : new Date(sqlDate.getTime());
-		order.setDeliveryDate(deliveryDate);
+		order.setOrderDate(deliveryDate);
 		
 		return order;
 	}
@@ -82,20 +82,10 @@ public class OrderDao extends Dao<Order> {
 		statement.setLong(3, order.getPaymentMethod().getId());
 		statement.setLong(4, order.getShippingAddress().getId());
 		statement.setFloat(5, order.getTotalPrice());
+		statement.setString(6,order.getTrackingCode());
+		java.sql.Date sqlDate = new java.sql.Date(order.getOrderDate().getTime());
+		statement.setDate(7, sqlDate);
 		
-		Optional<String> trackingCode = order.getTrackingCode();
-		if (trackingCode.isPresent())
-			statement.setString(6, trackingCode.get());
-		else
-			statement.setNull(6, Types.VARCHAR);
-		
-		Optional<Date> deliveryDate = order.getDeliveryDate();
-		if (deliveryDate.isPresent()) {
-			java.sql.Date sqlDate = new java.sql.Date(deliveryDate.get().getTime());
-			statement.setDate(7, sqlDate);
-		} else {
-			statement.setNull(7, Types.DATE);
-		}
 	}
 
 }

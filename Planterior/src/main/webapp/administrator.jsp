@@ -53,6 +53,7 @@
 	<head>
 		<link rel="stylesheet" href="asset/style/administrator-style.css">
 		<link rel="stylesheet" href="asset/style/text-style.css">
+		<link rel="stylesheet" href="asset/style/cart-style.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,6 +64,9 @@
 	</head>
 	<body>
 		<%@ include file="header.jsp" %>
+		<div class="buttons">
+		<a href="Ordini_Complessivi.jsp"><button class="big-button"  ><h6>ORDINI COMPLESSIVI</h6></button></a>
+		</div>
 		<div class="wrapper">
 			<div class="v-box" id="page-content">
 				<h1>MODIFICA CATALOGO</h1>

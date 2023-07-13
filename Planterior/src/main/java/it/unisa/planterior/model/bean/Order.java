@@ -1,22 +1,19 @@
 package it.unisa.planterior.model.bean;
 
-import java.util.Date;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class Order extends Bean {
+	private static int cont=7656;
 	
 	private State state;
 	private Customer customer;
 	private PaymentMethod paymentMethod;
 	private ShippingAddress shippingAddress;
 	private float totalPrice;
-	private Optional<String> trackingCode;
-	private Optional<Date> deliveryDate;
+	private String trackingCode;
+	private Date OrderDate;
 	
-	private Map<Product, Integer> composition;
+	
 	
 	public Order() {
 		
@@ -24,15 +21,17 @@ public class Order extends Bean {
 	
 	public Order(Customer customer, PaymentMethod paymentMethod, ShippingAddress shippingAddress, float totalPrice) {
 		id = -1; // generato dal DBMS
+		this.cont++;
 		state = State.PROCESSING;
 		this.customer = customer;
 		this.paymentMethod = paymentMethod;
 		this.shippingAddress = shippingAddress;
 		this.totalPrice = totalPrice;
-		trackingCode = Optional.empty();
-		deliveryDate = Optional.empty();
+		trackingCode = String.valueOf(cont);
+		Calendar calendar = Calendar.getInstance();
+        OrderDate =calendar.getTime()  ;
 		
-		composition = new HashMap<>();
+	
 	}
 	
 	public State getState() {
@@ -75,29 +74,26 @@ public class Order extends Bean {
 		this.totalPrice = totalPrice;
 	}
 
-	public Optional<String> getTrackingCode() {
+	public String getTrackingCode() {
 		return trackingCode;
 	}
-
-	public void setTrackingCode(String trackingCode) {
-		this.trackingCode = Optional.ofNullable(trackingCode);
+	public void setTrackingCode(String trackingCode ) {
+		 this.trackingCode=trackingCode;
 	}
 
-	public Optional<Date> getDeliveryDate() {
-		return deliveryDate;
-	}
+ 
 
-	public void setDeliveryDate(Date deliveryDate) {
-		this.deliveryDate = Optional.ofNullable(deliveryDate);
-	}
-
-	public Map<Product, Integer> getComposition() {
-		return composition;
+	public Date getOrderDate() {
+		return OrderDate;
 	}
 	
-	public void setComposition(Map<Product, Integer> composition) {
-		this.composition = composition;
+	public void setOrderDate(Date OrderDate ) {
+		this.OrderDate=OrderDate;
 	}
+
+ 
+
+	
 	
 	public enum State {
 		PROCESSING,

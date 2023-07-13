@@ -3,12 +3,14 @@
 import java.util.*;
 
 public class Carrello extends Bean  {
+	 
+
 	private int prodotto;
     private int quantita;
     private int ordine=0;
     
     public Carrello() {
-    	id=0;
+    	id=-1;
     	quantita=0;
     	ordine=0;
     }
@@ -17,11 +19,13 @@ public class Carrello extends Bean  {
         this.prodotto = prodotto;
         this.quantita = quantita;
         ordine=0;
+        id=-1;
     }
     public Carrello(int prodotto, int quantita,int ordine) {
         this.prodotto = prodotto;
         this.quantita = quantita;
         this.ordine=ordine;
+        id=-1;
     }
     
     public int getProdotto() {
@@ -57,5 +61,9 @@ public class Carrello extends Bean  {
     public int hashCode() {
         return Objects.hash(prodotto, quantita);
     }
+    @Override
+	public String toString() {
+		return "Carrello [prodotto=" + prodotto + ", quantita=" + quantita + ", ordine=" + ordine + "]";
+	}
 
 }

@@ -38,7 +38,7 @@ public class CarrelloServlet extends HttpServlet {
     }
     public void stampa(Set<Carrello> a) {
     	for (Carrello carrello : a) {
-            
+            System.out.println("prodotto:"+carrello.getProdotto()+"quantità:"+carrello.getQuantita());
         }
     }
     public Set<Carrello> eliminaProdotto(Set<Carrello> listaCarrello, int prodottoDaCercare) {
@@ -57,7 +57,13 @@ public class CarrelloServlet extends HttpServlet {
         
         return listaCarrello;
     }
-
+public boolean controlloCarrello(Set<Carrello> lista_carrello,int id_prodotto) {
+	for(Carrello carrello : lista_carrello) {
+		if(carrello.getProdotto()==id_prodotto)
+				return false;
+	}
+	return true;
+}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -78,10 +84,14 @@ public class CarrelloServlet extends HttpServlet {
 				        	if (listaObj instanceof HashSet<?>) {
 				        		carrello = (Set<Carrello>) listaObj;
 				            }
+				        	if(carrello.size()==1)
+				        			session.removeAttribute("carrello");
+				        	else {
 				        	carrello=eliminaProdotto( carrello, prodotto);
-				        	
+				        	stampa(carrello);
 				        	//reinserisco l'oggetto nella sessione
 				        	session.setAttribute("carrello", carrello);
+				        	}
 				}
 				
 			}
@@ -120,9 +130,13 @@ public class CarrelloServlet extends HttpServlet {
 			        		carrello = (HashSet<Carrello>) listaObj;
 			            } 
 			        	//aggiungo un nuovo elemento
+			        	if(controlloCarrello(carrello,prodotto)){
 			        	carrello.add(new Carrello(prodotto,quantity));
 			        	//reinserisco nella sessione il carrello
 			        	session.setAttribute("carrello", carrello);
+			        	}else {
+			        		System.out.println("gia è presente nel carrello");
+			        	}
 				}
 					
 		} 
@@ -132,6 +146,8 @@ public class CarrelloServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//con ausilio chiamata ajax permette la modifica quantità nel carrello
 		PrintWriter out = response.getWriter();
 		    int prodotto = Integer.parseInt(request.getParameter("id_prodtto"));
 		    int quantity = Integer.parseInt(request.getParameter("quantity"));

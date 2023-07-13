@@ -36,16 +36,7 @@ public class CheckoutServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-   private  ShippingAddress cercaIndirizzo(List<ShippingAddress> a , short civico, String cap) {
-	   for (ShippingAddress indirizzo : a) {
-	        if (indirizzo.getHouseNumber()==civico) {
-	            if (indirizzo.getPostalCode().equalsIgnoreCase(cap)) {
-	                return indirizzo;
-	            }
-	        }
-	    }
-	   return null;
-   }
+
    
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,7 +65,10 @@ public class CheckoutServlet extends HttpServlet {
 					Customer customer= (Customer)request.getSession().getAttribute("user");
 					ShippingAddress shippingAddress= new ShippingAddress(via,civico,cap,customer);
 					//aggiungiamole nel db
-					ShippingAddressDao.getInstance().save(shippingAddress);
+					long id_Shipping=ShippingAddressDao.getInstance().saveAndReturnGeneratedId(shippingAddress);
+					shippingAddress.setId(id_Shipping);
+					
+					
 					
 					//informazioni carta
 					PaymentMethod.CardCircuit circuito= PaymentMethod.CardCircuit.valueOf(request.getParameter("circruito"));
@@ -88,24 +82,25 @@ public class CheckoutServlet extends HttpServlet {
 						PaymentMethod paymentMethod= new PaymentMethod(circuito,Intestatario,numero_carta,cvv,customer);
 						System.out.println(paymentMethod.getCardCircuit()); 
 					//salviamo nel db
-					PaymentMethodDao.getInstance().save(paymentMethod);
+					long id_pagamento=PaymentMethodDao.getInstance().saveAndReturnGeneratedId(paymentMethod);
+					paymentMethod.setId(id_pagamento);
+					
+					
+					
+					
 					
 					// aggiungiamo l'ordine nel database
-					Optional<PaymentMethod> paymentMethodOrder= PaymentMethodDao.getInstance().getByCarta(numero_carta);
-					List<ShippingAddress> lista_shippingAddressOrder= ShippingAddressDao.getInstance().getByShippingAddress(via);
-					ShippingAddress shippingAddressOrder=cercaIndirizzo(lista_shippingAddressOrder,civico,cap);
+					
 				
 					
 					float prezzoTotale= (float)request.getSession().getAttribute("prezzoTotale");
-					Order order= new Order(customer,paymentMethodOrder.get(),shippingAddressOrder,prezzoTotale);
-					OrderDao.getInstance().save(order);
-					
+					Order order= new Order(customer,paymentMethod,shippingAddress,prezzoTotale);
+					long id_order=OrderDao.getInstance().saveAndReturnGeneratedId(order);
+					order.setId(id_order);
 					 
 					//aggiungiamo tutto nella composizione
-					List<Order> lista_Order= OrderDao.getInstance().getByCliente(customer.getId());
-					order= lista_Order.get(lista_Order.size() - 1);
 					
-					System.out.println("id ordine="+order.getId());
+					
 					// prendiamo gli articoli dalla sessione
 					Set<Carrello> lista_acquisto= null;
 					 
@@ -120,7 +115,9 @@ public class CheckoutServlet extends HttpServlet {
 		        	if(!lista_acquisto.isEmpty()) {
 		        		for (Carrello elemento : lista_acquisto) { 
 		        			elemento.setOrdine((int)order.getId());
-		        			ComposizioneDao.getInstance().save(elemento);
+		        			long id_elemento=ComposizioneDao.getInstance().saveAndReturnGeneratedId(elemento);
+		        		//	System.out.println(elemento);
+		        			System.out.println("id elemento creato:"+id_elemento);
 		        		}
 		        		
 		        	}

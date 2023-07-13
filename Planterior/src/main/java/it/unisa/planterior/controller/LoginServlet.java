@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 		 		response.sendRedirect(customer.isAdministrator() ? "administrator.jsp" : "index.jsp");
 			} else {
 				out.println("<font color=red size18>Login Failed<br>");
-				out.println("<a href=login.jsp>Try Again</a>");
+				out.println("<a href=authentication.jsp>Try Again</a>");
 			}
 		} else {
 			out.println("nessun cliente trovato!");

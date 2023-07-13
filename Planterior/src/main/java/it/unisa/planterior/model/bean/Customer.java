@@ -27,6 +27,12 @@ public class Customer extends Bean {
 		administrator = false;
 	}
 	
+	@Override
+	public String toString() {
+		return "Customer [name=" + name + ", surname=" + surname + ", email=" + email + ", password=" + password
+				+ ", gender=" + gender + ", birthDate=" + birthDate + ", administrator=" + administrator + "]";
+	}
+
 	public String getName() {
 		return name;
 	}
