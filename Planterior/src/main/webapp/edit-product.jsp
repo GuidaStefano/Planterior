@@ -37,7 +37,7 @@
 		<link rel="stylesheet" href="asset/style/add-product-style.css">
 		<link rel="stylesheet" href="asset/style/text-style.css">
 		<link rel="stylesheet" href="asset/style/number-input-style.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha384-NXgwF8Kv9SSAr+jemKKcbvQsz+teULH/a5UNJvZc6kP47hZgl62M1vGnw6gHQhb1" crossorigin="anonymous"></script>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Modifica prodotto - <%= product.getId() %></title>
