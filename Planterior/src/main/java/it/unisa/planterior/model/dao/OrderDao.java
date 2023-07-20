@@ -11,6 +11,7 @@ import java.sql.Types;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import it.unisa.planterior.model.bean.Customer;
 import it.unisa.planterior.model.bean.Order;
@@ -97,8 +98,9 @@ public class OrderDao extends Dao<Order> {
 		Date sqlDate = DateUtil.toSQLDate(order.getOrderDate());
 		statement.setDate(6, sqlDate);
 		
-		if (order.getTrackingCode().isPresent()) 
-			statement.setString(7, order.getTrackingCode().get());
+		Optional<String> optTrackingCode = order.getTrackingCode();
+		if (optTrackingCode.isPresent()) 
+			statement.setString(7, optTrackingCode.get());
 		else
 			statement.setNull(7, Types.VARCHAR);
 	}

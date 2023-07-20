@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="asset/style/header-style.css" />
 	<link rel="stylesheet" href="asset/style/text-style.css" />
 	<link rel="stylesheet" href="https://use.typekit.net/omf2qxn.css">
+	<title>Planterior</title>
 </head>
 <body>
 	<div class="container" style="background-color: #65a15a; height: 5vh;">
@@ -35,7 +36,7 @@
 		<div class="row" style="align-items: center;">
 			<div class="col-4 col-xs-3">
 				<!-- Contenuto della prima colonna dell'header -->
-				<a href="index.jsp"><img src="asset/icon/logo.png" width="120" height="100"></a>
+				<a href="index.jsp"><img alt="Logo" src="asset/icon/logo.png" width="120" height="100"></a>
 			</div>
 			<div class="col-4 search-mobile-none">
 				<!-- Contenuto della seconda colonna dell'header -->

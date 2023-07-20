@@ -17,7 +17,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 	<head>
 		<link rel="stylesheet" href="asset/style/administrator-style.css">
 		<link rel="stylesheet" href="asset/style/add-product-style.css">
@@ -149,7 +149,7 @@
 									<label for="main-image">Immagine di copertina</label>
 									<input type="file" name="main-image" accept="image/png, image/jpeg" onchange="showMainImagePreview(event)">
 								</div>
-								<img id="main-image-preview" width=50px height=50px hidden/>
+								<img id="main-image-preview" alt="Immagine principale" width=50px height=50px hidden/>
 							</div>
 							<div class="h-box invert-flex column-gap">
 								<div class="v-box form-element">

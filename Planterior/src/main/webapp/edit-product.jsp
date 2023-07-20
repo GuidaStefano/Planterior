@@ -31,7 +31,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 	<head>
 		<link rel="stylesheet" href="asset/style/administrator-style.css">
 		<link rel="stylesheet" href="asset/style/add-product-style.css">
@@ -165,7 +165,7 @@
 									<label for="main-image">Immagine di copertina</label>
 									<input type="file" name="main-image" accept="image/png, image/jpeg" onchange="showMainImagePreview(event)">
 								</div>
-								<img id="main-image-preview" width=50px height=50px src=<%= PathUtil.getMainImagePath(productId) %>>
+								<img alt="Immagine principale" id="main-image-preview" width=50px height=50px src=<%= PathUtil.getMainImagePath(productId) %>>
 							</div>
 							<div class="h-box invert-flex column-gap">
 								<div class="v-box form-element">
@@ -174,7 +174,7 @@
 								</div>
 								<div id="images-preview" class="h-box">
 									<% for (String path : PathUtil.getImagesPaths(productId)) { %>
-										<img width=50px height=50px src=<%= path %>>
+										<img alt="Altre immagini" width=50px height=50px src=<%= path %>>
 									<% } %>
 								</div>
 							</div>

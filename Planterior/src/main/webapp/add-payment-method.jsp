@@ -14,7 +14,7 @@
 %>
   
 <!DOCTYPE html>
-<html>
+<html lang="it">
 	<head>
 		<link rel="stylesheet" href="asset/style/administrator-style.css">
 		<link rel="stylesheet" href="asset/style/add-product-style.css">

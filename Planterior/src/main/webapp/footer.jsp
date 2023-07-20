@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
    <link rel="stylesheet" href="asset/style/footer-style.css" />
+   <title>Planterior</title>
 </head>
 <body>
     <div class="container" style="background-color: #f3f3f3;">

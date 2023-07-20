@@ -74,8 +74,8 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
     
 	@Override
     public Optional<T> getById(long id) {
-		try (Connection connection = dataSource.getConnection()) {
-			PreparedStatement statement = connection.prepareStatement(getByIdQuery);
+		try (Connection connection = dataSource.getConnection(); 
+				PreparedStatement statement = connection.prepareStatement(getByIdQuery);) {
 			statement.setLong(1, id);
 			
 			ResultSet result = statement.executeQuery();
@@ -94,8 +94,8 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
     	String getByFieldQuery = getByFieldBaseQuery + fieldName + " = ?";
     	
     	List<T> allMatched = new ArrayList<>();
-		try (Connection connection = dataSource.getConnection()) {
-			PreparedStatement statement = connection.prepareStatement(getByFieldQuery);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(getByFieldQuery);) {
 			statement.setObject(1, key, keyType);
 			
 			ResultSet result = statement.executeQuery();
@@ -114,8 +114,8 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
     	String getByFieldQuery = getByFieldBaseQuery + fieldName + " LIKE ?";
     	
     	List<T> allMatched = new ArrayList<>();
-		try (Connection connection = dataSource.getConnection()) {
-			PreparedStatement statement = connection.prepareStatement(getByFieldQuery);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(getByFieldQuery);) {
 			statement.setObject(1, key, keyType);
  			
 			ResultSet result = statement.executeQuery();
@@ -137,8 +137,8 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
     
     public Set<T> getAll() {
 		Set<T> all = new LinkedHashSet<>();
-		try (Connection connection = dataSource.getConnection()) {
-			PreparedStatement statement = connection.prepareStatement(getAllQuery);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(getAllQuery);) {
 			ResultSet result = statement.executeQuery();
 			
 			while (result.next()) {
@@ -154,8 +154,8 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
     
     // ritorna lo stato dell'operazione (true = operazione effettuata con successo, false = errore)
     public boolean delete(long id) {
-		try (Connection connection = dataSource.getConnection()) {
-			PreparedStatement statement = connection.prepareStatement(deleteQuery);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(deleteQuery);) {
 			statement.setLong(1, id);
 			
 			return statement.executeUpdate() == 1;
@@ -168,8 +168,8 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
     // ritorna lo stato dell'operazione (true = operazione effettuata con successo, false = errore)
     @Override
     public boolean save(T obj) {
-		try (Connection connection = dataSource.getConnection()) {
-			PreparedStatement statement = connection.prepareStatement(obj.getId() == -1 ? insertQuery : updateQuery);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(obj.getId() == -1 ? insertQuery : updateQuery);) {
 			serializeObject(obj, statement);
 			
 			if (obj.getId() != -1)
@@ -184,9 +184,9 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
     
     @Override
     public long saveAndReturnGeneratedId(T obj) {
-		try (Connection connection = dataSource.getConnection()) {
-			PreparedStatement statement = connection.prepareStatement(obj.getId() == -1 ? insertQuery : updateQuery, 
-					Statement.RETURN_GENERATED_KEYS);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(obj.getId() == -1 ? insertQuery : updateQuery, 
+						Statement.RETURN_GENERATED_KEYS);) {
 			serializeObject(obj, statement);
 			
 			if (obj.getId() != -1)

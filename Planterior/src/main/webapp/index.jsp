@@ -10,7 +10,7 @@
 <%
 	Set<Product> products = ProductDao.getInstance().getAll(); %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
     <head>  
 	<meta name="viewport" content="width=device-width">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">

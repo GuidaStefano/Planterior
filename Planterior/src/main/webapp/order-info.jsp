@@ -42,7 +42,7 @@
  
  
 <!DOCTYPE html>
-<html>
+<html lang="it">
 	<head>
 		<link rel="stylesheet" href="asset/style/text-style.css" />
         <link rel="stylesheet" href="asset/style/administrator-style.css">
@@ -88,7 +88,7 @@
 						%>
 						<div class="h-box table-row">
 								<div class="table-col">
-									<img width="60" height="60" src=<%= PathUtil.getMainImagePath(product.getId()) %> />
+									<img alt="Immagine prodotto" width="60" height="60" src=<%= PathUtil.getMainImagePath(product.getId()) %> />
 								</div>
 								<div class="table-col">
 									<h4 class="center-in-parent"><%= product.getId() %></h4>

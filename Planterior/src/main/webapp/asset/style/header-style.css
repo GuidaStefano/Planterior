@@ -233,7 +233,7 @@
 	transition:ease-out 0.2s;
 }
 
-.nav-btn:firt-child {
+.nav-btn:first-child {
 	color: #222;
 	margin-right: 25px;
 	transition:ease-out 0.2s;
@@ -306,9 +306,6 @@
 			margin: 20px 0;
 		}
 		
-		.mini-nav .vertical-menu:click .block-title span .ul-mobile {
-    		display: block !important;
-		} 
 }
 
 @media (max-width: 480px) {

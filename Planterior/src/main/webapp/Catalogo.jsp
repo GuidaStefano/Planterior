@@ -8,14 +8,14 @@
 <%@page import="it.unisa.planterior.model.bean.Customer"%>
 <%@page import="java.util.stream.Collectors"%>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-<meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width">
-                                    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
-                                    <link rel="stylesheet" href="asset/style/catalogo-style.css" />
-                                    <link rel="stylesheet" href="asset/style/header-style.css" />
-                                    <title> Catalogo</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="asset/style/catalogo-style.css" />
+    <link rel="stylesheet" href="asset/style/header-style.css" />
+     <title> Catalogo</title>
 
 </head>
 <body>

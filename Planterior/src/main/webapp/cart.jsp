@@ -11,7 +11,7 @@
 <%@ page import="it.unisa.planterior.model.bean.Product"%>
 <%@page import=" java.util.*"%>
 <!DOCTYPE html>
-<html>
+<html lang="it">
     <head>
         <link rel="stylesheet" href="asset/style/text-style.css" />
         <link rel="stylesheet" href="asset/style/cart-style.css" />
@@ -64,7 +64,7 @@
 	    	%>
 	        	<div class="cart-product" id="product-<%= productId %>">
 	            	<div class="product-info">
-	                	<a href="product.jsp?id=<%= productId %>"><img src=<%= PathUtil.getMainImagePath(productId) %> /></a>
+	                	<a href="product.jsp?id=<%= productId %>"><img alt="Immagine prodotto" src=<%= PathUtil.getMainImagePath(productId) %> /></a>
 	                	<div class="product-details">
 	                    	<h4><a href="product.jsp?id=<%= productId %>"><%= product.getName() %></a></h4>
 	                    	<p><a href=""><%= product.getCategory() %></a></p>

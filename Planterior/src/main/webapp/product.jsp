@@ -22,7 +22,7 @@
 	Product product = opt.get();
 %>
 <!doctype html>
-<html>
+<html lang="it">
     <head>
         <title>Scheda prodotto</title>
         <link rel="stylesheet" href="asset/style/product-style.css" />
