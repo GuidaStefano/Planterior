@@ -1,37 +1,38 @@
 package it.unisa.planterior.model.bean;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.*;
 
+import it.unisa.planterior.util.DateUtil;
+
 public class Order extends Bean {
-	private static int cont=7656;
 	
 	private State state;
 	private Customer customer;
 	private PaymentMethod paymentMethod;
 	private ShippingAddress shippingAddress;
 	private float totalPrice;
-	private String trackingCode;
-	private Date OrderDate;
+	private ZonedDateTime orderDate;
+	private Optional<String> trackingCode;
 	
-	
+	private Set<OrderItem> items;
 	
 	public Order() {
 		
 	}
 	
-	public Order(Customer customer, PaymentMethod paymentMethod, ShippingAddress shippingAddress, float totalPrice) {
+	public Order(Customer customer, PaymentMethod paymentMethod, ShippingAddress shippingAddress, Set<OrderItem> items) {
 		id = -1; // generato dal DBMS
-		this.cont++;
 		state = State.PROCESSING;
 		this.customer = customer;
 		this.paymentMethod = paymentMethod;
 		this.shippingAddress = shippingAddress;
-		this.totalPrice = totalPrice;
-		trackingCode = String.valueOf(cont);
-		Calendar calendar = Calendar.getInstance();
-        OrderDate =calendar.getTime()  ;
+		trackingCode = Optional.empty();
+		orderDate = DateUtil.now();
+		this.items = items;
 		
-	
+		computePrice();
 	}
 	
 	public State getState() {
@@ -67,39 +68,57 @@ public class Order extends Bean {
 	}
 
 	public float getTotalPrice() {
+		computePrice();
 		return totalPrice;
 	}
 
 	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-
-	public String getTrackingCode() {
+	
+	public Optional<String> getTrackingCode() {
 		return trackingCode;
 	}
-	public void setTrackingCode(String trackingCode ) {
-		 this.trackingCode=trackingCode;
-	}
 
- 
-
-	public Date getOrderDate() {
-		return OrderDate;
+	public void setTrackingCode(String trackingCode) {
+		this.trackingCode = Optional.ofNullable(trackingCode);
 	}
 	
-	public void setOrderDate(Date OrderDate ) {
-		this.OrderDate=OrderDate;
+	public ZonedDateTime getOrderDate() {
+		return orderDate;
+	}
+	
+	public void setOrderDate(ZonedDateTime orderDate) {
+		this.orderDate = orderDate;
+	}
+	
+	public Set<OrderItem> getItems() {
+		return items;
 	}
 
- 
-
+	public void setItems(Set<OrderItem> items) {
+		this.items = items;
+	}
 	
+	private void computePrice() {
+		totalPrice = (float) items.stream().mapToDouble(item -> item.getUnitPrice() * item.getAmount()).sum();
+	}
 	
 	public enum State {
-		PROCESSING,
-		READY,
-		SHIPPED,
-		DELIVERED;
+		PROCESSING("IN LAVORAZIONE"),
+		READY("PRONTO"),
+		SHIPPED("SPEDITO"),
+		DELIVERED("CONSEGNATO");
+		
+		private String label;
+		State(String label) {
+			this.label = label;
+		}
+		
+		@Override
+		public String toString() {
+			return label;
+		}
 	}
 	
 }

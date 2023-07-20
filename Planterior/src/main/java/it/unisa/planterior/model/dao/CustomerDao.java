@@ -1,14 +1,17 @@
 package it.unisa.planterior.model.dao;
 
+import java.sql.Date;
 import java.sql.JDBCType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import it.unisa.planterior.model.bean.Customer;
 import it.unisa.planterior.model.dao.api.Dao;
+import it.unisa.planterior.util.DateUtil;
 
 public class CustomerDao extends Dao<Customer> {
 
@@ -32,6 +35,10 @@ public class CustomerDao extends Dao<Customer> {
 		return getFirstByField("email", email, JDBCType.VARCHAR);
 	}
 	
+	public List<Customer> getAllByLikey(String email) {
+		return getAllByFieldLike("email", email, JDBCType.VARCHAR);
+	}
+	
 	@Override
 	protected Customer parseObject(ResultSet result) throws SQLException {
 		Customer customer = new Customer();
@@ -46,8 +53,8 @@ public class CustomerDao extends Dao<Customer> {
 		Customer.Gender gender = Customer.Gender.valueOf(result.getString("sesso"));
 		customer.setGender(gender);
 		
-		java.sql.Date sqlDate = result.getDate("data_nascita");
-		Date birthDate = new Date(sqlDate.getTime());
+		Date sqlDate = result.getDate("data_nascita");
+		ZonedDateTime birthDate = DateUtil.fromSQLDate(sqlDate);
 		customer.setBirthDate(birthDate);
 		
 		customer.setAdministrator(result.getBoolean("amministratore"));
@@ -63,7 +70,7 @@ public class CustomerDao extends Dao<Customer> {
 		statement.setString(4, customer.getPassword());
 		statement.setString(5, customer.getGender().name());
 		
-		java.sql.Date sqlDate = new java.sql.Date(customer.getBirthDate().getTime());
+		Date sqlDate = DateUtil.toSQLDate(customer.getBirthDate());
 		statement.setDate(6, sqlDate);
 		
 		statement.setBoolean(7, customer.isAdministrator());

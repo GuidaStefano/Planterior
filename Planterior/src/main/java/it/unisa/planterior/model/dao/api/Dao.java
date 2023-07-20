@@ -21,12 +21,12 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 	protected String tableName;
 	protected String[] updateFields;
 	
-	private String getByIdQuery;
-	private String getByFieldBaseQuery;
-	private String getAllQuery;
-	private String deleteQuery;
-	private String updateQuery;
-	private String insertQuery;
+	protected String getByIdQuery;
+	protected String getByFieldBaseQuery;
+	protected String getAllQuery;
+	protected String deleteQuery;
+	protected String updateQuery;
+	protected String insertQuery;
 	
 	
 	protected Dao(String tableName, String... updateFields) {
@@ -98,6 +98,26 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 			PreparedStatement statement = connection.prepareStatement(getByFieldQuery);
 			statement.setObject(1, key, keyType);
 			
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				T obj = parseObject(result);
+				allMatched.add(obj);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return allMatched;
+    }
+    
+    protected List<T> getAllByFieldLike(String fieldName, Object key, JDBCType keyType) {
+    	String getByFieldQuery = getByFieldBaseQuery + fieldName + " LIKE ?";
+    	
+    	List<T> allMatched = new ArrayList<>();
+		try (Connection connection = dataSource.getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(getByFieldQuery);
+			statement.setObject(1, key, keyType);
+ 			
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				T obj = parseObject(result);

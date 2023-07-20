@@ -22,6 +22,7 @@ public class ShippingAddressDao extends Dao<ShippingAddress> {
 	
 	private ShippingAddressDao() {
 		super(TABLE_NAME, UPDATE_FIELDS);
+		deleteQuery = "UPDATE " + TABLE_NAME + " SET cliente = NULL WHERE id = ?";
 	}
 	
 	public synchronized static ShippingAddressDao getInstance() {
@@ -29,6 +30,10 @@ public class ShippingAddressDao extends Dao<ShippingAddress> {
 			instance = new ShippingAddressDao();
 		
 		return instance;
+	}
+	
+	public List<ShippingAddress> getByCustomer(Customer customer) {
+		return getAllByField("cliente", customer.getId(), JDBCType.INTEGER);
 	}
 
 	@Override

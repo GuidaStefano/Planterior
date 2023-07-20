@@ -1,18 +1,23 @@
 package it.unisa.planterior.model.dao;
 
+import java.sql.Connection;
+import java.sql.Date;
 import java.sql.JDBCType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
-import java.util.Date;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 import it.unisa.planterior.model.bean.Customer;
 import it.unisa.planterior.model.bean.Order;
 import it.unisa.planterior.model.bean.Order.State;
+import it.unisa.planterior.model.bean.OrderItem;
 import it.unisa.planterior.model.dao.api.Dao;
+import it.unisa.planterior.util.DateUtil;
 import it.unisa.planterior.model.bean.PaymentMethod;
 import it.unisa.planterior.model.bean.ShippingAddress;
 
@@ -20,7 +25,7 @@ public class OrderDao extends Dao<Order> {
 	
 	private static final String TABLE_NAME = "ordine";
 	private static final String[] UPDATE_FIELDS = {"stato", "cliente", "metodo_pagamento", "indirizzo_consegna", "totale", 
-			"codice_tracking", "data_consegna"};
+			"data_ordine", "codice_tracking"};
 
 	private static OrderDao instance;
 	
@@ -43,7 +48,8 @@ public class OrderDao extends Dao<Order> {
 	protected Order parseObject(ResultSet result) throws SQLException {
 		Order order = new Order();
 		
-		order.setId(result.getLong("id"));
+		long orderId = result.getLong("id");
+		order.setId(orderId);
 		
 		State state = State.valueOf(result.getString("stato"));
 		order.setState(state);
@@ -65,12 +71,17 @@ public class OrderDao extends Dao<Order> {
 		
 		order.setTotalPrice(result.getFloat("totale"));
 		
+		Date sqlDate = result.getDate("data_ordine");
+		ZonedDateTime orderDate = DateUtil.fromSQLDate(sqlDate);
+		order.setOrderDate(orderDate);
+		
 		String trackingCode = result.getString("codice_tracking");
 		order.setTrackingCode(result.wasNull() ? null : trackingCode);
 		
-		java.sql.Date sqlDate = result.getDate("data_consegna");
-		Date deliveryDate = result.wasNull() ? null : new Date(sqlDate.getTime());
-		order.setOrderDate(deliveryDate);
+		order.setItems(new HashSet<>());
+		
+		List<OrderItem> items = CompositionDao.getInstance().getByOrder(orderId);
+		items.forEach(order.getItems()::add);
 		
 		return order;
 	}
@@ -82,10 +93,48 @@ public class OrderDao extends Dao<Order> {
 		statement.setLong(3, order.getPaymentMethod().getId());
 		statement.setLong(4, order.getShippingAddress().getId());
 		statement.setFloat(5, order.getTotalPrice());
-		statement.setString(6,order.getTrackingCode());
-		java.sql.Date sqlDate = new java.sql.Date(order.getOrderDate().getTime());
-		statement.setDate(7, sqlDate);
 		
+		Date sqlDate = DateUtil.toSQLDate(order.getOrderDate());
+		statement.setDate(6, sqlDate);
+		
+		if (order.getTrackingCode().isPresent()) 
+			statement.setString(7, order.getTrackingCode().get());
+		else
+			statement.setNull(7, Types.VARCHAR);
 	}
+	
+    @Override
+    public boolean save(Order order) {
+    	return saveAndReturnGeneratedId(order) != -1;
+    }
+    
+    @Override
+    public long saveAndReturnGeneratedId(Order order) {
+		try (Connection connection = dataSource.getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(order.getId() == -1 ? insertQuery : updateQuery, 
+					Statement.RETURN_GENERATED_KEYS);
+			serializeObject(order, statement);
+			
+			if (order.getId() != -1)
+				statement.setLong(updateFields.length + 1, order.getId());
+			
+			if (statement.executeUpdate() != 1) return -1;
+			
+			ResultSet generatedKeys = statement.getGeneratedKeys();
+			if (generatedKeys == null || !generatedKeys.next()) return -1;
+			
+			long orderId = generatedKeys.getLong(1);
+			
+			for (OrderItem item : order.getItems()) {
+				item.setId(orderId);
+				CompositionDao.getInstance().save(item);
+			}
+			
+			return orderId;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+    }
 
 }

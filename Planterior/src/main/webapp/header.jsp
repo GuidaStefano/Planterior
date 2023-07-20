@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="asset/style/header-style.css" />
-<link rel="stylesheet" href="asset/style/text-style.css" />
-<link rel="stylesheet" href="https://use.typekit.net/omf2qxn.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="asset/style/header-style.css" />
+	<link rel="stylesheet" href="asset/style/text-style.css" />
+	<link rel="stylesheet" href="https://use.typekit.net/omf2qxn.css">
 </head>
 <body>
 	<div class="container" style="background-color: #65a15a; height: 5vh;">
@@ -49,12 +49,12 @@
 					</button>
 				</div>
 			</div>
-			<div class="col-4 col-xs-3" style="display: flex; justify-content: center;">
+			<div class="col-4 col-xs-3" style="display: flex; justify-content: end;">
 				<!-- Contenuto della terza colonna dell'header -->
 				<a href="cart.jsp"> 	
 					<button class="icon-button nav-btn"><i class="fa-solid fa-cart-shopping fa-2xl"></i></button>
 				</a>
-				<a href="PaginaUtente.jsp">
+				<a href="personal-area.jsp">
 					<button class="icon-button nav-btn"><i class="fa-solid fa-user fa-2xl"></i></button>
 				</a>
 			</div>
@@ -98,9 +98,13 @@
 						<li><a href="#">Sotto-link 1</a></li>
 						<li><a href="#">Sotto-link 2</a></li>
 					</ul></li>-->
-				<li><a href="Catalogo.jsp?categoria=PIANTE_VERDI">PIANTE VERDI</a></li>
-				<li><a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE GRASSE</a></li>
-				<li><a href="Catalogo.jsp?categoria=PIANTE_FIORITE">PIANTE FIORITE</a></li>
+				<li>
+					<a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE DA INTERNO</a>
+				</li>
+				<li><a href="Catalogo.jsp?categoria=PIANTE_GRASSE">TERRARIUM</a></li>
+				<li>
+					<a href="Catalogo.jsp?categoria=PIANTE_GRASSE">HOME DECOR</a>
+				</li>
 			</ul>
 		</nav>
 	</div>

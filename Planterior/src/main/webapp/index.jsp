@@ -28,9 +28,9 @@
                         <div class="row" style="height: 100%;">
                             <div class="col-6 col-xs-12" style="display: flex;align-items: center;justify-content: center;">
                             <%
-                            	Optional<Product> prodotto1 = ProductDao.getInstance().getById(27);
-                           	 	Optional<Product> prodotto2 = ProductDao.getInstance().getById(28);
-                            	Optional<Product> prodotto3 = ProductDao.getInstance().getById(29);
+                            	Optional<Product> prodotto1 = ProductDao.getInstance().getById(1);
+                           	 	Optional<Product> prodotto2 = ProductDao.getInstance().getById(2);
+                            	Optional<Product> prodotto3 = ProductDao.getInstance().getById(3);
                             
                             
                             %>

@@ -32,19 +32,19 @@ public class LoginServlet extends HttpServlet {
 		Optional<Customer> optionalCustomer = customerDao.getByEmail(email);
  		if (optionalCustomer.isPresent()) {
  			Customer customer = optionalCustomer.get();
- 			System.out.println("con"+password);
- 			 System.out.println("stai confrontando"+ customer.getPassword());
+ 			
  			if (customer.getPassword().equals(password)) {
 		 		HttpSession session = request.getSession(true);
 		 		session.setAttribute("user", customer);
 	 	
-		 		response.sendRedirect(customer.isAdministrator() ? "administrator.jsp" : "index.jsp");
+		 		response.sendRedirect(customer.isAdministrator() ? "personal-area.jsp" : "index.jsp");
 			} else {
-				out.println("<font color=red size18>Login Failed<br>");
-				out.println("<a href=authentication.jsp>Try Again</a>");
+				request.getSession(true).setAttribute("error-message", "Username o password errati");
+				response.sendRedirect("authentication.jsp");
 			}
 		} else {
-			out.println("nessun cliente trovato!");
+			request.getSession(true).setAttribute("error-message", "Nessun utente trovato");
+			response.sendRedirect("authentication.jsp");
 		}
 		
 	}

@@ -1,5 +1,7 @@
 package it.unisa.planterior.model.bean;
 
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.Optional;
 
 public class PaymentMethod extends Bean {
@@ -8,18 +10,20 @@ public class PaymentMethod extends Bean {
 	private String owner;
 	private String cardNumber;
 	private String cvv;
+	private ZonedDateTime expirationDate;
 	private Optional<Customer> customer;
 	
 	public PaymentMethod() {
 		
 	}
 	
-	public PaymentMethod(CardCircuit cardCircuit, String owner, String cardNumber, String cvv, Customer customer) {
+	public PaymentMethod(CardCircuit cardCircuit, String owner, String cardNumber, String cvv, ZonedDateTime expirationDate, Customer customer) {
 		id = -1; // generato dal DBMS
 		this.cardCircuit = cardCircuit;
 		this.owner = owner;
 		this.cardNumber = cardNumber;
 		this.cvv = cvv;
+		this.expirationDate = expirationDate;
 		this.customer = Optional.ofNullable(customer);
 	}
 	
@@ -54,6 +58,14 @@ public class PaymentMethod extends Bean {
 	public void setCvv(String cvv) {
 		this.cvv = cvv;
 	}
+	
+	public ZonedDateTime getExpirationDate() {
+		return expirationDate;
+	}
+	
+	public void setExpirationDate(ZonedDateTime expirationDate) {
+		this.expirationDate = expirationDate;
+	}
 
 	public Optional<Customer> getCustomer() {
 		return customer;
@@ -64,9 +76,20 @@ public class PaymentMethod extends Bean {
 	}
 
 	public enum CardCircuit {
-		VISA,
-		MASTERCARD,
-		AMERICAN_EXPRESS;
+		VISA("Visa"),
+		MASTERCARD("Mastercard"),
+		AMERICAN_EXPRESS("American Express");
+		
+		private String label;
+		
+		CardCircuit(String label) {
+			this.label = label;
+		}
+		
+		@Override
+		public String toString() {
+			return label;
+		}
 	}
 	
 }

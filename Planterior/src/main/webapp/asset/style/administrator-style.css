@@ -17,11 +17,19 @@
 	row-gap: 15px;
 }
 
+.page-content {
+	row-gap: 15px;
+}
+
 #table {
 	border: 1px solid #f1f1f1;
 }
 
-#table-header, .table-row {
+.table {
+	border: 1px solid #f1f1f1;
+}
+
+#table-header, .table-row, .table-header {
 	padding: 15px 10px;
 }
 
@@ -31,6 +39,10 @@
 }
 
 #table-header h3 {
+	text-transform: uppercase;
+}
+
+.table-header h3 {
 	text-transform: uppercase;
 }
 
@@ -70,8 +82,34 @@
 	width: 250px;
 }
 
+.no-padding {
+	padding: 0 !important;
+}
+
+.center-in-parent {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 992px) {
+	.mobile-col-1 {
+		display: none;
+	}
+}
+
 @media screen and (max-width: 768px) {
-	.mobile-col {
+	.mobile-col-2 {
+		display: none;
+	}
+	.buttons button{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.mobile-col-3 {
 		display: none;
 	}
 }

@@ -53,21 +53,21 @@
 	<head>
 		<link rel="stylesheet" href="asset/style/administrator-style.css">
 		<link rel="stylesheet" href="asset/style/text-style.css">
-		<link rel="stylesheet" href="asset/style/cart-style.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-		<script src="fb.js">
-		</script>
 		<title>Modifica catalogo</title>
 	</head>
 	<body>
 		<%@ include file="header.jsp" %>
-		<div class="buttons">
-		<a href="Ordini_Complessivi.jsp"><button class="big-button"  ><h6>ORDINI COMPLESSIVI</h6></button></a>
-		</div>
 		<div class="wrapper">
+			<a href="personal-area.jsp">
+				<button class="icon-button no-padding" style="margin-bottom: 20px;">
+					<i class="fa-solid fa-arrow-left fa-l"></i>
+					<span id="back-label">Indietro</span>
+				</button>
+			</a>
 			<div class="v-box" id="page-content">
 				<h1>MODIFICA CATALOGO</h1>
 				<% if(!products.isEmpty()) { %>
@@ -77,34 +77,34 @@
 								<h3>id</h3> 
 								<form action="administrator.jsp" class="v-box">
 									<input type="hidden" name="sortBy" value="id" />
-									<button name="sortOrder" value="asc" class="icon-button caret-btn">
+									<button name="sortOrder" value="asc" class="icon-button caret-btn no-padding">
 										<i class="fa-sharp fa-solid fa-caret-up"></i>
 									</button>
-									<button name="sortOrder" value="desc" class="icon-button caret-btn">
+									<button name="sortOrder" value="desc" class="icon-button caret-btn no-padding">
 										<i class="fa-sharp fa-solid fa-caret-down"></i>
 									</button>
 								</form>
 							</div>
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-3">
 								<h3>nome</h3> 
 								<form action="administrator.jsp" class="v-box">
 									<input type="hidden" name="sortBy" value="name" />
-									<button name="sortOrder" value="asc" class="icon-button caret-btn">
+									<button name="sortOrder" value="asc" class="icon-button caret-btn no-padding">
 										<i class="fa-sharp fa-solid fa-caret-up"></i>
 									</button>
-									<button name="sortOrder" value="desc" class="icon-button caret-btn">
+									<button name="sortOrder" value="desc" class="icon-button caret-btn no-padding">
 										<i class="fa-sharp fa-solid fa-caret-down"></i>
 									</button>
 								</form>
 							</div>
-							<div class="table-col h-box justify-center mobile-col">
+							<div class="table-col h-box justify-center mobile-col-1">
 								<h3>descrizione</h3> 
 								<form action="administrator.jsp" class="v-box">
 									<input type="hidden" name="sortBy" value="description" />
-									<button name="sortOrder" value="asc" class="icon-button caret-btn">
+									<button name="sortOrder" value="asc" class="icon-button caret-btn no-padding">
 										<i class="fa-sharp fa-solid fa-caret-up"></i>
 									</button>
-									<button name="sortOrder" value="desc" class="icon-button caret-btn">
+									<button name="sortOrder" value="desc" class="icon-button caret-btn no-padding">
 										<i class="fa-sharp fa-solid fa-caret-down"></i>
 									</button>
 								</form>
@@ -113,22 +113,22 @@
 								<h3>quantità</h3> 
 								<form action="administrator.jsp" class="v-box">
 									<input type="hidden" name="sortBy" value="amount" />
-									<button name="sortOrder" value="asc" class="icon-button caret-btn">
+									<button name="sortOrder" value="asc" class="icon-button caret-btn no-padding">
 										<i class="fa-sharp fa-solid fa-caret-up"></i>
 									</button>
-									<button name="sortOrder" value="desc" class="icon-button caret-btn">
+									<button name="sortOrder" value="desc" class="icon-button caret-btn no-padding">
 										<i class="fa-sharp fa-solid fa-caret-down"></i>
 									</button>
 								</form>
 							</div>
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-2">
 								<h3>prezzo</h3> 
 								<form action="administrator.jsp" class="v-box">
 									<input type="hidden" name="sortBy" value="price" />
-									<button name="sortOrder" value="asc" class="icon-button caret-btn">
+									<button name="sortOrder" value="asc" class="icon-button caret-btn no-padding">
 										<i class="fa-sharp fa-solid fa-caret-up"></i>
 									</button>
-									<button name="sortOrder" value="desc" class="icon-button caret-btn">
+									<button name="sortOrder" value="desc" class="icon-button caret-btn no-padding">
 										<i class="fa-sharp fa-solid fa-caret-down"></i>
 									</button>
 								</form>
@@ -140,16 +140,16 @@
 						<% for (Product product : products) { %>
 							<div class="h-box table-row">
 								<h4 class="table-col"><%= product.getId() %></h4>
-								<h4 class="table-col"><%= product.getName() %></h4>
-								<h4 class="table-col mobile-col"><%= product.getMinimalDescription() %></h4>
+								<h4 class="table-col mobile-col-3"><%= product.getName() %></h4>
+								<h4 class="table-col mobile-col-1"><%= product.getMinimalDescription() %></h4>
 								<h4 class="table-col"><%= product.getAvailableAmount() %></h4>
-								<h4 class="table-col"><%= product.getPrice() %></h4>
+								<h4 class="table-col mobile-col-2"><%= product.getPrice() %></h4>
 								<form action="edit-catalog" method="POST" class="h-box table-col justify-center" style="column-gap: 25px;">
 									<input type="hidden" name="id" value=<%= product.getId() %> />
-									<button type="submit" name="action" value="delete" class="icon-button">
+									<button type="submit" name="action" value="delete" class="icon-button no-padding">
 										<i class="fa-solid fa-trash"></i> 
 									</button>
-									<button formaction="edit-product.jsp" formmethod="GET" type="submit" class="icon-button">
+									<button formaction="edit-product.jsp" formmethod="GET" type="submit" class="icon-button no-padding">
 										<i class="fa-solid fa-pen-to-square"></i>
 									</button>
 								</form>
@@ -158,8 +158,9 @@
 					</div>
 				<!--  	<button class="big-button static-btn" id="add-btn"><h6>AGGIUNGI PRODOTTO</h6></button>-->
 					
-					<a href="add-product.jsp"><button type="submit" name="action" value="insert" class="big-button static-btn" id="fixed-btn">
-						<i class="fa-sharp fa-light fa-plus fa-xxl"></i>
+					<a href="add-product.jsp">
+						<button type="submit" name="action" value="insert" class="big-button static-btn" id="fixed-btn">
+						<i class="fa-sharp fa-light fa-plus fa-xxl" style="color: white; margin-top: 3px; font-size: 1.6em;"></i>
 					</button></a>
 				<% } else { %>
 					<form action="add-product.jsp" id="no-products-box" class="v-box">

@@ -8,8 +8,8 @@
         <link rel="stylesheet" href="asset/style/text-style.css" />
         
  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>  
-<script src="asset/script/checkEmail.js"></script>      
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>  
+		<script src="asset/script/checkEmail.js"></script>      
  
     </head>
     <body>
@@ -23,11 +23,15 @@
                         <div>
                             <label for="username">Email</label>
                             <input id="EmailLogin" class="text-input" type="text" name="email"/><!--   onchange="existEmail()"-->
-                            <span id="ErrorLogin"></span>
+                            <p class="error-log" id="ErrorLogin"></p>
                         </div>
                         <div>
                             <label for="password">Password</label>
                             <input class="text-input" type="password" name="password" />
+                            <% if (session.getAttribute("error-message") != null) { %>
+                            	<p class="error-log"><%= session.getAttribute("error-message") %></p>
+                            <% session.setAttribute("error-message", null);
+                            } %>
                         </div>
                         <div class="password-recovery">
                             <div class="form-checkbox">
@@ -68,20 +72,24 @@
                             </div>
                             <div>
                                 <label for="birth-date">Data di nascita</label>
-                                <input class="text-input" type="date" name="birth-date" />
+                                <input class="text-input" type="date" name="birth-date" max="2006-12-31" />
                             </div>
                         </div>
                         <div>
                             <label for="username">Email</label>
                             <input id="EmailSignUp" class="text-input" type="email" name="email" />
-                             <span id="ErrorSignup">Sei un coglione</span>
+                            <p class="error-log" id="ErrorSignup"></p>
                         </div>
                         <div>
                             <label for="password">Password</label>
                             <input class="text-input" type="password" name="password" />
                         </div>
+                        <% if (session.getAttribute("error-message") != null) { %>
+                            	<p class="error-log"><%= session.getAttribute("error-message-r") %></p>
+                            <% session.setAttribute("error-message-r", null);
+                        } %>
                         <div class="form-checkbox">
-                            <input type="checkbox" name="save-session"/>
+                            <input type="checkbox" name="accept-terms" required/>
                             <p>Ho letto ed accetto <a href="terms-and-conditions.jsp" id="terms-anchor">Termini e Condizioni</a></p>
                         </div>
                         <input class="submit-btn" type="submit" id="SignUp" value="REGISTRATI ORA" />

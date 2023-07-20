@@ -1,5 +1,6 @@
 package it.unisa.planterior.model.bean;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class Customer extends Bean {
@@ -9,14 +10,14 @@ public class Customer extends Bean {
 	private String email;
 	private String password;
 	private Gender gender;
-	private Date birthDate;
+	private ZonedDateTime birthDate;
 	private boolean administrator;
 	
 	public Customer() {
 		
 	}
  
-	public Customer(String name, String surname, String email, String password, Gender gender, Date birthDate) {
+	public Customer(String name, String surname, String email, String password, Gender gender, ZonedDateTime birthDate) {
 		id = -1; // generato dal DBMS
 		this.name = name;
 		this.surname = surname;
@@ -73,11 +74,11 @@ public class Customer extends Bean {
 		this.gender = gender;
 	}
 	
-	public Date getBirthDate() {
+	public ZonedDateTime getBirthDate() {
 		return birthDate;
 	}
 	
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(ZonedDateTime birthDate) {
 		this.birthDate = birthDate;
 	}
 	
