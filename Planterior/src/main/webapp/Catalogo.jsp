@@ -1,3 +1,4 @@
+<%@page import="it.unisa.planterior.model.bean.Product.Subcategory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
          pageEncoding="UTF-8"%>
     <%@page import="java.io.IOException"%>
@@ -19,14 +20,27 @@
 </head>
 <body>
 <%
-if(request.getParameter("categoria")==null)
-	 request.getRequestDispatcher("index.jsp").forward(request, response);
-String category = request.getParameter("categoria");
-String stringa= category.replace("_", " ");
+	if(request.getParameter("categoria") == null) {
+		response.sendRedirect("index.jsp");
+		return;
+	}
 
+	String categoryStr = request.getParameter("categoria");
+	
+	Subcategory category;
+	try {
+		category = Subcategory.valueOf(categoryStr);
+	} catch (IllegalArgumentException e) {
+		category = null;
+	}
+	
+	if (category == null) {
+		response.sendRedirect("index.jsp");
+		return;
+	}
 %>
    <%
-	List<Product> products = ProductDao.getInstance().getAllByCategory(category); 
+	List<Product> products = ProductDao.getInstance().getAllByCategory(category.name()); 
 	Set<Product> lista_prodotti= new HashSet<>(products);
 	String sortParam = request.getParameter("sortBy");
 	if (sortParam != null) {
@@ -71,7 +85,7 @@ String stringa= category.replace("_", " ");
                                  <%@ include file="header.jsp" %>
                                     <div class="container">
                                         <div class="row">
-                                            <h3><%= stringa %></h3>
+                                            <h3><%= category.toString() %></h3>
                                         </div>
                                         <div class="row">
                                             <div class="filter-section"
