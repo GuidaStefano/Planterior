@@ -14,12 +14,13 @@ public class ProductDao extends Dao<Product> {
 
 	private static final String TABLE_NAME = "prodotto";
 	private static final String[] UPDATE_FIELDS = {"nome", "categoria", "descrizione_breve", "descrizione_completa", "altezza",
-			"circonferenza_vaso", "prezzo_base", "sconto_percentuale", "quantita"};
+			"circonferenza_vaso", "prezzo_base", "sconto_percentuale", "quantita", "listed"};
 	
 	private static ProductDao instance;
 	
 	private ProductDao() {
 		super(TABLE_NAME, UPDATE_FIELDS);
+		deleteQuery = "UPDATE " + TABLE_NAME + " SET listed = false WHERE id = ?";
 	}
 	
 	public static synchronized ProductDao getInstance() {
@@ -27,6 +28,10 @@ public class ProductDao extends Dao<Product> {
 			instance = new ProductDao();
 		
 		return instance;
+	}
+	
+	public List<Product> getAllByLikey(String search) {
+		return getAllByFieldLike("nome", search, JDBCType.VARCHAR);
 	}
 	
 	public List<Product> getAllByCategory(String  category) {
@@ -50,6 +55,7 @@ public class ProductDao extends Dao<Product> {
 		product.setBasePrice(result.getFloat("prezzo_base"));
 		product.setDiscountRate(result.getFloat("sconto_percentuale"));
 		product.setAvailableAmount(result.getShort("quantita"));
+		product.setListed(result.getBoolean("listed"));
 		
 		return product;
 	}
@@ -65,6 +71,7 @@ public class ProductDao extends Dao<Product> {
 		statement.setFloat(7, product.getBasePrice());
 		statement.setFloat(8, product.getDiscountRate());
 		statement.setShort(9, product.getAvailableAmount());
+		statement.setBoolean(10, product.isListed());
 	}
 	
 }

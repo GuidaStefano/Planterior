@@ -14,22 +14,30 @@
 	List<Product> products = new ArrayList<>();
 	String label = "CATALOGO";
 	
-	if(request.getParameter("category") == null && request.getParameter("main-category") == null) {
-		products = new ArrayList<>(ProductDao.getInstance().getAll());
+	if (request.getParameter("search") != null) {
+		String search = request.getParameter("search");
+		label = "Risultati ricerca per \'" + search + "\'";
+		products = ProductDao.getInstance().getAllByLikey("%" + search + "%");
 	} else {
-		String subcategoryStr = request.getParameter("category");
-		if (subcategoryStr != null) {
-			products = ProductDao.getInstance().getAllByCategory(subcategoryStr);
-			label = subcategoryStr.replace("_", " ").toUpperCase();
-		} else if (request.getParameter("main-category") != null) {
-			String categoryStr = request.getParameter("main-category");
-			Category category = Category.valueOf(categoryStr);
-			label = categoryStr.replace("_", " ").toUpperCase();
-			
-			for (Subcategory subcategory : category.getSubcategories()) 
-				products.addAll(ProductDao.getInstance().getAllByCategory(subcategory.name()));
+		if(request.getParameter("category") == null && request.getParameter("main-category") == null) {
+			products = new ArrayList<>(ProductDao.getInstance().getAll());
+		} else {
+			String subcategoryStr = request.getParameter("category");
+			if (subcategoryStr != null) {
+				products = ProductDao.getInstance().getAllByCategory(subcategoryStr);
+				label = subcategoryStr.replace("_", " ").toUpperCase();
+			} else if (request.getParameter("main-category") != null) {
+				String categoryStr = request.getParameter("main-category");
+				Category category = Category.valueOf(categoryStr);
+				label = categoryStr.replace("_", " ").toUpperCase();
+				
+				for (Subcategory subcategory : category.getSubcategories()) 
+					products.addAll(ProductDao.getInstance().getAllByCategory(subcategory.name()));
+			}
 		}
 	}
+	
+	products = products.stream().filter(Product::isListed).collect(Collectors.toList());
 %>
 
 <!DOCTYPE html>
@@ -40,71 +48,35 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="asset/style/catalogo-style.css" />
     <link rel="stylesheet" href="asset/style/header-style.css" />
-    <title> Catalogo</title>
+    <title>Catalogo</title>
 
 </head>
 <body>
-
-
       <%@ include file="header.jsp" %>
          <div class="container">
              <div class="row">
                  <h3><%= label %></h3>
              </div>
              <div class="row">
-                 <div class="filter-section"
-                     style="width: 100%;height: 80px;background-color: #e6e6e6;">
-                     <div class="sort">
-                     <label for="sort">Filtra:</label>
-                     <form action="Catalogo.jsp" method="GET"> 
-                     <select name="sortBy">
-                         <option value="PRICEDESC">Dal più costoso</option>
-                         <option value="PRICEASC">Dal più economico</option>
-                         <option value="HEIGHTDESC">Dal più alto</option>
-                         <option value="HEIGHTASC">Dal più basso</option>
-                     </select></form>
-                     </div>
-                     
-                     <div class="sortby">
-                     <label for="sortby">Filtra per:</label>
-                     <select name="sortby" id="sortby">
-                         <option value="NOME">NOME</option>
-                         <option value="DISPONIBILITA">DISPONIBILITA'</option>
-                         <option value="CIRCONFERENZA">CIRCONFERENZA VASO</option>
-                        
-                     </select>
-                     </div>
-                 </div>
-             </div>
-             <div class="row">
                  <div class="product-container">
-                  <% 
-                
-                  
-            
-                  if(products.isEmpty()){%>
+                  <% if(products.isEmpty()) { %>
                   		<h3>Non abbiamo disponibilità di questa categoria</h3>
-                  
-                  <% 
-                  }
-                  else
-                  	for (Product product : products) { 
-                  
-                  %>
-                     <div class="card">
-                         <a href="product.jsp?id=<%= product.getId() %>"><img height="180" src="<%= PathUtil.getMainImagePath(product.getId()) %>" alt=""></a>
-                         <div class="text-box">
-                             <h3><%= product.getName() %></h3>
-                             <h6><%= Math.round(product.getPrice() * 100.0f) / 100.0f%>$</h6>
-                         </div>
-                     </div>
-                     <%} %>
-                     
+                  <% } else {
+					for (Product product : products) { %>
+						<a href="product.jsp?id=<%= product.getId() %>">
+							 <div class="card">
+                         		<img height="180" src="<%= PathUtil.getMainImagePath(product.getId()) %>" alt="">
+                         		<div class="text-box">
+                             		<h3><%= product.getName() %></h3>
+                             		<h6><%= Math.round(product.getPrice() * 100.0f) / 100.0f%>$</h6>
+                         		</div>
+                     		</div>
+                        </a>
+                     <%} 
+					}%>
                  </div>
              </div>
          </div>
-
-
 		<%@include file="footer.jsp" %> 
      </body>
 </html>

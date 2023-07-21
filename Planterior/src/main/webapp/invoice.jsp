@@ -95,13 +95,13 @@
 					</div>
 	        		<div class="v-box table">
 						<div class="h-box table-header">
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-3">
 								<h3>IMMAGINE</h3> 
 							</div>
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-2">
 								<h3>ID PRODOTTO</h3> 
 							</div>
-							<div class="table-col h-box justify-center mobile-col">
+							<div class="table-col h-box justify-center">
 								<h3>NOME PRODOTTO</h3> 
 							</div>
 							<div class="table-col h-box justify-center">
@@ -116,10 +116,10 @@
 									Product product = ProductDao.getInstance().getById(item.getProductId()).get();
 							%>
 							<div class="h-box table-row">
-									<div class="table-col">
+									<div class="table-col mobile-col-3">
 										<img alt="Immagine prodotto" width="60" height="60" src=<%= PathUtil.getMainImagePath(product.getId()) %> />
 									</div>
-									<div class="table-col">
+									<div class="table-col mobile-col-2">
 										<h4 class="center-in-parent"><%= product.getId() %></h4>
 									</div>
 									<div class="table-col">

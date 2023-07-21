@@ -40,15 +40,15 @@
 			</div>
 			<div class="col-4 search-mobile-none">
 				<!-- Contenuto della seconda colonna dell'header -->
-				<div class="form-content">
+				<form action="catalog.jsp" class="form-content">
 					<div class="inner">
-						<input type="text" class="input" name="s" value=""
+						<input type="text" class="input" name="search" value=""
 							placeholder="Cerca prodotto">
 					</div>
 					<button class="btn-search big-button static-btn" type="submit">
 					<i class="fa-sharp fa-solid fa-magnifying-glass fa-lg" style="color: #ffffff;"></i>
 					</button>
-				</div>
+				</form>
 			</div>
 			<div class="col-4 col-xs-3" style="display: flex; justify-content: end;">
 				<!-- Contenuto della terza colonna dell'header -->
@@ -61,15 +61,15 @@
 			</div>
 			<div class="col-xs-12 search-mobile-display">
 				<!-- Contenuto della seconda colonna dell'header -->
-				<div class="form-content">
+				<form action="catalog.jsp" class="form-content">
 					<div class="inner">
-						<input type="text" class="input" name="s" value=""
+						<input type="text" class="input" name="search" value=""
 							placeholder="Cerca prodotto">
 					</div>
 					<button class="btn-search big-button static-btn" type="submit">
 					<i class="fa-sharp fa-solid fa-magnifying-glass fa-lg" style="color: #ffffff;"></i>
 					</button>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -12,6 +12,7 @@ public class Product extends Bean {
 	private float discountRate;
 	private float price;
 	private short availableAmount;
+	private boolean listed;
 
 	public Product() {
 		
@@ -29,6 +30,7 @@ public class Product extends Bean {
 		this.basePrice = basePrice;
 		this.discountRate = discountRate;
 		this.availableAmount = availableAmount;
+		listed = true;
 		computePrice();
 	}
 	
@@ -108,6 +110,14 @@ public class Product extends Bean {
 	
 	public void setAvailableAmount(short availableAmount) {
 		this.availableAmount = availableAmount;
+	}
+	
+	public boolean isListed() {
+		return listed;
+	}
+	
+	public void setListed(boolean listed) {
+		this.listed = listed;
 	}
 
 	private void computePrice() {

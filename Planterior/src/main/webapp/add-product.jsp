@@ -72,6 +72,12 @@
 	<body>
 		<%@ include file="header.jsp" %>
 		<div class="wrapper">
+			<a href="administrator.jsp">
+				<button class="icon-button no-padding" style="margin-bottom: 20px;">
+					<i class="fa-solid fa-arrow-left fa-l"></i>
+					<span>Indietro</span>
+				</button>
+			</a>
 			<div class="v-box" id="page-content">
 				<h1>AGGIUNGI PRODOTTO</h1>
 				<form action="edit-catalog" method="POST" enctype="multipart/form-data"> 

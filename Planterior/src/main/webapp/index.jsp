@@ -1,3 +1,4 @@
+<%@page import="it.unisa.planterior.util.PathUtil"%>
 <%@page import="java.io.IOException"%>
 <%@page import="it.unisa.planterior.model.bean.Product"%>
 <%@page import="it.unisa.planterior.model.dao.ProductDao"%>
@@ -20,25 +21,24 @@
     <body>
         <%@ include file="header.jsp" %>  
 
+         <%
+         	Product prodotto1 = ProductDao.getInstance().getById(1).get();
+        	Product prodotto2 = ProductDao.getInstance().getById(2).get();
+         	Product prodotto3 = ProductDao.getInstance().getById(3).get();
+         
+         %>
         <div class="container">
             <div class="row" style="height: 90vh;">
                 <div class="col-8 col-xs-12" style="padding: 50px 0;">
                     <div class="box-slider"
-                        style="background-image:url(asset/images/slider-thumb6.jpg);background-position: center;background-repeat: no-repeat;background-size: cover;">
+                        style="background-image:url(<%= PathUtil.getMainImagePath(prodotto1.getId()) %>);background-position: center;background-repeat: no-repeat;background-size: cover;">
                         <div class="row" style="height: 100%;">
                             <div class="col-6 col-xs-12" style="display: flex;align-items: center;justify-content: center;">
-                            <%
-                            	Optional<Product> prodotto1 = ProductDao.getInstance().getById(1);
-                           	 	Optional<Product> prodotto2 = ProductDao.getInstance().getById(2);
-                            	Optional<Product> prodotto3 = ProductDao.getInstance().getById(3);
-                            
-                            
-                            %>
                                 <div class="text-box" style="line-height: 1;">
-                                    <h5><%= prodotto1.get().getCategory() %></h5>
-                                    <h4><%= prodotto1.get().getName() %></h4>
-                                    <h4><%=Math.round(prodotto1.get().getPrice() * 100.0f) / 100.0f%>$</h4>
-                                     <a  href="product.jsp?id=<%= prodotto1.get().getId() %>"> <button>Acquista Ora</button></a>
+                                    <h5><%= prodotto1.getCategory() %></h5>
+                                    <h4><%= prodotto1.getName() %></h4>
+                                    <h4><%=Math.round(prodotto1.getPrice() * 100.0f) / 100.0f%>$</h4>
+                                     <a  href="product.jsp?id=<%= prodotto1.getId() %>"> <button>Acquista Ora</button></a>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -49,14 +49,14 @@
                 <div class="col-4 col-xs-12" style="padding: 50px 0;">
                     <div class="row" style="height: 50%; padding: 0px 10px 10px 10px;">
                         <div class="hero-square"
-                            style="width: 100%;height: 100%;background-image:url(asset/images/banner-home-5.jpg);background-position: center;background-repeat: no-repeat;background-size: cover;">
+                            style="width: 100%;height: 100%;background-image:url(<%= PathUtil.getMainImagePath(prodotto2.getId()) %>);background-position: center;background-repeat: no-repeat;background-size: cover;">
                             <div class="col-8"
                                 style="height:100%;display: flex;align-items: center;justify-content: center;">
                                 <div class="text-box" style="line-height: 1;">
-                                     <h5><%= prodotto2.get().getCategory() %></h5>
-                                    <h4><%= prodotto2.get().getName() %></h4>
-                                    <h4><%= Math.round(prodotto2.get().getPrice() * 100.0f) / 100.0f%>$</h4>
-                                    <a  href="product.jsp?id=<%= prodotto2.get().getId() %>"> <button>Acquista Ora</button></a>
+                                     <h5><%= prodotto2.getCategory() %></h5>
+                                    <h4><%= prodotto2.getName() %></h4>
+                                    <h4><%= Math.round(prodotto2.getPrice() * 100.0f) / 100.0f%>$</h4>
+                                    <a  href="product.jsp?id=<%= prodotto2.getId() %>"> <button>Acquista Ora</button></a>
                                 </div>
                             </div>
                             <div class="col-4"></div>
@@ -64,14 +64,14 @@
                     </div>
                     <div class="row" style="height: 50%;padding: 10px 10px 0px 10px;">
                         <div class="hero-square"
-                            style="width: 100%;height:100%;background-image:url(asset/images/banner-home-6.jpg);background-position: center;background-repeat: no-repeat;background-size: cover;">
+                            style="width: 100%;height:100%;background-image:url(<%= PathUtil.getMainImagePath(prodotto3.getId()) %>);background-position: center;background-repeat: no-repeat;background-size: cover;">
                             <div class="col-8"
                                 style="height:100%;display: flex;align-items: center;justify-content: center;">
                                 <div class="text-box" style="line-height: 1;">
-                                     <h5><%= prodotto3.get().getCategory() %></h5>
-                                    <h4><%= prodotto3.get().getName() %></h4>
-                                    <h4><%=Math.round(prodotto3.get().getPrice() * 100.0f) / 100.0f %>$</h4>
-                                    <a  href="product.jsp?id=<%= prodotto3.get().getId() %>"> <button>Acquista Ora</button></a>
+                                     <h5><%= prodotto3.getCategory() %></h5>
+                                    <h4><%= prodotto3.getName() %></h4>
+                                    <h4><%=Math.round(prodotto3.getPrice() * 100.0f) / 100.0f %>$</h4>
+                                    <a  href="product.jsp?id=<%= prodotto3.getId() %>"> <button>Acquista Ora</button></a>
                                 </div>
                             </div>
                             <div class="col-4"></div>
@@ -88,13 +88,15 @@
             </div>
             <div class="row" style="margin-top:40px;flex-wrap:nowrap;  overflow-x: scroll;overflow-y: hidden;white-space: nowrap;">
             <% for (Product product : products) { %>
-                 <div class="card">
-                    <a href="product.jsp?id=<%= product.getId() %>"><img src="asset/images/<%= product.getId() %>.jpg" alt=""></a>
-                    <div class="text-box">
-                        <h5><%= product.getName() %></h5>
-                        <h6><%= Math.round(product.getPrice() * 100.0f) / 100.0f%>$</h6>
-                    </div>
-                </div>
+            	<a href="product.jsp?id=<%= product.getId() %>">
+                 	<div class="card">
+                    	<img height="180" src="<%= PathUtil.getMainImagePath(product.getId()) %>" alt="">
+                   	 	<div class="text-box">
+                        	<h5><%= product.getName() %></h5>
+                        	<h6><%= Math.round(product.getPrice() * 100.0f) / 100.0f%>$</h6>
+                    	</div>
+                	</div>
+                </a>
                 <%} %>
             </div>
         </div>
