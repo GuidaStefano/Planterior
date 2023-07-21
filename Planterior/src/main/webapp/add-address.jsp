@@ -83,7 +83,7 @@
 						</div>
 					</div>
 					<% if (redirect != null) { %>
-						<input hidden name="redirect" value="<%= redirect %>">
+						<input hidden name="redirect" value="<%= Encode.forHtml(redirect) %>">
 					<% } %>
 					<button name="action" value="add" class="big-button static-btn" id="submit" style="width: 200px;">
 						<h6>AGGIUNGI</h6>

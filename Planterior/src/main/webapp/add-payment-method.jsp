@@ -1,3 +1,4 @@
+<%@page import="org.owasp.encoder.Encode"%>
 <%@page import="it.unisa.planterior.model.bean.Product.Subcategory"%>
 <%@page import="it.unisa.planterior.model.bean.Product.Category"%>
 <%@page import="it.unisa.planterior.model.bean.Customer"%>
@@ -53,7 +54,7 @@
 	<body>
 		<%@ include file="header.jsp" %>
 		<div class="wrapper">
-			<a href="<%= redirect == null ? "payment-methods.jsp" : redirect %>">
+			<a href="<%= redirect == null ? "payment-methods.jsp" : Encode.forHtml(redirect) %>">
 				<button class="icon-button no-padding" style="margin-bottom: 20px;">
 					<i class="fa-solid fa-arrow-left fa-l"></i>
 					<span id="back-label">Indietro</span>
@@ -105,7 +106,7 @@
 						</div>
 					</div>
 					<% if (redirect != null) { %>
-						<input hidden name="redirect" value="<%= redirect %>">
+						<input hidden name="redirect" value="<%= Encode.forHtml(redirect) %>">
 					<% } %>
 					<button name="action" value="add" class="big-button static-btn" id="submit" style="width: 200px;">
 						<h6>AGGIUNGI</h6>

@@ -1,3 +1,4 @@
+<%@page import="org.owasp.encoder.Encode"%>
 <%@page import="it.unisa.planterior.util.PathUtil"%>
 <%@page import="it.unisa.planterior.util.DateUtil"%>
 <%@page import="java.util.stream.Collectors"%>
@@ -56,7 +57,7 @@
 	<body>
 		<%@ include file="header.jsp" %>
 		<div class="wrapper">
-			<a href="<%= redirect %>">
+			<a href="<%= Encode.forHtml(redirect) %>">
 				<button class="icon-button no-padding" style="margin-bottom: 20px;">
 					<i class="fa-solid fa-arrow-left fa-l"></i>
 					<span>Indietro</span>
