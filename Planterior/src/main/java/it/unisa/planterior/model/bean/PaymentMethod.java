@@ -1,7 +1,6 @@
 package it.unisa.planterior.model.bean;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.Optional;
 
 public class PaymentMethod extends Bean {

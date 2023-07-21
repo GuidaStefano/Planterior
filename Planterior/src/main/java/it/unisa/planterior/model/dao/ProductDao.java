@@ -23,7 +23,7 @@ public class ProductDao extends Dao<Product> {
 		super(TABLE_NAME, UPDATE_FIELDS);
 	}
 	
-	public synchronized static ProductDao getInstance() {
+	public static synchronized ProductDao getInstance() {
 		if (instance == null)
 			instance = new ProductDao();
 		

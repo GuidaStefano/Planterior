@@ -25,7 +25,7 @@ public class ShippingAddressDao extends Dao<ShippingAddress> {
 		deleteQuery = "UPDATE " + TABLE_NAME + " SET cliente = NULL WHERE id = ?";
 	}
 	
-	public synchronized static ShippingAddressDao getInstance() {
+	public static synchronized ShippingAddressDao getInstance() {
 		if (instance == null)
 			instance = new ShippingAddressDao();
 		

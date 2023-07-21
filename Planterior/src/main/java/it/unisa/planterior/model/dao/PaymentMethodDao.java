@@ -28,7 +28,7 @@ public class PaymentMethodDao extends Dao<PaymentMethod> {
 		deleteQuery = "UPDATE " + TABLE_NAME + " SET cliente = NULL WHERE id = ?";
 	}
 	
-	public synchronized static PaymentMethodDao getInstance() {
+	public static synchronized PaymentMethodDao getInstance() {
 		if (instance == null)
 			instance = new PaymentMethodDao();
 		

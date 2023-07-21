@@ -24,7 +24,7 @@ public class CustomerDao extends Dao<Customer> {
 		super(TABLE_NAME, UPDATE_FIELDS);
 	}
 	
-	public synchronized static CustomerDao getInstance() {
+	public static synchronized CustomerDao getInstance() {
 		if (instance == null)
 			instance = new CustomerDao();
 		

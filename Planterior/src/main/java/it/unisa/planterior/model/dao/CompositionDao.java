@@ -24,7 +24,7 @@ public class CompositionDao extends Dao<OrderItem> {
 		super(TABLE_NAME, UPDATE_FIELDS);
 	}
 	
-	public synchronized static CompositionDao getInstance() {
+	public static synchronized CompositionDao getInstance() {
 		if (instance == null)
 			instance = new CompositionDao();
 		

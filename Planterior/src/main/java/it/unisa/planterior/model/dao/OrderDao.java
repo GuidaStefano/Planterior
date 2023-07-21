@@ -36,7 +36,7 @@ public class OrderDao extends Dao<Order> {
 		super(TABLE_NAME, UPDATE_FIELDS);
 	}
 	
-	public synchronized static OrderDao getInstance() {
+	public static synchronized OrderDao getInstance() {
 		if (instance == null)
 			instance = new OrderDao();
 		
