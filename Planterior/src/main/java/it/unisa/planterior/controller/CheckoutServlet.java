@@ -77,6 +77,8 @@ public class CheckoutServlet extends HttpServlet {
 			
 			Product product = optProduct.get();
 			OrderItem item = new OrderItem(productId, amount, product.getPrice());
+			product.setAvailableAmount((short) (product.getAvailableAmount() - amount));
+			ProductDao.getInstance().save(product);
 			items.add(item);
 		});
 		
