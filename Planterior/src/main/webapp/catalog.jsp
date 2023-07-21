@@ -1,3 +1,4 @@
+<%@page import="org.owasp.encoder.Encode"%>
 <%@page import="it.unisa.planterior.util.PathUtil"%>
 <%@page import="it.unisa.planterior.model.bean.Product.Category"%>
 <%@page import="it.unisa.planterior.model.bean.Product.Subcategory"%>
@@ -55,7 +56,7 @@
       <%@ include file="header.jsp" %>
          <div class="container">
              <div class="row">
-                 <h3><%= label %></h3>
+                 <h3><%= Encode.forHtml(label) %></h3>
              </div>
              <div class="row">
                  <div class="product-container">
