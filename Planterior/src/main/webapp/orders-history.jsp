@@ -43,16 +43,16 @@
 						<div class="table-col h-box justify-center">
 							<h3>ID</h3> 
 						</div>
-						<div class="table-col h-box justify-center mobile-col">
+						<div class="table-col h-box justify-center">
 							<h3>STATO</h3> 
 						</div>
-						<div class="table-col h-box justify-center">
+						<div class="table-col h-box justify-center mobile-col-2">
 							<h3>INDIRIZZO</h3> 
 						</div>
-						<div class="table-col h-box justify-center">
+						<div class="table-col h-box justify-center mobile-col-1">
 							<h3>CODICE TRACKING</h3> 
 						</div>
-						<div class="table-col h-box justify-center">
+						<div class="table-col h-box justify-center mobile-col-3">
 							<h3>DATA ORDINE</h3> 
 						</div>
 						 
@@ -64,9 +64,9 @@
 						<div class="h-box table-row">
 								<h4 class="table-col"><%= ordine.getId() %></h4>
 								<h4 class="table-col"><%= ordine.getState().toString() %></h4>
-								<h4 class="table-col"><%= ordine.getShippingAddress().getStreet() %>, <%= ordine.getShippingAddress().getHouseNumber() %>, <%= ordine.getShippingAddress().getPostalCode() %></h4>
-								<h4 class="table-col"><%= ordine.getTrackingCode().isEmpty() ? "-" : ordine.getTrackingCode().get() %></h4>
-								<h4 class="table-col"><%= DateUtil.formatVisual(ordine.getOrderDate())%></h4>
+								<h4 class="table-col mobile-col-2"><%= ordine.getShippingAddress().getStreet() %>, <%= ordine.getShippingAddress().getHouseNumber() %>, <%= ordine.getShippingAddress().getPostalCode() %></h4>
+								<h4 class="table-col mobile-col-1"><%= ordine.getTrackingCode().isEmpty() ? "-" : ordine.getTrackingCode().get() %></h4>
+								<h4 class="table-col mobile-col-3"><%= DateUtil.formatVisual(ordine.getOrderDate())%></h4>
 								<form action="order-info.jsp"  method="get" class="table-col">
 									<input hidden name="order-id" value="<%= ordine.getId() %>">
 									<input hidden name="redirectBy" value="orders-history.jsp">

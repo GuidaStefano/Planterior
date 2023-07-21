@@ -82,24 +82,24 @@
 				<div class="block-title">
 					<span>Tutte le categorie
 						<ul class="ul-mobile">
-							<li><a href="Catalogo.jsp?categoria=PIANTE_VERDI">PIANTE VERDI</a></li>
-							<li><a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE GRASSE</a></li>
-							<li><a href="Catalogo.jsp?categoria=PIANTE_FIORITE">PIANTE FIORITE</a></li>
-							<li><a href="Catalogo.jsp?categoria=ORCHIDEE">ORCHIDEE</a></li>
-							<li><a href="Catalogo.jsp?categoria=TERRARIUM">TERRARIUM</a></li>
-							<li><a href="Catalogo.jsp?categoria=VASI">VASI</a></li>
-							<li><a href="Catalogo.jsp?categoria=ACCESSORI_PIANTE">ACCESSORI PIANTE</a></li>
+							<li><a href="catalog.jsp?category=PIANTE_VERDI">PIANTE VERDI</a></li>
+							<li><a href="catalog.jsp?category=PIANTE_GRASSE">PIANTE GRASSE</a></li>
+							<li><a href="catalog.jsp?category=PIANTE_FIORITE">PIANTE FIORITE</a></li>
+							<li><a href="catalog.jsp?category=ORCHIDEE">ORCHIDEE</a></li>
+							<li><a href="catalog.jsp?category=TERRARIUM">TERRARIUM</a></li>
+							<li><a href="catalog.jsp?category=VASI">VASI</a></li>
+							<li><a href="catalog.jsp?category=ACCESSORI_PIANTE">ACCESSORI PIANTE</a></li>
 						</ul>
 					</span>
 				</div>
 			</div>
 			<ul>
 				<li>
-					<a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE DA INTERNO</a>
+					<a href="catalog.jsp?main-category=PIANTE_DA_INTERNO">PIANTE DA INTERNO</a>
 				</li>
-				<li><a href="Catalogo.jsp?categoria=PIANTE_GRASSE">TERRARIUM</a></li>
+				<li><a href="catalog.jsp?main-category=TERRARIUM">TERRARIUM</a></li>
 				<li>
-					<a href="Catalogo.jsp?categoria=PIANTE_GRASSE">HOME DECOR</a>
+					<a href="catalog.jsp?main-category=HOME_DECOR">HOME DECOR</a>
 				</li>
 			</ul>
 		</nav>

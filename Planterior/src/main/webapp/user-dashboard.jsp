@@ -113,7 +113,7 @@
 			<div class="h-box" style="justify-content: start; column-gap: 15px;">
 				<h1>DASHBOARD UTENTI</h1>
 				<% if(!customers.isEmpty()) { %>
-					<button id="show-input-btn" class="icon-button"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+					<button id="show-input-btn" class="icon-button no-padding"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
 				<% } %>
 			</div>
 		<% if(!customers.isEmpty()) { %>
@@ -135,7 +135,7 @@
 									</button>
 								</form>
 							</div>
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-2">
 								<h3>email</h3> 
 								<form action="user-dashboard.jsp" class="v-box">
 									<input type="hidden" name="sortBy" value="email" />
@@ -166,7 +166,7 @@
 						<%  for (Customer customer : customers) { %>
 							<div class="h-box table-row" id="<%= customer.getId() %>">
 								<h4 class="table-col"><%= customer.getId() %></h4>
-								<h4 class="table-col"><%= customer.getEmail() %></h4>
+								<h4 class="table-col mobile-col-2"><%= customer.getEmail() %></h4>
 								<h4 class="table-col"><%= ordersAmount.get(customer.getId()) %></h4>
 								<form action="user-info.jsp" method="get" class="h-box table-col justify-center"> 
 									<input hidden name="customer-id" value="<%= customer.getId() %>">

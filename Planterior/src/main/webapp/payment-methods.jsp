@@ -47,19 +47,19 @@
 				<% if(!paymentMethods.isEmpty()) { %>
 					<div class="v-box table">
 						<div class="h-box table-header">
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-1">
 								<h3>ID</h3> 
 							</div>
-							<div class="table-col h-box justify-center mobile-col">
+							<div class="table-col h-box justify-center mobile-col-2">
 								<h3>CIRCUITO</h3> 
 							</div>
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-3">
 								<h3>INTESTATARIO</h3> 
 							</div>
 							<div class="table-col h-box justify-center">
 								<h3>NUMERO CARTA</h3> 
 							</div>
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-1">
 								<h3>DATA SCADENZA</h3> 
 							</div>
 							<div class="table-col justify-center">
@@ -68,11 +68,11 @@
 						</div>
 						<% for (PaymentMethod method : paymentMethods) { %>
 								<div class="h-box table-row">
-									<h4 class="table-col"><%= method.getId() %></h4>
-									<h4 class="table-col mobile-col-3"><%= method.getCardCircuit().toString() %></h4>
-									<h4 class="table-col mobile-col-1"><%= method.getOwner() %></h4>
+									<h4 class="table-col mobile-col-1"><%= method.getId() %></h4>
+									<h4 class="table-col mobile-col-2"><%= method.getCardCircuit().toString() %></h4>
+									<h4 class="table-col mobile-col-3"><%= method.getOwner() %></h4>
 									<h4 class="table-col"><%= encodeCardNumber(method.getCardNumber()) %></h4>
-									<h4 class="table-col mobile-col-2"><%= DateUtil.format(method.getExpirationDate(), "MM-yyyy") %></h4>
+									<h4 class="table-col mobile-col-1"><%= DateUtil.format(method.getExpirationDate(), "MM-yyyy") %></h4>
 									<form action="edit-payment-method" method="POST" class="table-col justify-center">
 										<input type="hidden" name="id" value=<%= method.getId() %> />
 										<button type="submit" name="action" value="delete" class="icon-button no-padding">

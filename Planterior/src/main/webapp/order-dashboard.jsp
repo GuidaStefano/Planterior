@@ -79,7 +79,7 @@
 			<div class="v-box page-content">
 				<div class="h-box" style="justify-content: start; column-gap: 15px;">
 					<h1>ORDINI COMPLESSIVI</h1>
-					<button id="show-input-btn" class="icon-button"><i class="fa-solid fa-filter fa-lg"></i></button>
+					<button id="show-input-btn" class="icon-button no-padding"><i class="fa-solid fa-filter fa-lg"></i></button>
 				</div>
 				<form class="h-box" action="order-dashboard.jsp" id="search-div" style="display: none; justify-content: start; align-items: end; column-gap: 20px;">
 					<div class="v-box">
@@ -98,13 +98,13 @@
 							<div class="table-col h-box justify-center">
 								<h3>ID</h3> 
 							</div>
-							<div class="table-col h-box justify-center mobile-col">
+							<div class="table-col h-box justify-center mobile-col-1">
 								<h3>ESEGUITO DA</h3> 
 							</div>
 							<div class="table-col h-box justify-center">
 								<h3>STATO</h3> 
 							</div>
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-2">
 								<h3>DATA ORDINE</h3> 
 							</div>
 							 
@@ -115,10 +115,10 @@
 							<% for (Order order : orders) { %>
 							<div class="h-box table-row">
 									<h4 class="table-col"><%= order.getId() %></h4>
-									<h4 class="table-col"><%= order.getCustomer().getEmail() %></h4>
+									<h4 class="table-col mobile-col-1"><%= order.getCustomer().getEmail() %></h4>
 	
 									<h4 class="table-col"><%= order.getState().toString() %></h4>
-									<h4 class="table-col"><%= DateUtil.formatVisual(order.getOrderDate())%></h4>
+									<h4 class="table-col mobile-col-2"><%= DateUtil.formatVisual(order.getOrderDate())%></h4>
 									<form action="order-info.jsp"  method="get" class="table-col">
 										<input hidden name="order-id" value="<%= order.getId() %>">
 										<input hidden name="redirectBy" value="order-dashboard.jsp">

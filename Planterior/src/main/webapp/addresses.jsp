@@ -44,16 +44,16 @@
 				<% if(!addresses.isEmpty()) { %>
 					<div class="v-box table">
 						<div class="h-box table-header">
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-2">
 								<h3>ID</h3> 
 							</div>
-							<div class="table-col h-box justify-center mobile-col">
+							<div class="table-col h-box justify-center">
 								<h3>VIA</h3> 
 							</div>
 							<div class="table-col h-box justify-center">
 								<h3>CIVICO</h3> 
 							</div>
-							<div class="table-col h-box justify-center">
+							<div class="table-col h-box justify-center mobile-col-1">
 								<h3>CAP</h3> 
 							</div>
 							<div class="table-col justify-center">
@@ -62,10 +62,10 @@
 						</div>
 						<% for (ShippingAddress address : addresses) { %>
 								<div class="h-box table-row">
-									<h4 class="table-col"><%= address.getId() %></h4>
-									<h4 class="table-col mobile-col-3"><%= address.getStreet() %></h4>
-									<h4 class="table-col mobile-col-1"><%= address.getHouseNumber() %></h4>
-									<h4 class="table-col"><%= address.getPostalCode() %></h4>
+									<h4 class="table-col mobile-col-2"><%= address.getId() %></h4>
+									<h4 class="table-col"><%= address.getStreet() %></h4>
+									<h4 class="table-col"><%= address.getHouseNumber() %></h4>
+									<h4 class="table-col mobile-col-1"><%= address.getPostalCode() %></h4>
 									<form action="edit-addresses" method="POST" class="table-col justify-center">
 										<input type="hidden" name="id" value=<%= address.getId() %> />
 										<button type="submit" name="action" value="delete" class="icon-button no-padding">
