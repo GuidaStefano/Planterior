@@ -59,17 +59,17 @@ public class OrderDao extends Dao<Order> {
 		
 		long customerId = result.getLong("cliente");
 		Customer customer = CustomerDao.getInstance().getById(customerId)
-				.orElseThrow(() -> new IllegalStateException("inconsistenza dei dari presenti nel database!"));
+				.orElseThrow(() -> new IllegalStateException("inconsistenza dei dati presenti nel database!"));
 		order.setCustomer(customer);
 		
 		long paymentMethodId = result.getLong("metodo_pagamento");
 		PaymentMethod paymentMethod = PaymentMethodDao.getInstance().getById(paymentMethodId)
-				.orElseThrow(() -> new IllegalStateException("inconsistenza dei dari presenti nel database!"));
+				.orElseThrow(() -> new IllegalStateException("inconsistenza dei dati presenti nel database!"));
 		order.setPaymentMethod(paymentMethod);
 		
 		long shippingAddressId = result.getLong("indirizzo_consegna");
 		ShippingAddress shippingAddress = ShippingAddressDao.getInstance().getById(shippingAddressId)
-				.orElseThrow(() -> new IllegalStateException("inconsistenza dei dari presenti nel database!"));
+				.orElseThrow(() -> new IllegalStateException("inconsistenza dei dati presenti nel database!"));
 		order.setShippingAddress(shippingAddress);
 		
 		order.setTotalPrice(result.getFloat("totale"));

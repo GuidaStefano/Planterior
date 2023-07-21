@@ -117,7 +117,7 @@
                                              <% 
                                            
                                              
-                                         //    List<Product> lista_prodotti = ProductDao.getInstance().getAllByCategory(category); 
+                                       
                                              if(lista_prodotti.isEmpty()){%>
                                              		<h3>Non abbiamo disponibilità di questa categoria</h3>
                                              
@@ -135,14 +135,6 @@
                                                     </div>
                                                 </div>
                                                 <%} %>
-                                                
-                                            <!--     <div class="card">
-                                                    <img src="asset/images/slider-thumb6.jpg" alt="">
-                                                    <div class="text-box">
-                                                        <h3>Titolo</h3>
-                                                        <h6>Price</h6>
-                                                    </div>
-                                                </div>  --->
                                                 
                                             </div>
                                         </div>

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import it.unisa.planterior.model.bean.Order;
 import it.unisa.planterior.model.bean.Product;
 import it.unisa.planterior.model.bean.Product.Subcategory;
 import it.unisa.planterior.model.dao.api.Dao;

@@ -156,7 +156,6 @@
 							</div>
 						<% } %>
 					</div>
-				<!--  	<button class="big-button static-btn" id="add-btn"><h6>AGGIUNGI PRODOTTO</h6></button>-->
 					
 					<a href="add-product.jsp">
 						<button type="submit" name="action" value="insert" class="big-button static-btn" id="fixed-btn">

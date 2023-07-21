@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$('button[type=button][value=add]').on("click", function(){
-		var productId = $(this).attr("name");
-		var params = {
+		let productId = $(this).attr("name");
+		let params = {
 			id: productId,
 			action: "add",
 			ajax: true
@@ -10,8 +10,8 @@ $(document).ready(function() {
 	});
 	
 	$('button[type=button][value=meno]').on("click", function(){
-		var productId = $(this).attr("name");
-		var params = {
+		let productId = $(this).attr("name");
+		let params = {
 			id: productId,
 			action: "remove",
 			ajax: true
@@ -26,9 +26,9 @@ function ajaxCall(params) {
 		method: 'GET',
 		data: params,
 		success: function(response) {
-			var amount = parseInt(response.amount);
-			var productPrice = parseFloat(response.productPrice).toFixed(2);
-			var totalPrice = parseFloat(response.totalPrice).toFixed(2);
+			let amount = parseInt(response.amount);
+			let productPrice = parseFloat(response.productPrice).toFixed(2);
+			let totalPrice = parseFloat(response.totalPrice).toFixed(2);
 			
 			if (amount < 1) {
 				$("#product-" + params.id).remove();

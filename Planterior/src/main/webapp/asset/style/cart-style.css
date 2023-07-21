@@ -90,15 +90,11 @@ a:hover {
     }
 
     .cart-product {
-        padding: 10px;
+        padding: 5px;
     }
 
     .product-info {
         flex-direction: column;
-    }
-
-    .cart-product {
-        padding: 5px;
     }
 
     .total-price-w {
@@ -141,9 +137,6 @@ a:hover {
     
     .total-price-w h5 {
         margin-right: 15px;
-    }
-
-    .total-price-w h5 {
         word-wrap: break-word;
         width: 50px;
     }

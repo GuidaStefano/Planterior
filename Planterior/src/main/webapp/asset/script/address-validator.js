@@ -1,10 +1,10 @@
 $(document).ready(function(){
-	var streetInput = $("#street");
-	var houseNumberInput = $("#house-number");
-	var postalCodeInput = $("#postal-code");
+	let streetInput = $("#street");
+	let houseNumberInput = $("#house-number");
+	let postalCodeInput = $("#postal-code");
 	
 	streetInput.blur(function() {
-		 var street = streetInput.val();
+		 let street = streetInput.val();
 		 if (!/^[a-zA-Z\s]*$/.test(street)) {
 			 $(this).next(".error-log").show();
 			 $("#submit").prop("disabled", true);
@@ -15,8 +15,8 @@ $(document).ready(function(){
 	 });
 	 
 	houseNumberInput.blur(function() {
-		 var houseNumber = houseNumberInput.val();
-		 if (!/^[0-9]{1,4}$/.test(houseNumber)) {
+		 let houseNumber = houseNumberInput.val();
+		 if (!/^\d{1,4}$/.test(houseNumber)) {
 			 $(this).next(".error-log").show();
 			 $("#submit").prop("disabled", true);
 		 } else {
@@ -26,8 +26,8 @@ $(document).ready(function(){
 	 });
 	 
 	postalCodeInput.blur(function() {
-		 var postalCode = postalCodeInput.val();
-		 if (!/^[0-9]{5}$/.test(postalCode)) {
+		 let postalCode = postalCodeInput.val();
+		 if (!/^\d{5}$/.test(postalCode)) {
 			 $(this).next(".error-log").show();
 			 $("#submit").prop("disabled", true);
 		 } else {

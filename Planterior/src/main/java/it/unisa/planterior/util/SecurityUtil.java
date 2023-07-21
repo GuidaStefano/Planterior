@@ -19,8 +19,7 @@ public class SecurityUtil {
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
 			byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8));
-			String encoded = Base64.getEncoder().encodeToString(hash);
-			return encoded;
+			return Base64.getEncoder().encodeToString(hash);
 		} catch (NoSuchAlgorithmException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage());
 			return null;

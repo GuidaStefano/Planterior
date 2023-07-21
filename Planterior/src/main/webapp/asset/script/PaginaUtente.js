@@ -5,8 +5,8 @@
 $(document).ready(function(){
 	
 	$("#email").blur(function(){
-		var email = $("#email").val();
-	    var data = "email=" + email;
+		let email = $("#email").val();
+	    let data = "email=" + email;
 	    
 		//chiamata ajax
 		$.ajax({
@@ -43,6 +43,6 @@ $(document).ready(function(){
 
 
 function validateEmail(email) {
-    var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-. ]\w+)*$/;
+    let reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-. ]\w+)*$/;
     return reg.test(email);
 }

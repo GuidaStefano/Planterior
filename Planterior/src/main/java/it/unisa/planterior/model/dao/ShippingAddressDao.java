@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import it.unisa.planterior.model.bean.Customer;
-import it.unisa.planterior.model.bean.PaymentMethod;
 import it.unisa.planterior.model.bean.ShippingAddress;
 import it.unisa.planterior.model.dao.api.Dao;
 

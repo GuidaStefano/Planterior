@@ -94,11 +94,6 @@
 				</div>
 			</div>
 			<ul>
-			<!--  	<li><a href="#">Shop</a>
-					<ul>
-						<li><a href="#">Sotto-link 1</a></li>
-						<li><a href="#">Sotto-link 2</a></li>
-					</ul></li>-->
 				<li>
 					<a href="Catalogo.jsp?categoria=PIANTE_GRASSE">PIANTE DA INTERNO</a>
 				</li>

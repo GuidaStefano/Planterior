@@ -1,7 +1,7 @@
 package it.unisa.planterior.model.dao.api;
 
-import java.sql.ResultSet;
 import java.util.Optional;
+import java.util.logging.Level;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -9,6 +9,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import it.unisa.planterior.model.bean.Bean;
+import it.unisa.planterior.util.SecurityUtil;
 
 public abstract class AbstractDao<T extends Bean> {
 	
@@ -21,7 +22,7 @@ public abstract class AbstractDao<T extends Bean> {
 
 			dataSource = (DataSource) environmentContext.lookup("jdbc/planterior-database");
 		} catch (NamingException e) {
-			System.out.println("Error:" + e.getMessage());
+			SecurityUtil.LOGGER.log(Level.SEVERE, e.getMessage());
 		}
 		
 	}

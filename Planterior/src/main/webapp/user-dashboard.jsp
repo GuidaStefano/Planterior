@@ -168,7 +168,6 @@
 								<h4 class="table-col"><%= customer.getId() %></h4>
 								<h4 class="table-col"><%= customer.getEmail() %></h4>
 								<h4 class="table-col"><%= ordersAmount.get(customer.getId()) %></h4>
-								<!--value="ordini"-->
 								<form action="user-info.jsp" method="get" class="h-box table-col justify-center"> 
 									<input hidden name="customer-id" value="<%= customer.getId() %>">
 									<button  type="submit" class="icon-button no-padding">

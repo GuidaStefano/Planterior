@@ -1,7 +1,6 @@
 package it.unisa.planterior.util;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;

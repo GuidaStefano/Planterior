@@ -22,7 +22,7 @@
                     <form class="form" action="LoginServlet" method="POST">
                         <div>
                             <label for="username">Email</label>
-                            <input id="EmailLogin" class="text-input" type="text" name="email"/><!--   onchange="existEmail()"-->
+                            <input id="EmailLogin" class="text-input" type="text" name="email"/>
                             <p class="error-log" id="ErrorLogin"></p>
                         </div>
                         <div>

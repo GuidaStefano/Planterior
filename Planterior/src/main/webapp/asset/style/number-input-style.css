@@ -10,7 +10,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .number-input {
-    border: 2px solid #f1f1f1;
+    border: 1px solid #f1f1f1;
     display: inline-flex;
 }
 
@@ -62,10 +62,5 @@ input[type=number]::-webkit-outer-spin-button {
     border: 0;
     text-align: center;
     outline: none;
-}
-
-.number-input{
-    border: solid #f1f1f1;
-    border-width: 1px;
 }
 
