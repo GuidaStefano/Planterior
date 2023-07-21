@@ -56,8 +56,8 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha384-NXgwF8Kv9SSAr+jemKKcbvQsz+teULH/a5UNJvZc6kP47hZgl62M1vGnw6gHQhb1" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js" integrity="sha384-/KtSGZ3Y6FUl+HbMMbSX94R0r8VGddnyrvYXTOQ9LuO3HxckA9kzrCQUafZZwJB3" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js" integrity="sha384-ZHqoDSJdE8wpN2damqZOsmgOoQsACQe+po725aR/V69WwwpZoHoJtAChKh1Yg40Y" crossorigin="anonymous"></script>
  		<title>Fattura ordine - <%= orderId %></title>
 	</head>
 	<body>

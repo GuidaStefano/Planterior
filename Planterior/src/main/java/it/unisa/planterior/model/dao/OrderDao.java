@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
 
 import it.unisa.planterior.model.bean.Customer;
 import it.unisa.planterior.model.bean.Order;
@@ -19,6 +20,7 @@ import it.unisa.planterior.model.bean.Order.State;
 import it.unisa.planterior.model.bean.OrderItem;
 import it.unisa.planterior.model.dao.api.Dao;
 import it.unisa.planterior.util.DateUtil;
+import it.unisa.planterior.util.SecurityUtil;
 import it.unisa.planterior.model.bean.PaymentMethod;
 import it.unisa.planterior.model.bean.ShippingAddress;
 
@@ -134,7 +136,7 @@ public class OrderDao extends Dao<Order> {
 			
 			return orderId;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			SecurityUtil.LOGGER.log(Level.SEVERE, e.getMessage());
 			return -1;
 		}
     }

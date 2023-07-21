@@ -4,8 +4,12 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SecurityUtil {
+	
+	public static final Logger LOGGER = Logger.getLogger("Planterior");
 
 	public static String sha256(String base) {
 		try {
@@ -14,7 +18,7 @@ public class SecurityUtil {
 			String encoded = Base64.getEncoder().encodeToString(hash);
 			return encoded;
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage());
 			return null;
 		}
 		

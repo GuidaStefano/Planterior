@@ -22,6 +22,8 @@ import it.unisa.planterior.model.dao.ProductDao;
 public class CartServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private static final String MAX_AMOUNT_ATTR = "is-max-amount";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
@@ -49,7 +51,7 @@ public class CartServlet extends HttpServlet {
 				Product product = ProductDao.getInstance().getById(productId).get();
 				if (amount > product.getAvailableAmount()) {
 					amount = product.getAvailableAmount();
-					request.getSession().setAttribute("is-max-amount", true);
+					request.getSession().setAttribute(MAX_AMOUNT_ATTR, true);
 				}
 				
 				cart.put(productId, amount);
@@ -75,8 +77,8 @@ public class CartServlet extends HttpServlet {
 				float totalPrice = getCartTotalPrice(request);
 				
 				boolean isMaxAmount = false;
-				if (request.getSession().getAttribute("is-max-amount") != null) {
-					request.getSession().removeAttribute("is-max-amount");
+				if (request.getSession().getAttribute(MAX_AMOUNT_ATTR) != null) {
+					request.getSession().removeAttribute(MAX_AMOUNT_ATTR);
 					isMaxAmount = true;
 					
 				}

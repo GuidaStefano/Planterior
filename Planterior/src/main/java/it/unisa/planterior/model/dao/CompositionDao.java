@@ -7,9 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
 
 import it.unisa.planterior.model.bean.OrderItem;
 import it.unisa.planterior.model.dao.api.Dao;
+import it.unisa.planterior.util.SecurityUtil;
 
 public class CompositionDao extends Dao<OrderItem> {
 
@@ -61,7 +63,7 @@ public class CompositionDao extends Dao<OrderItem> {
 
 			return statement.executeUpdate() == 1;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			SecurityUtil.LOGGER.log(Level.SEVERE, e.getMessage());
 			return false;
 		}
     }

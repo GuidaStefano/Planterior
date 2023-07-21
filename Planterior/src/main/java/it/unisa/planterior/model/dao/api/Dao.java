@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
 
 import it.unisa.planterior.model.bean.Bean;
+import it.unisa.planterior.util.SecurityUtil;
 
 public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 	
@@ -85,7 +87,7 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 			}
 			return Optional.empty();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			SecurityUtil.LOGGER.log(Level.SEVERE, e.getMessage());
 			return Optional.empty();
 		}
     }
@@ -104,7 +106,7 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 				allMatched.add(obj);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			SecurityUtil.LOGGER.log(Level.SEVERE, e.getMessage());
 		}
 		
 		return allMatched;
@@ -124,7 +126,7 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 				allMatched.add(obj);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			SecurityUtil.LOGGER.log(Level.SEVERE, e.getMessage());
 		}
 		
 		return allMatched;
@@ -146,7 +148,7 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 				all.add(obj);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			SecurityUtil.LOGGER.log(Level.SEVERE, e.getMessage());
 		}
 		
 		return all;
@@ -160,7 +162,7 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 			
 			return statement.executeUpdate() == 1;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			SecurityUtil.LOGGER.log(Level.SEVERE, e.getMessage());
 			return false;
 		}
     }
@@ -177,7 +179,7 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 			
 			return statement.executeUpdate() == 1;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			SecurityUtil.LOGGER.log(Level.SEVERE, e.getMessage());
 			return false;
 		}
     }
@@ -199,7 +201,7 @@ public abstract class Dao<T extends Bean> extends AbstractDao<T> {
 			
 			return generatedKeys.getLong(1);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			SecurityUtil.LOGGER.log(Level.SEVERE, e.getMessage());
 			return -1;
 		}
     }
