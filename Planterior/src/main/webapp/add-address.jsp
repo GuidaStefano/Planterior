@@ -1,3 +1,4 @@
+<%@page import="org.owasp.encoder.Encode"%>
 <%@page import="it.unisa.planterior.model.bean.Product.Subcategory"%>
 <%@page import="it.unisa.planterior.model.bean.Product.Category"%>
 <%@page import="it.unisa.planterior.model.bean.Customer"%>
@@ -53,7 +54,7 @@
 	<body>
 		<%@ include file="header.jsp" %>
 		<div class="wrapper">
-			<a href="<%= redirect == null ? "addresses.jsp" : redirect %>">
+			<a href="<%= redirect == null ? "addresses.jsp" : Encode.forHtml(redirect) %>">
 				<button class="icon-button no-padding" style="margin-bottom: 20px;">
 					<i class="fa-solid fa-arrow-left fa-l"></i>
 					<span id="back-label">Indietro</span>
