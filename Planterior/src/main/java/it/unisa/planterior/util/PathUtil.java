@@ -9,6 +9,10 @@ public class PathUtil {
 	// TODO sostituire con un path relativo
 	public static String IMAGES_DIR_PATH = "C:\\Users\\Stefano\\git\\Planterior\\Planterior\\src\\main\\webapp\\asset\\images";
 
+	private PathUtil() {
+		
+	}
+	
 	public static String getMainImagePath(long id) {
 		File dir = new File(IMAGES_DIR_PATH);
 		

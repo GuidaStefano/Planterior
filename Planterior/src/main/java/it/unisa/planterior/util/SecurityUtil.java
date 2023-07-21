@@ -11,6 +11,10 @@ public class SecurityUtil {
 	
 	public static final Logger LOGGER = Logger.getLogger("Planterior");
 
+	private SecurityUtil() {
+		
+	}
+	
 	public static String sha256(String base) {
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");

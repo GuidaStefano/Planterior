@@ -56,22 +56,27 @@ public class EditCatalogServlet extends HttpServlet {
 		}
 	}
 	
-	private void clearMainImage(long id) {
+	private boolean clearMainImage(long id) {
 		File dir = new File(PathUtil.IMAGES_DIR_PATH);
 		
+		boolean result = true;
 		for (File file : dir.listFiles((directory, fileName) -> fileName.startsWith(id + "_main"))) {
-			file.delete();
+			result = result && file.delete();
 		}
 
+		return result;
 	}
 	
-	private void clearImages(long id) {
+	private boolean clearImages(long id) {
 		File dir = new File(PathUtil.IMAGES_DIR_PATH);
 		
+		boolean result = true;
 		for (File file : dir.listFiles((directory, fileName) -> fileName.startsWith(Long.toString(id)))) {
 			if (file.getName().startsWith(id + "_main")) continue;
-			file.delete();
+			result = result && file.delete();
 		}
+		
+		return result;
 	}
 	
 	private void saveImages(long id, HttpServletRequest request) throws IOException, ServletException {

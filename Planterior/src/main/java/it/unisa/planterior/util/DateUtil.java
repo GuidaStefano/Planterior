@@ -13,6 +13,10 @@ public class DateUtil {
 	private static final String SYSTEM_DATE_FORMAT = "yyyy-MM-dd";
 	private static final String VISUAL_DATE_FORMAT = "dd/MM/yyyy";
 	
+	private DateUtil() {
+		
+	}
+	
 	public static ZonedDateTime now() {
 		return ZonedDateTime.now(ZONE_ID);
 	}
